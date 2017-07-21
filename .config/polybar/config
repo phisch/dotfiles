@@ -1,0 +1,321 @@
+[colors]
+primary_accent = #9B26AF
+secondary_accent = #68EFAD
+
+
+background = #CC000000
+background_light = #AA000000
+background_dark = #EE000000
+foreground = #ffffff
+
+info = #2196F3
+warning = #FF9800
+error = #F44336
+
+
+[bar/laptop]
+
+height = 35
+
+modules-left = bspwm
+modules-center = title
+modules-right = wireless-network backlight battery cpu memory temperature volume date power
+
+font-2 = MaterialIcons:size=15;3
+font-1 = MaterialDesignIcons:size=14
+font-0 = Termsynu:size=10;0
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+
+
+
+
+
+[module/title]
+type = internal/xwindow
+
+
+[module/backlight]
+type = internal/xbacklight
+enable-scroll = false
+label =  %percentage%%
+
+
+
+
+[module/wireless-network]
+type = internal/network
+interface = wlp3s0
+
+label-connected =  %essid%  %signal%%
+label-disconnected =  %ifname%
+
+
+
+
+
+
+[module/battery]
+type = internal/battery
+
+full-at = 99
+
+battery = BAT0
+adapter = ADP1
+
+poll-interval = 3
+
+format-charging = <ramp-capacity><label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+
+label-discharging = %percentage%%  %time%
+label-charging = %percentage%%  %time%
+
+#
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
+ramp-capacity-10 = 
+
+animation-charging-framerate = 1000
+
+
+[module/bspwm]
+type = internal/bspwm
+
+fuzzy-match = true
+
+ws-icon-default =
+ws-icon-0 = one;
+ws-icon-1 = two;
+ws-icon-2 = three;
+ws-icon-3 = four;
+
+pin-workspaces = false
+inline-mode = true
+reverse-scroll = false
+
+format = "<label-monitor><label-state>"
+
+label-monitor = ""
+label-focused = %index%%icon%
+label-occupied = %index%%icon%
+label-urgent = %index%%icon%
+label-empty = %index%%icon%
+
+label-monitor-padding = 2
+label-focused-padding = 2
+label-occupied-padding = 2
+label-urgent-padding = 2
+label-empty-padding = 2
+
+label-monitor-background = ${colors.background_dark}
+label-urgent-background = ${colors.error}
+label-focused-background = ${colors.background_light}
+
+label-empty-foreground = ${colors.foreground}
+
+
+
+
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/xkeyboard]
+type = internal/xkeyboard
+#blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-fade}
+
+label-layout = %layout%
+
+label-indicator-padding = 2
+label-indicator-background = ${colors.info}
+label-indicator-underline = ${colors.info}
+
+
+
+
+
+
+
+
+[module/volume]
+type = internal/volume
+
+format-muted = <label-muted>
+format-volume = <ramp-volume><label-volume>
+
+format-muted-prefix = ""
+label-muted = muted
+label-muted-foreground = ${colors.error}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-padding = 2
+format-muted-prefix-padding = 2
+
+label-muted-padding-right = 2
+label-volume-padding-right = 2
+
+
+
+
+
+[module/date]
+type = internal/date
+
+date = "%a "
+date-alt = "%a %d.%m.%Y "
+
+time = "%H:%M"
+time-alt = "%H:%M:%S"
+
+format = <label>
+format-prefix-padding = 2
+
+format-prefix = 
+
+label = %date%%time%
+label-padding-right = 2
+
+
+
+
+[module/power]
+type = custom/menu
+
+label-open = 
+label-open-foreground = ${colors.foreground}
+label-open-background = ${colors.error}
+label-open-padding = 2
+
+label-close = 
+label-close-foreground = ${colors.foreground}
+label-close-padding = 2
+label-close-margin-left = 2
+
+menu-0-0-padding = 2
+menu-0-1-padding = 2
+menu-0-2-padding = 2
+menu-0-3-padding = 2
+
+menu-0-0 = 
+menu-0-0-background = ${colors.info}
+menu-0-0-exec = systemctl suspend
+
+menu-0-1 = 
+menu-0-1-background = ${colors.warning}
+menu-0-1-exec = reboot
+
+menu-0-2 = 
+menu-0-2-background = ${colors.error}
+menu-0-2-exec = poweroff
+
+
+
+[module/test2]
+type = custom/text
+content = 
+click-left = urxvt -e sudo /home/philipp/qemu/start &
+
+
+
+
+
+
+[module/eth]
+type = internal/network
+interface = eno1
+interval = 3.0
+
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+format-packetloss = <label-connected>
+
+format-connected-prefix = 
+format-disconnected-prefix = 
+
+format-connected-prefix-padding = 2
+format-disconnected-prefix-padding = 2
+format-packetloss-prefix-padding = 2
+
+label-connected = %local_ip%  %upspeed%  %downspeed%
+label-disconnected = %ifname% disconnected
+
+
+#label-connected-background = ${colors.background}
+#label-disconnected-background = ${colors.background}
+#label-packetloss-background = ${colors.background}
+
+label-connected-padding = 2
+label-disconnected-padding = 2
+label-packetloss-padding = 2
+
+#format-connected-background=${colors.info}
+#format-disconnected-background=${colors.background-fade}
+#format-packetloss-background=${colors.background-fade}
+
+
+
+
+[module/cpu]
+type = internal/cpu
+
+interval = 2
+
+format = <label>
+format-prefix =  CPU
+
+format-padding = 2
+format-background = ${colors.background}
+
+label = %percentage%%
+label-padding-left = 2
+
+
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format-background = ${colors.background}
+format-warn-background = ${colors.error}
+
+format = <label>
+format-warn = <label-warn>
+
+format-padding = 2
+format-warn-padding = 2
+
+label = %temperature%
+label-warn = %temperature%
+
+
+
+[module/memory]
+type = internal/memory
+interval = 2
+
+format = <label>
+format-prefix = RAM
+
+format-padding = 2
+format-background = ${colors.background}
+
+label = %percentage_used%%
+label-padding-left = 2

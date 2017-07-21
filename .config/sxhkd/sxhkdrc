@@ -1,0 +1,63 @@
+# application launcher
+{super, alt} + space
+  rofi -show run
+
+# reload sxhkd shortcuts
+super + Escape
+  pkill -USR1 -x sxhkd
+
+# exit bspwm session
+super + alt + Escape
+  bspc quit
+
+# close/kill application (active node)
+super +{_,shift + }w
+  bspc node -{c,k}
+
+# launch terminal
+super + Return
+  urxvt
+
+# select desktop
+super + {1-8}
+  bspc desktop -f {1-8}
+
+# previous/next desktop
+super + {Left,Right}
+  bspc desktop -f {prev,next}
+
+# move node to previous/next desktop
+super + alt + {Left,Right}
+  bspc node -d {prev,next} -f
+
+# move node to desktop
+super + alt + {1-8}
+  bspc node -d {1-8} -f
+
+# preselect up, right, down, left
+control + alt + {Up,Right,Down,Left}
+  bspc node -p {north,east,south,west}
+
+# cancel preselect
+control + alt + space
+  bspc node -p cancel
+
+# preselect ratio
+control + alt + {1-9}h
+	bspc node -o 0.{1-9}
+
+# focus/move node in direction up, right, down, left
+super + {ctrl,shift} + {Up,Right,Down,Left}
+  bspc node -{f,s} {north,east,south,west}
+
+# toggle node states
+super + {t,shift+t,f,shift+f}
+  bspc node -t {tiled,"~pseudo_tiled","~floating","~fullscreen"}
+
+# toggle monocle and tiled view for current desktop
+super + m
+  bspc desktop -l next
+
+# increase/decrease monitor backlight
+alt + b + {Prior,Next}
+  xbacklight -{inc,dec} 10
