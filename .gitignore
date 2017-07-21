@@ -1,1 +1,5 @@
+# ignore everything by default
 *
+
+# relevant configuration files
+!.Xresources
