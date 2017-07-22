@@ -1,60 +1,67 @@
-# application launcher
-{super, alt} + space
-  rofi -show run
-
-# reload sxhkd shortcuts
+# reload sxhkd shortcut definitions
 super + Escape
   pkill -USR1 -x sxhkd
 
-# exit bspwm session
+# exit bspwm
 super + alt + Escape
   bspc quit
 
-# close/kill application (active node)
-super +{_,shift + }w
-  bspc node -{c,k}
 
-# launch terminal
+# open urxvt terminal
 super + Return
   urxvt
 
-# select desktop
+# open rofi application launcher
+{super, alt} + space
+  rofi -show run
+
+
+
+# close (kill) active node
+super +{_,shift + }w
+  bspc node -{c,k}
+
+# switch to previous/next desktop
+super + {Left,Right}
+  bspc desktop -f {prev,next}
+
+# select desktop 1..8
 super + {1-8}
   bspc desktop -f {1-8}
 
-# previous/next desktop
-super + {Left,Right}
-  bspc desktop -f {prev,next}
+# preselect from current node
+control + alt + {Up,Right,Down,Left}
+  bspc node -p {north,east,south,west}
+
+# cancel preselect of current node
+control + alt + space
+  bspc node -p cancel
+
+# set preselect ratio from 10-90%
+control + alt + {1-9}
+	bspc node -o 0.{1-9}
+
+# select node in given direction
+# move node in given direction
+super + {ctrl,shift} + {Up,Right,Down,Left}
+  bspc node -{f,s} {north,east,south,west}
 
 # move node to previous/next desktop
 super + alt + {Left,Right}
   bspc node -d {prev,next} -f
 
-# move node to desktop
+# move current node to desktop 1..8
 super + alt + {1-8}
   bspc node -d {1-8} -f
 
-# preselect up, right, down, left
-control + alt + {Up,Right,Down,Left}
-  bspc node -p {north,east,south,west}
-
-# cancel preselect
-control + alt + space
-  bspc node -p cancel
-
-# preselect ratio
-control + alt + {1-9}
-	bspc node -o 0.{1-9}
-
-# focus/move node in direction up, right, down, left
-super + {ctrl,shift} + {Up,Right,Down,Left}
-  bspc node -{f,s} {north,east,south,west}
-
-# toggle node states
+# set `tiled` node state
+# toggle `pseudo_tiled` node state
+# toggle `floating` node state
+# toggle `fullscreen` node state
 super + {t,shift+t,f,shift+f}
   bspc node -t {tiled,"~pseudo_tiled","~floating","~fullscreen"}
 
-# toggle monocle and tiled view for current desktop
+# toggle 'monocle' desktop view
 super + m
   bspc desktop -l next
 
