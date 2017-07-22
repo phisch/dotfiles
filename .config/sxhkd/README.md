@@ -1,5 +1,5 @@
 # Shortcuts
-sxhkd is the X hotkey daemon used to control bspwm, other applications, hardware and media.
+[sxhkd](https://github.com/baskerville/sxhkd) is the X hotkey daemon used to control bspwm, other applications, hardware and media. The shortcuts are defined in the file [.config/sxhkd/sxhkdrc](.config/sxhkd/sxhkdrc). Following, all defined shortcuts and their functions.
 
 ## General
 
