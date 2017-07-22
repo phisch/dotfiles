@@ -43,7 +43,7 @@ control + alt + space
   bspc node -p cancel
 
 # preselect ratio
-control + alt + {1-9}h
+control + alt + {1-9}
 	bspc node -o 0.{1-9}
 
 # focus/move node in direction up, right, down, left
