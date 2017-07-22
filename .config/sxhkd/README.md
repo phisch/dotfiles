@@ -30,11 +30,22 @@
 |||
 |`Ctrl + Alt + (Up, Right, Down, Left)`|preselect from current node|
 |`Ctrl + Alt + Space`|cancel preselect of current node|
+|`Ctrl + Alt + 1..9`|set preselect ratio from 10-90%|
 |||
 |`Ctrl + Super + (Up, Right, Down, Left)`|select node in given direction|
 |`Shift + Super (Up, Right, Down, Left)`|move node in given direction|
 |`Super + Alt + (Left, Right)`|move node to previous/next desktop|
 |`Super + Alt + 1..8`|move current node to desktop 1..8|
 |``||
+|``||
+|``||
+|`Super + T`|set `tiled` node state|
+|`Super + Shift + T`|toggle `pseudo_tiled` node state|
+|`Super + F`|toggle `floating` node state|
+|`Super + Shift + F`|toggle `fullscreen` node state|
+|`Super + M`|toggle 'monocle' desktop view|
+|``||
+|``||
+|`Alt + B + (Page Up, Page Down)`|increase/decrease monitor backlight|
 |``||
 |``||
