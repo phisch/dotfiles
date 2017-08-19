@@ -1,5 +1,9 @@
 #!/usr/bin/env zsh
-bspc monitor -d 1 2 3 4 5 6 7 8
+bspc monitor DP-0 -d 1 2 3 4
+bspc monitor DP-2 -d 5 6 7 8
+bspc monitor DP-4 -d 9 10 11 12
+
+#bspc monitor -d 1 2 3 4 5 6 7 8
 
 bspc config border_width 0
 bspc config window_gap 8
@@ -15,8 +19,10 @@ bspc config click_to_focus true
 
 bspc rule -a Peek state=floating
 
-
 wmname LG3D
-polybar laptop -r &
+
+polybar main -r &
+#polybar laptop -r &
+
 compton --config ~/.config/compton/compton.conf &
 sxhkd &
