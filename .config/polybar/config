@@ -1,9 +1,9 @@
 [colors]
-background = #AA000000
+background = #BB000000
 foreground = #ffffff
 
-background_light = #88000000
-background_dark = #BB000000
+background_light = #99000000
+background_dark = #CC000000
 
 primary = #68EFAD
 secondary = #ad68ef
