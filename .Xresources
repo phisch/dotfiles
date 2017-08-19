@@ -1,4 +1,25 @@
-! general
+! colors
+*background: #0d1926
+*foreground: #d9e6f2
+
+*color0: #000000
+*color8: #2a2a2a
+*color1: #e13258
+*color9: #f2a8b8
+*color2: #58e132
+*color10: #b8f2a8
+*color3: #e1bb32
+*color11: #f2e2a8
+*color4: #3258e1
+*color12: #a8b8f2
+*color5: #bb32e1
+*color13: #e2a8f2
+*color6: #32e1bb
+*color14: #a8f2e2
+*color7: #dfdfdf
+*color15: #ffffff
+
+! urxvt
 urxvt*loginShell: true
 urxvt*scrollBar: false
 urxvt*secondaryScroll: true
@@ -7,102 +28,35 @@ urxvt*cursorBlink: true
 urxvt*urgentOnBell: true
 urxvt*borderLess: false
 urxvt*internalBorder: 15
-
-! extensions
-urxvt*perl-lib: /usr/lib/urxvt/perl/
 urxvt*urlLauncher: /usr/bin/google-chrome-stable
-urxvt*perl-ext-common:
 urxvt*matcher.button: 1
-
-! appearance
 urxvt*depth: 32
-urxvt*background: [80]#000000
+urxvt*background: [88]#000000
 urxvt*font: xft:Inconsolata:pixelsize=12
 
-! --- special colors ---
-*background: #0d1926
-*foreground: #d9e6f2
-
-! --- standard colors ---
-
-! black
-*color0: #000000
-
-! bright_black
-*color8: #2a2a2a
-
-! red
-*color1: #e13258
-
-! bright_red
-*color9: #f2a8b8
-
-! green
-*color2: #58e132
-
-! bright_green
-*color10: #b8f2a8
-
-! yellow
-*color3: #e1bb32
-
-! bright_yellow
-*color11: #f2e2a8
-
-! blue
-*color4: #3258e1
-
-! bright_blue
-*color12: #a8b8f2
-
-! magenta
-*color5: #bb32e1
-
-! bright_magenta
-*color13: #e2a8f2
-
-! cyan
-*color6: #32e1bb
-
-! bright_cyan
-*color14: #a8f2e2
-
-! white
-*color7: #dfdfdf
-
-! bright_white
-*color15: #ffffff
-
-
-! rofi configuration
+! rofi
 rofi.color-enabled: true
 rofi.color-window: argb:DD000000, argb:0ffffff, argb:0ffffff
 rofi.color-normal: argb:0ffffff, #ffffff, argb:11000000, argb:32ffffff, #ffffff
 rofi.color-active: #ffffff, #268bd2, #f0f0f0, argb:bb268bd2, #ffffff
 rofi.color-urgent: #ffffff, #dc322f, #f0f0f0, argb:bbdc322f, #ffffff
-
 rofi.location: 2
 rofi.yoffset: 30
-
 rofi.width: 700
 rofi.padding: 60
 rofi.hide-scrollbar: true
 rofi.bw: 0
-
 rofi.sidebar-mode: false
-grofi.fullscreen: false
+rofi.fullscreen: false
 rofi.hmode: true
 rofi.modi: combi,run,window,ssh
 rofi.combi-modi: window,run,ssh
-
 rofi.lines: 7
 rofi.columns: 1
 
-!cursor settings
-
+! cursor
 Xcursor.theme: DMZ-Black
 Xcursor.size: 16
 
-
+! dpi
 !Xft.dpi: 70
-Xft.dpi: 120
