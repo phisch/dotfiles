@@ -16,6 +16,7 @@ bspc config single_monocle true
 bspc config focus_follows_pointer false
 bspc config pointer_follows_monitor false
 bspc config click_to_focus true
+bspc config presel_feedback_color "#000000"
 
 bspc rule -a Peek state=floating
 bspc rule -a Qemu-system-x86_64 state=floating monitor=^1 rectangle=800x628+1700+762
