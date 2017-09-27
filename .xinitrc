@@ -6,4 +6,5 @@ xsetroot -cursor_name left_ptr
 feh --randomize --bg-fill ~/Pictures/wallpapers/*.png ~/Pictures/wallpapers/*.jpg
 export PATH=$HOME/bin:$PATH
 export SUDO_ASKPASS="/usr/local/bin/askpass"
+export QTWEBENGINE_DISABLE_SANDBOX=true
 exec bspwm

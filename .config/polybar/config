@@ -25,7 +25,6 @@ modules-right = cpu memory temperature volume date power
 
 font-0 = Termsynu:size=9;2
 font-1 = MaterialDesignIcons:size=11;2
-font-2 = MaterialIcons:size=12;3
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -42,9 +41,8 @@ modules-left = bspwm
 modules-center = xwindow
 modules-right = wireless-network backlight battery cpu memory temperature volume date power
 
-font-0 = Termsynu:size=9;2
-font-1 = MaterialDesignIcons:size=11;2
-font-2 = MaterialIcons:size=12;3
+font-0 = MaterialDesignIcons:size=11;2
+font-1 = Termsynu:size=9;2
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -102,8 +100,8 @@ label-disconnected =  %ifname%
 type = internal/xbacklight
 
 enable-scroll = false
-label =  %percentage%%
-
+label =  %percentage%%
+label-padding = 2
 
 
 [module/battery]
@@ -117,10 +115,12 @@ adapter = ADP1
 poll-interval = 3
 
 format-charging = <ramp-capacity><label-charging>
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging = <ramp-capacity><label-discharging>
 
 label-discharging = %percentage%%  %time%
 label-charging = %percentage%%  %time%
+
+ramp-capacity-padding = 2
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -180,7 +180,7 @@ label-warn = %temperature%
 type = internal/volume
 
 format-muted = <label-muted>
-format-muted-prefix = ""
+format-muted-prefix = ""
 format-muted-prefix-padding = 2
 
 format-volume = <ramp-volume><label-volume>
@@ -190,9 +190,9 @@ label-muted-foreground = ${colors.error}
 label-muted-padding-right = 2
 label-volume-padding-right = 2
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 ramp-volume-padding = 2
 
 
@@ -209,7 +209,7 @@ time-alt = "%H:%M:%S"
 format = <label>
 format-prefix-padding = 2
 
-format-prefix = 
+format-prefix = 
 
 label = %date%%time%
 label-padding-right = 2
@@ -219,27 +219,27 @@ label-padding-right = 2
 [module/power]
 type = custom/menu
 
-label-open = 
+label-open = 
 label-open-foreground = ${colors.foreground}
 label-open-background = ${colors.error}
 label-open-padding = 2
 
-label-close = 
+label-close = 
 label-close-foreground = ${colors.foreground}
 label-close-padding = 2
 label-close-margin-left = 2
 
-menu-0-0 = 
+menu-0-0 = 
 menu-0-0-background = ${colors.info}
 menu-0-0-exec = systemctl suspend
 menu-0-0-padding = 2
 
-menu-0-1 = 
+menu-0-1 = 
 menu-0-1-background = ${colors.warning}
 menu-0-1-exec = reboot
 menu-0-1-padding = 2
 
-menu-0-2 = 
+menu-0-2 = 
 menu-0-2-background = ${colors.error}
 menu-0-2-exec = poweroff
 menu-0-2-padding = 2
