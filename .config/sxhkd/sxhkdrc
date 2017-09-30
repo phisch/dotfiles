@@ -6,7 +6,6 @@ super + Escape
 super + alt + Escape
   bspc quit
 
-
 # open urxvt terminal
 super + Return
   urxvt
@@ -14,8 +13,8 @@ super + Return
 # open rofi application launcher
 {super, alt} + space
   rofi -show run
-
-
+XF86LaunchA
+  rofi -show run
 
 # close (kill) active node
 super +{_,shift + }w
@@ -68,3 +67,9 @@ super + m
 # increase/decrease monitor backlight
 alt + b + {Prior,Next}
   xbacklight -{inc,dec} 10
+
+{XF86MonBrightnessUp, XF86MonBrightnessDown
+  xbacklight -{inc,dec} 10
+
+{XF86AudioRaiseVolume, XF86AudioLowerVolume}
+  pactl set-sink-volume 0 {+5%,-5%}
