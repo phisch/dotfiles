@@ -33,23 +33,7 @@ urxvt*depth: 32
 urxvt*background: [88]#000000
 urxvt*font: xft:Inconsolata:pixelsize=12
 
-! rofi
-rofi.color-enabled: true
-rofi.color-window: argb:BB000000, argb:0ffffff, argb:0ffffff
-rofi.color-normal: argb:0ffffff, #ffffff, argb:11000000, #68EFAD, #000000
-rofi.color-active: #ffffff, #268bd2, #f0f0f0, argb:bb268bd2, #ffffff
-rofi.color-urgent: #ffffff, #dc322f, #f0f0f0, argb:bbdc322f, #ffffff
-rofi.location: 0
-rofi.padding: 60
-rofi.hide-scrollbar: true
-rofi.bw: 0
-rofi.sidebar-mode: false
-rofi.fullscreen: false
-rofi.hmode: true
-rofi.modi: combi,run,window,ssh
-rofi.combi-modi: window,run,ssh
-rofi.lines: 20
-rofi.columns: 1
+
 
 ! cursor
 Xcursor.theme: DMZ-Black
