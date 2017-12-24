@@ -12,9 +12,16 @@ super + Return
   urxvt
 
 # open rofi application launcher
-{super, alt} + space
-  rofi -show run
+#{super, alt} + space
+#  rofi -show combi
+super + space
+  rofi -show combi -theme "themes/sidebar"
 
+alt + space
+  rofi -show combi -theme "themes/quick"
+
+alt + Tab
+  rofi -show window
 
 
 # close (kill) active node
