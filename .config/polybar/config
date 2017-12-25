@@ -23,8 +23,8 @@ modules-left = bspwm
 modules-center = xwindow
 modules-right = cpu memory temperature volume date power
 
-font-0 = Termsynu:size=9;2
-font-1 = MaterialDesignIcons:size=11;2
+font-0 = MaterialDesignIcons:size=11;2
+font-1 = Termsynu:size=9;2
 
 background = ${colors.background}
 foreground = ${colors.foreground}

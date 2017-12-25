@@ -1,0 +1,126 @@
+* {
+	background-color:  rgba(0,0,0,0);
+
+
+	background: rgba(0,0,0,0.8);
+	background-highlight: rgba(255,255,255,0.2);
+	background-dummy: rgba(0,0,0,0.3);
+	background-secondary: rgba(0,0,0,0.98);
+
+	text-color: rgb(255,255,255);
+	text-color-invert: rgb(0,0,0);
+
+
+
+	primary: #ad68ef;
+	secondary: #68EFAD;
+
+
+	font: "Roboto 10";
+	text-highlight: bold #68EFAD;
+}
+
+
+
+
+
+#window {
+    fullscreen: true;
+    location: north west;
+    text-color: @text-color;
+		spacing: 0px;
+    y-offset: 30px;
+    height: 300px;
+
+    orientation: horizontal;
+    children: [mainbox, dummy];
+}
+
+#mainbox {
+	children: [inputbar,message,listview,sidebar];
+	border: 0;
+	spacing: 0;
+  expand: false;
+}
+#dummy {
+    expand: true;
+		border: 0px;
+		background-color: @background-dummy;
+}
+
+
+#inputbar {
+    text-color: @text-color-invert;
+		spacing: 0;
+		padding: 0;
+
+		children: [prompt, entry, case-indicator];
+}
+#prompt {
+	background-color: @primary;
+	text-color: inherit;
+	padding: 0 10px 0 0;
+	padding: 10px;
+}
+#entry {
+	background-color: @secondary;
+	text-color: inherit;
+	width: 20em;
+	padding: 10px;
+}
+#case-indicator {
+	background-color: @secondary;
+	text-color: inherit;
+}
+
+
+#listview {
+    dynamic: false;
+    lines:      10;
+		background-color: @background;
+		spacing: 0;
+}
+#element {
+	padding: 7px;
+	highlight: @text-highlight;
+}
+#element selected  normal {
+    background-color: @primary;
+		text-color: @text-color-inverted;
+}
+#element normal active {
+    text-color: @text-color;
+}
+#element normal urgent {
+    text-color: @text-color;
+}
+#element alternate normal {
+}
+#element alternate active {
+    text-color: @text-color;
+}
+#element alternate urgent {
+    text-color: @text-color;
+}
+#element selected active {
+    background-color: @background;
+    text-color: @text-color;
+}
+#element selected urgent {
+    background-color: @background;
+    text-color: @text-color;
+}
+
+
+#sidebar {
+    background-color: @background-secondary;
+}
+
+#button {
+	padding: 10px;
+}
+
+#button selected {
+    text-color: @text-color;
+		background-color: @primary;
+}
