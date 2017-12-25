@@ -34,6 +34,7 @@ line-size = 1
 
 
 [bar/laptop]
+monitor = eDP1
 wm-restack = bspwm
 height = 35
 
@@ -114,13 +115,22 @@ adapter = ADP1
 
 poll-interval = 3
 
-format-charging = <ramp-capacity><label-charging>
+format-full = <label-full>
+format-charging = <label-charging>
 format-discharging = <ramp-capacity><label-discharging>
 
 label-discharging = %percentage%%  %time%
-label-charging = %percentage%%  %time%
+label-charging = "    %percentage%%  %time%"
+label-full = "    %percentage%%"
 
 ramp-capacity-padding = 2
+animation-charging-padding = 2
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
 
 ramp-capacity-0 = 
 ramp-capacity-1 = 
@@ -134,7 +144,7 @@ ramp-capacity-8 = 
 ramp-capacity-9 = 
 ramp-capacity-10 = 
 
-animation-charging-framerate = 1000
+animation-charging-framerate = 800
 
 
 
