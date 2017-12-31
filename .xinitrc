@@ -3,7 +3,7 @@
 pulseaudio -D
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 xsetroot -cursor_name left_ptr
-feh --randomize --bg-fill ~/Pictures/wallpapers/*.png ~/Pictures/wallpapers/*.jpg
+feh --randomize --bg-fill --recursive --no-fehbg ~/Pictures/wallpapers
 export PATH=$HOME/bin:$PATH
 export SUDO_ASKPASS="/usr/local/bin/askpass"
 export QTWEBENGINE_DISABLE_SANDBOX=true
