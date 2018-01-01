@@ -20,7 +20,7 @@ Shortcut|Action
 Shortcut|Action
 ---|---
 `Super + (Shift +) W`|close (kill) active node
-`Super + (Left, Right)`|switch to previous/next desktop
+`Super + (Left, Right)`|switch to previous/next desktop on the active monitor
 `Super + 1..8`|select desktop 1..8
 `Ctrl + Alt + (Up, Right, Down, Left)`|preselect from current node
 `Ctrl + Alt + Space`|cancel preselect of current node

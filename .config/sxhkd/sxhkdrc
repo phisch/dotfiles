@@ -14,13 +14,8 @@ super + Return
 XF86LaunchA
   rofi -show run
 
-#{super, alt} + space
-#  rofi -show combi
-super + space
-  rofi -show combi -theme "themes/sidebar"
-
-alt + space
-  rofi -show combi -theme "themes/quick"
+{super, alt} + space
+  rofi -show
 
 alt + Tab
   rofi -show window
@@ -31,7 +26,7 @@ super +{_,shift + }w
 
 # switch to previous/next desktop
 super + {Left,Right}
-  bspc desktop -f {prev,next}
+  bspc desktop -f {prev,next}.local
 
 # select desktop 1..8
 super + {1-8}
