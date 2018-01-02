@@ -1,133 +1,61 @@
-* {
-	background-color:  rgba(0,0,0,0);
+configuration {
+  modi: "combi,drun,run,window,ssh";
+  combi-modi: "window,drun,run";
 
-
-	background: rgba(0,0,0,0.4);
-	background-highlight: rgba(255,255,255,0.2);
-	background-dummy: rgba(0,0,0,0.3);
-	background-secondary: rgba(0,0,0,0.98);
-
-	text-color: rgb(255,255,255);
-	text-color-invert: rgb(0,0,0);
-
-
-
-	primary: #ad68ef;
-	secondary: #68EFAD;
-
-
-	font: "Roboto 10";
-	text-highlight: bold #68EFAD;
+  click-to-exit: true;
+  show-icons: true;
+  cycle: false;
+  sidebar-mode: false;
+  m: "-1";
+  hide-scrollbar: true;
+  scroll-method: 1;
 }
 
+* {
+  font: "Arial 9";
 
+  text-color: #ffffff;
+  text-color-selected: #000000;
 
+  background-color: transparent;
 
+  transparent-dark: rgba(0,0,0,0.6);
+  element-alternate-shading: rgba(0,0,0,0.15);
+  element-selected-color: #FFFFFF;
+}
 
 #window {
-    fullscreen: true;
-    location: center;
-    anchor:   west;
-    text-color: @text-color;
-		spacing: 0px;
-
-    orientation: vertical;
-    children: [dummy,foobox,dummy];
+  fullscreen: true;
+  padding: 20% 35%;
+  background-color:  @transparent-dark;
 }
-
-
-#foobox {
-  orientation: horizontal;
-  children: [dummy, mainbox, dummy];
-}
-
 
 #mainbox {
-	children: [inputbar,message,listview,sidebar];
-  expand: true;
-	border: 0;
-	spacing: 0;
-	width: 200px;
+  children: [inputbar,listview,sidebar];
+  border: 0;
+  spacing: 0;
+  background-color:  @transparent-dark;
 }
-#dummy {
-    expand: true;
-		border: 0px;
-		background-color: @background-dummy;
-}
-
 
 #inputbar {
-    text-color: @text-color-invert;
-		spacing: 0;
-		padding: 0;
+  spacing: 0;
+  children: [entry];
+}
 
-		children: [prompt, entry, case-indicator];
-}
-#prompt {
-	background-color: @primary;
-	text-color: inherit;
-	padding: 0 10px 0 0;
-	padding: 10px;
-}
 #entry {
-	background-color: @secondary;
-	text-color: inherit;
-	width: 20em;
-	padding: 10px;
-}
-#case-indicator {
-	background-color: @secondary;
-	text-color: inherit;
+  padding: 15px;
+  background-color: @transparent-dark;
 }
 
-
-#listview {
-    dynamic: false;
-    lines:      10;
-		background-color: @background;
-		spacing: 0;
-}
 #element {
-	padding: 7px;
-	highlight: @text-highlight;
-}
-#element selected  normal {
-    background-color: @primary;
-		text-color: @text-color-inverted;
-}
-#element normal active {
-    text-color: @text-color;
-}
-#element normal urgent {
-    text-color: @text-color;
-}
-#element alternate normal {
-}
-#element alternate active {
-    text-color: @text-color;
-}
-#element alternate urgent {
-    text-color: @text-color;
-}
-#element selected active {
-    background-color: @background;
-    text-color: @text-color;
-}
-#element selected urgent {
-    background-color: @background;
-    text-color: @text-color;
+  padding: 15px;
 }
 
-
-#sidebar {
-    background-color: @background-secondary;
+#element alternate {
+  background-color: @element-alternate-shading;
 }
 
-#button {
-	padding: 10px;
-}
-
-#button selected {
-    text-color: @text-color;
-		background-color: @primary;
+#element selected {
+  background-color: @element-selected-color;
+  text-color: @text-color-selected;
 }
