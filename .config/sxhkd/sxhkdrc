@@ -12,11 +12,12 @@ super + Return
 
 # open rofi application launcher
 XF86LaunchA
-  rofi -show run
+  rofi -show
 
 {super, alt} + space
   rofi -show
 
+# open rofi to switch to a running application
 alt + Tab
   rofi -show window
 
@@ -77,3 +78,13 @@ alt + b + {Prior,Next}
 
 {XF86AudioRaiseVolume, XF86AudioLowerVolume}
   pactl set-sink-volume 0 {+5%,-5%}
+
+# take a screenshot of the active window, everything and delayed everything
+Print
+  scrot -u ~/Pictures/%Y-%m-%d_%s.png
+
+control + Print
+  scrot ~/Pictures/%Y-%m-%d_%s.png
+
+control + alt + Print
+  scrot -d 10 ~/Pictures/%Y-%m-%d_%s.png

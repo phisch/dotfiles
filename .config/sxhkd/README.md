@@ -14,6 +14,7 @@ Shortcut|Action
 ---|---
 `Super + Return`|open urxvt terminal
 `Super + Space`|open rofi application launcher
+`Alt + Tab`|open rofi to switch to a running application
 
 ## Bspwm
 
@@ -40,5 +41,12 @@ Shortcut|Action
 Shortcut|Action
 ---|---
 `Alt + B + (Page Up, Page Down)`|increase/decrease monitor backlight
+
+## Screenshot
+Shortcut|Action
+---|---
+`Print`|take a screenshot of the active window
+`Ctrl + Print`|take a screenshot of everything
+`Ctrl + Alt + Print`|take a 10 seconds delayed screenshot of everything
 
 ## Media
