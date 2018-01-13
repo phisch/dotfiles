@@ -34,7 +34,6 @@ color7 = #8BE9FD
 color8 = #BFBFBF
 
 
-
 [bar/main]
 monitor = DP-2
 wm-restack = bspwm
@@ -55,19 +54,20 @@ foreground = ${colors.foreground}
 cursor-click = pointer
 
 
-
-
 [bar/laptop]
 monitor = eDP1
 wm-restack = bspwm
 height = 35
 
-modules-left = bspwm
+modules-left = rofi bspwm
 modules-center = xwindow
 modules-right = wireless-network backlight battery cpu memory temperature volume date power
 
-font-0 = MaterialDesignIcons:size=11;2
-font-1 = Termsynu:size=9;2
+font-0 = MaterialDesignIcons:size=13;3
+font-1 = MaterialDesignIcons:size=9;3
+font-2 = Termsynu:size=10;2
 
-background = ${colors.background}
+background = #99000000
 foreground = ${colors.foreground}
+
+cursor-click = pointer
