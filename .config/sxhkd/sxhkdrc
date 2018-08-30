@@ -69,15 +69,40 @@ super + {t,shift+t,f,shift+f}
 super + m
   bspc desktop -l next
 
+
+
+# toggle speaker mute
+XF86AudioMute
+  pactl set-sink-mute 0 toggle
+
+# increase/decrease speaker volume
+{XF86AudioLowerVolume, XF86AudioRaiseVolume}
+  pactl set-sink-volume 0 {-1%,+1%}
+
+# toggle microphone mute
+XF86AudioMicMute
+  amixer -c 0 set Capture toggle
+
 # increase/decrease monitor backlight
+{XF86MonBrightnessUp, XF86MonBrightnessDown}
+  xbacklight -{inc,dec} 10 -time 0
 alt + b + {Prior,Next}
-  xbacklight -{inc,dec} 10
+  xbacklight -{inc,dec} 5 -time 0
 
-{XF86MonBrightnessUp, XF86MonBrightnessDown
-  xbacklight -{inc,dec} 10
+# some sort of display setting?
+XF86Display
 
-{XF86AudioRaiseVolume, XF86AudioLowerVolume}
-  pactl set-sink-volume 0 {+5%,-5%}
+# toggle wifi
+XF86WLAN
+
+# some sort of setting?
+XF86Tools
+
+# toggle bluetooth
+XF86Bluetooth
+
+
+
 
 # take a screenshot of the active window, everything and delayed everything
 Print

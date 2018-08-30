@@ -19,6 +19,7 @@
 *.color15:    #E6E6E6
 
 ! urxvt
+urxvt*termName: rxvt-unicode
 urxvt*loginShell: true
 urxvt*scrollBar: false
 urxvt*secondaryScroll: true
@@ -30,7 +31,7 @@ urxvt*internalBorder: 15
 urxvt*urlLauncher: /usr/bin/xdg-open
 urxvt*matcher.button: 1
 urxvt*depth: 32
-urxvt*background: [88]#000000
+urxvt*background: [78]#1e1e1e
 urxvt*font: xft:Inconsolata:pixelsize=12
 
 

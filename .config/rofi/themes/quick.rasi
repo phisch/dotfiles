@@ -19,40 +19,41 @@ configuration {
 
   background-color: transparent;
 
-  transparent-dark: rgba(0,0,0,0.6);
+  transparent-dark: rgba(30,30,30,0.78);
   element-alternate-shading: rgba(0,0,0,0.15);
   element-selected-color: #FFFFFF;
 }
 
 #window {
-  fullscreen: true;
-  padding: 20% 35%;
+  fullscreen: false;
+  left: 0;
+  location: west;
+  height: 100%;
+  width: 20%;
+  y-offset: 38px;
+  //y-offset: 150px;
   background-color:  @transparent-dark;
 }
 
 #mainbox {
   children: [inputbar,listview,sidebar];
-  border: 0;
+  width: 500px;
+  //background-color:  @transparent-dark;
   spacing: 0;
-  background-color:  @transparent-dark;
 }
 
 #inputbar {
-  spacing: 0;
   children: [entry];
+  background-color: green;
 }
 
 #entry {
   padding: 15px;
-  background-color: @transparent-dark;
+  //background-color: @transparent-dark;
 }
 
 #element {
   padding: 15px;
-}
-
-#element alternate {
-  background-color: @element-alternate-shading;
 }
 
 #element selected {

@@ -4,7 +4,7 @@ include-file = ~/.config/polybar/modules.config
 [colors]
 background = #BB000000
 foreground = #ffffff
-
+//rgba(30,30,30,0.7)
 background_light = #99000000
 background_dark = #CC000000
 
@@ -33,6 +33,8 @@ color6 = #FF79C6
 color7 = #8BE9FD
 color8 = #BFBFBF
 
+[variables]
+padding = 2
 
 [bar/main]
 monitor = DP-2
@@ -40,13 +42,14 @@ wm-restack = bspwm
 width = 100%
 height = 32
 
-modules-left = rofi bspwm
+modules-left = bspwm
 modules-center = xwindow
-modules-right = github cpu memory filesystem temperature volume date power
+modules-right = cpu memory filesystem temperature volume date power
+
 
 font-0 = MaterialDesignIcons:size=13;3
 font-1 = MaterialDesignIcons:size=9;3
-font-2 = Termsynu:size=10;2
+font-2 = NotoSans:size=10;2
 
 background = #99000000
 foreground = ${colors.foreground}
@@ -57,17 +60,24 @@ cursor-click = pointer
 [bar/laptop]
 monitor = eDP1
 wm-restack = bspwm
-height = 35
+height = 38
+//height = 150
+module-margin = 1
+fixed-center = false
 
-modules-left = rofi bspwm
+modules-left = bspwm
 modules-center = xwindow
-modules-right = wireless-network backlight battery cpu memory temperature volume date power
+modules-right = wireless-network battery volume backlight filesystem cpu memory temperature date power
 
 font-0 = MaterialDesignIcons:size=13;3
 font-1 = MaterialDesignIcons:size=9;3
-font-2 = Termsynu:size=10;2
+font-2 = NotoSans:size=11;2
 
-background = #99000000
+
+background = #C81e1e1e
 foreground = ${colors.foreground}
 
 cursor-click = pointer
+
+[settings]
+format-padding = ${variables.padding}
