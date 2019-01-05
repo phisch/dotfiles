@@ -37,7 +37,7 @@ color8 = #BFBFBF
 padding = 2
 
 [bar/main]
-monitor = DP-2
+monitor = HDMI-0
 wm-restack = bspwm
 height = 32
 
