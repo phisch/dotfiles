@@ -31,14 +31,12 @@ urxvt*internalBorder: 15
 urxvt*urlLauncher: /usr/bin/xdg-open
 urxvt*matcher.button: 1
 urxvt*depth: 32
-urxvt*background: [78]#1e1e1e
+urxvt*background: [78]#120F18
 urxvt*font: xft:Inconsolata:pixelsize=12
-
-
 
 ! cursor
 Xcursor.theme: DMZ-Black
 Xcursor.size: 16
 
 ! dpi
-!Xft.dpi: 70
+!Xft.dpi: 120
