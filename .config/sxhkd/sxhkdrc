@@ -38,7 +38,7 @@ control + alt + {Up,Right,Down,Left}
   bspc node -p {north,east,south,west}
 
 # cancel preselect of current node
-control + alt + space
+{control + alt + space, Escape}
   bspc node -p cancel
 
 # set preselect ratio from 10-90%

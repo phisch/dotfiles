@@ -24,7 +24,7 @@ Shortcut|Action
 `Super + (Left, Right)`|switch to previous/next desktop on the active monitor
 `Super + 1..8`|select desktop 1..8
 `Ctrl + Alt + (Up, Right, Down, Left)`|preselect from current node
-`Ctrl + Alt + Space`|cancel preselect of current node
+`Ctrl + Alt + Space` or `Escape`|cancel preselect of current node
 `Ctrl + Alt + 1..9`|set preselect ratio from 10-90%
 `Ctrl + Super + (Up, Right, Down, Left)`|select node in given direction
 `Shift + Super (Up, Right, Down, Left)`|move node in given direction
