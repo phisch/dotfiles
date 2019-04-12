@@ -1,0 +1,177 @@
+#!/bin/bash
+
+function version() {
+    printf "capture version: $VERSION \n"
+}
+
+function usage() {
+    cat << EOF
+
+SYNOPSIS
+    capture [OPTIONS] [FILEPATH]
+
+DESCRIPTION
+    capture is an utility that records a selected area of your desktop,
+    and converts it into a high quality animated gif file. By default
+    it outputs the animated gif image data directly to standard output.
+
+OPTIONS
+    -h, --help
+        Print help and exit.
+
+    -v, --version
+        Print version and exit.
+
+    -s, --select
+        Enables an interactive selection mode where you can select the
+        desired region or window before the recording is started. This
+        uses the "SLOP OPTIONS" described below.
+    
+    -q, --quality=INT[1-100]
+        An integer from 1 to 100 that determines the final gif quality,
+        where 1 is the lowest and 100 is the best quality.
+    
+    -d, --delay=INT
+        Sets the time in seconds to wait before the recording starts.
+        By default this prints a countdown to show how many seconds are left. 
+
+SLOP OPTIONS
+    -h, --highlight
+        Instead of outlining the selection, it will be highlighted.
+        This is only useful when --color is set to a transparent color.
+
+    -c, --color=FLOAT,FLOAT,FLOAT,FLOAT
+        Sets a color for the selection. Supports RGB or RGBA values.
+
+EOF
+}
+
+VERSION=0.1
+SLOP=0
+QUALITY=50
+DELAY=0
+
+while [[ "$1" == -* ]]; do
+  case "$1" in
+  -v*)
+    (( VERBOSE += ${#1} - 1 ))
+    ;;
+  --verbose)
+    (( VERBOSE++ ))
+    ;;
+  -h|--help)
+    usage
+    exit 0
+    ;;
+  --version)
+    version
+    exit 0
+    ;;
+  -s|--select)
+    SLOP=1
+    ;;
+  -q|--quality)
+    shift
+    QUALITY="$1"
+    ;;
+  -d|--delay)
+    shift
+    DELAY="$1"
+    ;;
+  --)
+    shift
+    break
+    ;;
+  esac
+  shift
+done
+
+if [ -z "$1" ];
+then
+    OUTPUT_FILE=capture_`date +%s`.gif
+else
+    OUTPUT_FILE=$1
+fi
+
+
+printf "$OUTPUT_FILE\n"
+
+
+exit
+
+
+
+
+
+while [ $# -gt 0 ]; do
+    echo $1 $2 asd
+  arg=$1
+  case $arg in
+    help | h)
+     printf "this is the help"; exit;
+    ;;
+    option_2)
+     # do_option_1
+    ;;
+    shortlist)
+      echo option_1 option_2 shortlist
+    ;;
+    *)
+     echo Wrong option
+    ;;
+  esac
+  shift
+done
+
+
+fps=${fps:-10}
+quality=${quality:-50}
+
+while [ $# -gt 0 ]; do
+
+   if [[ $1 == *"--"* ]]; then
+        param="${1/--/}"
+        declare $param="$2"
+         echo $1 $2 // Optional to see the parameter:value result
+   fi
+
+  shift
+done
+
+echo $fps $quality
+
+exit;
+
+
+function requireAreaSelection() {
+    slop=$(slop -f "%x %y %w %h %g %i") || exit 1
+    read -r X Y W H G ID < <(echo $slop)
+    printf "\nselected area: x $X, y $Y, width $W, height $H"
+}
+
+function record() {
+    ffmpeg -framerate 10 -f x11grab -s "$W"x"$H" -i :0.0+$X,$Y $filename.webm &
+    printf "\nstarted recordig the selected area"
+    FFMPEG_PID=$!
+}
+
+function stop_recording() {
+    wait $FFMPEG_PID
+    printf "\n\n ffmpeg gone, continuing with other stuff now"
+
+    wait
+    printf "\n\n$filename\n\n"
+    rm temp/*
+    ffmpeg -i $filename.webm temp/frame%04d.png
+    gifski --quality 50 --fps 10 -o $filename.gif temp/frame*.png
+}
+
+
+requireAreaSelection
+filename=video_`date +%s`
+record
+
+trap stop_recording INT
+printf "\npress ctrl+c, use `killall -INT -g capture` or call `./stop_capture` to stop the recording"
+
+wait
