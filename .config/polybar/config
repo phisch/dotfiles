@@ -36,48 +36,34 @@ color8 = #BFBFBF
 [variables]
 padding = 2
 
-[bar/main]
-monitor = HDMI-0
+[bar/base]
 wm-restack = bspwm
-height = 32
-
 module-margin = 1
 fixed-center = false
 
 modules-left = bspwm
 modules-center = xwindow
+
+font-0 = NotoSans:size=10;2
+font-1 = MaterialDesignIcons:size=13;3
+font-2 = MaterialDesignIcons:size=9;3
+
+background = ${colors.transparent}
+foreground = ${colors.foreground}
+
+cursor-click = pointer
+
+[bar/tower]
+inherit = bar/base
+monitor = DP-0
+height = 32
 modules-right = volume filesystem cpu memory temperature date power
 
-font-0 = MaterialDesignIcons:size=13;3
-font-1 = MaterialDesignIcons:size=9;3
-font-2 = NotoSans:size=10;2
-
-background = ${colors.transparent}
-foreground = ${colors.foreground}
-
-cursor-click = pointer
-
-
 [bar/laptop]
+inherit = bar/base
 monitor = eDP1
-wm-restack = bspwm
 height = 38
-
-module-margin = 1
-fixed-center = false
-
-modules-left = bspwm
-modules-center = xwindow
 modules-right = wireless-network battery volume backlight filesystem cpu memory temperature date power
-
-font-0 = MaterialDesignIcons:size=13;3
-font-1 = MaterialDesignIcons:size=9;3
-font-2 = NotoSans:size=11;2
-
-background = ${colors.transparent}
-foreground = ${colors.foreground}
-
-cursor-click = pointer
 
 [settings]
 format-padding = ${variables.padding}

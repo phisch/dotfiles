@@ -22,7 +22,7 @@ wmname LG3D
 
 ~/.config/bspwm/subscriber/floating_state &
 
-polybar laptop -r &
+polybar `hostname` -r &
 
 compton --config ~/.config/compton/compton.conf &
 sxhkd &
