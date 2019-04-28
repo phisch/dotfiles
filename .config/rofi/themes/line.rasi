@@ -1,0 +1,70 @@
+configuration {
+  modi: "drun";
+
+  click-to-exit: true;
+  show-icons: true;
+  cycle: false;
+  sidebar-mode: false;
+  m: "-1";
+  hide-scrollbar: true;
+  scroll-method: 0;
+}
+
+* {
+  font: "NotoSans 11";
+
+  text-color: #ffffff;
+  text-color-selected: #000000;
+
+  background-color: transparent;
+
+  transparent-dark: rgba(30,35,40,0.88);
+  element-alternate-shading: rgba(0,0,0,0.15);
+  element-selected-color: #FFFFFF;
+}
+
+#window {
+  location: north;
+  width: 100%;
+  transparency: "background";
+}
+
+#mainbox {
+  children: [inputbar,listview];
+  orientation: horizontal;
+  spacing: 0;
+}
+
+#inputbar {
+  children: [prompt, entry];
+  //background-color: #5CD68F;
+  //background-color: #19191A;
+  width: 15%;
+  spacing: 0;
+}
+
+#prompt {
+  color: #5CD68F;
+  highlight: bold orange;
+  format: bold;
+
+  background-color: rgba(0,0,0,0.6);
+  padding: 8px 15px 9px;
+}
+
+#entry {
+  padding: 8px 10px 9px;
+  background-color: rgba(0,0,0,0.4);
+}
+
+#listview {
+  layout: horizontal;
+}
+
+#element {
+  padding: 8px 15px 9px;
+}
+#element selected {
+  background-color: rgba(255,255,255,0.1);
+  text-color: white;
+}
