@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+window_id=$1
+class=$2
+instance=$3
+
+function set_layer() {
+  echo "layer=$1"
+}
+
+[ "$instance" = "vlc" ] && [ $(xdotool getwindowname $window_id) = "vlc" ] && set_layer "above"
