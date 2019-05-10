@@ -38,6 +38,7 @@ padding = 2
 
 [bar/base]
 wm-restack = bspwm
+height = 35
 module-margin = 1
 fixed-center = false
 
@@ -56,13 +57,11 @@ cursor-click = pointer
 [bar/tower]
 inherit = bar/base
 monitor = DP-0
-height = 32
 modules-right = volume filesystem cpu memory temperature date power
 
 [bar/laptop]
 inherit = bar/base
 monitor = eDP1
-height = 38
 modules-right = wireless-network battery volume backlight filesystem cpu memory temperature date power
 
 [settings]

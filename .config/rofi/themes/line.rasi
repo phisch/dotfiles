@@ -11,7 +11,7 @@ configuration {
 }
 
 * {
-  font: "NotoSans 11";
+  font: "NotoSans 10";
 
   text-color: #ffffff;
   text-color-selected: #000000;
@@ -49,11 +49,11 @@ configuration {
   format: bold;
 
   background-color: rgba(0,0,0,0.6);
-  padding: 8px 15px 9px;
+  padding: 8px 15px;
 }
 
 #entry {
-  padding: 8px 10px 9px;
+  padding: 8px 15px;
   background-color: rgba(0,0,0,0.4);
 }
 
@@ -62,7 +62,7 @@ configuration {
 }
 
 #element {
-  padding: 8px 15px 9px;
+  padding: 8px 15px;
 }
 #element selected {
   background-color: rgba(255,255,255,0.1);
