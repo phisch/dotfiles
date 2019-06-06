@@ -1,10 +1,12 @@
 # phisch's dotfiles
 This repository contains the configuration files (dotfiles) of my setup. 
 
+## `~` is a git repository
+Yes, my home directory is a git repository! And the `.gitignore` file ignores everything.
 
+To add a new file to the repository, it has to be force added with `git add --force file`. This way configuration **changes can be easily detected and committed**, and **nothing gets added accidentally**.
 
-## dependencies and tools
-
+## Dependencies and tools
 - [bspwm-git](https://aur.archlinux.org/packages/bspwm-git/) *(AUR)*
 - [compton-git](https://aur.archlinux.org/packages/compton-git/) *(AUR)*
 - [eog](https://www.archlinux.org/packages/extra/x86_64/eog/)
@@ -31,8 +33,7 @@ This repository contains the configuration files (dotfiles) of my setup.
 - [yay](https://aur.archlinux.org/packages/yay/) *(AUR)*
 
 
-## installation
-
+## Installation
 To quickly get started using the tools and configuration i am using, here is a script that updates the system, installs the dependencies and tools, and clones this repository into your home directory:
 
 ```sh
@@ -59,10 +60,3 @@ git clone git@github.com:phisch/dotfiles.git $TEMP_DIRECTORY_DOTFILES
 shopt -s dotglob
 mv -b $TEMP_DIRECTORY_DOTFILES/* ~/test
 ```
-
-### `~` is a git repository
-Yes, my home directory is a git repository! And the `.gitignore` file ignores everything. 
-
-To add a new file to the repository, it has to be force added with `git add --force .new_dotfile`.
-
-This way configuration **changes can be easily detected and committed**, and **nothing gets added accidentally**.
