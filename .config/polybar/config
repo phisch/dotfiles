@@ -36,18 +36,19 @@ color8 = #BFBFBF
 [variables]
 padding = 2
 
-[bar/base]
+[bar/default]
 wm-restack = bspwm
 height = 35
-module-margin = 1
+module-margin = 2
 fixed-center = false
 
 modules-left = bspwm
 modules-center = xwindow
+modules-right = volume filesystem cpu memory temperature date power
 
-font-0 = NotoSans:size=10;2
-font-1 = MaterialDesignIcons:size=13;3
-font-2 = MaterialDesignIcons:size=9;3
+font-0 = DejaVuSansMono:pixelsize=10
+font-1 = MaterialDesignIcons:size=13
+font-2 = MaterialDesignIcons:size=9;1
 
 background = ${colors.transparent}
 foreground = ${colors.foreground}
@@ -55,14 +56,13 @@ foreground = ${colors.foreground}
 cursor-click = pointer
 
 [bar/tower]
-inherit = bar/base
+inherit = bar/default
 monitor = DP-0
-modules-right = volume filesystem cpu memory temperature date power
 
 [bar/laptop]
-inherit = bar/base
+inherit = bar/default
 monitor = eDP1
 modules-right = wireless-network battery volume backlight filesystem cpu memory temperature date power
 
 [settings]
-format-padding = ${variables.padding}
+
