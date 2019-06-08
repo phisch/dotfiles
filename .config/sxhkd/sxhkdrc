@@ -10,14 +10,11 @@ super + alt + Escape
 super + Return
   urxvt
 
-# open rofi application launcher
-XF86LaunchA
+# open rofi as application launcher
+{super + space, alt + space, XF86LaunchA}
   rofi -show
 
-{super, alt} + space
-  rofi -show
-
-# open rofi to switch to a running application
+# open rofi as window switcher
 alt + Tab
   rofi -show window
 
@@ -69,8 +66,7 @@ super + {t,shift+t,f,shift+f}
 super + m
   bspc desktop -l next
 
-
-# toggle speaker mute
+# mute/unmute speaker
 XF86AudioMute
   pactl set-sink-mute 0 toggle
 
@@ -78,37 +74,20 @@ XF86AudioMute
 {XF86AudioLowerVolume, XF86AudioRaiseVolume}
   pactl set-sink-volume 0 {-1%,+1%}
 
-# toggle microphone mute
+# mute/unmute microphone
 XF86AudioMicMute
   amixer -c 0 set Capture toggle
 
 # increase/decrease monitor backlight
 {XF86MonBrightnessUp, XF86MonBrightnessDown}
-  xbacklight -{inc,dec} 10 -time 0
+  xbacklight -{inc,dec} 5 -time 0
 alt + b + {Prior,Next}
   xbacklight -{inc,dec} 5 -time 0
 
-# some sort of display setting?
-XF86Display
-
-# toggle wifi
-XF86WLAN
-
-# some sort of setting?
-XF86Tools
-
-# toggle bluetooth
-XF86Bluetooth
-
-
-# screenshot selection
+# take a screenshot of a selection
 Print
   maim -s -l -c 0.3,0,0.5,0.3 ~/Pictures/$(date +%s).png
 
-# start gif recording of selection
+# start/stop a gif recording of a selection
 ctrl + Print
-  giph -s -l -c 0.3,0,0.5,0.3 ~/Videos/$(date +%s).gif
-
-# stop gif recording
-ctrl + shift + Print
-  killall -INT -g giph
+  { giph -s -l -c 0.3\,0\,0.5\,0.3 ~/Videos/$(date +%s).gif, killall -INT -g giph }

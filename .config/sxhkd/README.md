@@ -1,5 +1,5 @@
 # Shortcuts
-[sxhkd](https://github.com/baskerville/sxhkd) is the X hotkey daemon used to control bspwm, other applications, hardware and media. The shortcuts are defined in the file [.config/sxhkd/sxhkdrc](.config/sxhkd/sxhkdrc). Following, all defined shortcuts and their functions.
+[sxhkd](https://github.com/baskerville/sxhkd) is the X hotkey daemon used to control bspwm, other applications, hardware and media. The shortcuts are defined in the file [.config/sxhkd/sxhkdrc](sxhkdrc). Following, all defined shortcuts and their functions.
 
 ## General
 
@@ -13,8 +13,8 @@ Shortcut|Action
 Shortcut|Action
 ---|---
 `Super + Return`|open urxvt terminal
-`Super + Space`|open rofi application launcher
-`Alt + Tab`|open rofi to switch to a running application
+`(Super, Alt) + Space` or `XF86LaunchA`|open rofi as application launcher
+`Alt + Tab`|open rofi as window switcher
 
 ## Bspwm
 
@@ -40,13 +40,13 @@ Shortcut|Action
 
 Shortcut|Action
 ---|---
-`Alt + B + (Page Up, Page Down)`|increase/decrease monitor backlight
+`XF86AudioMute`|mute/unmute speaker
+`XF86AudioLowerVolume, XF86AudioRaiseVolume`|increase/decrease speaker volume
+`XF86AudioMicMute`|mute/unmute microphone
+`Alt + B + (Page Up, Page Down)` or `XF86MonBrightnessUp, XF86MonBrightnessDown`|increase/decrease monitor backlight
 
-## Screenshot
+## Screenshot & gif recording
 Shortcut|Action
 ---|---
-`Print`|take a screenshot of the active window
-`Ctrl + Print`|take a screenshot of everything
-`Ctrl + Alt + Print`|take a 10 seconds delayed screenshot of everything
-
-## Media
+`Print`|take a screenshot of a selection
+`Ctrl + Print`|start/stop a gif recording of a selection
