@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-xrandr --output DP-0 --mode 2560x1440 --rate 144.00 --rotate normal --pos 0x0
+xrandr --output DP-0 --mode 2560x1440 --rate 144.00 --rotate normal --pos 0x0 --primary
 xrandr --output DP-2 --mode 2560x1440 --rate 144.00 --rotate normal --pos 2560x0
 
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
