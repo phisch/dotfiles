@@ -24,7 +24,7 @@ wmname LG3D
 
 ~/.config/bspwm/subscriber/floating_state &
 
-polybar `hostname` &
+bspc config -m primary top_padding 0 && polybar `hostname` -r &
 
 compton --experimental-backends &
 sxhkd &
