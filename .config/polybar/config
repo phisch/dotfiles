@@ -3,66 +3,51 @@ include-file = ~/.config/polybar/modules.config
 
 [colors]
 transparent = #00000000
-background = #BB000000
 foreground = #ffffff
-background_light = #99000000
-background_dark = #CC000000
 
-primary = #68EFAD
-secondary = #ad68ef
-
-info = #52BDEC
-warning = #FFA96B
-error = #F43736
-
-#background = #000000
-#foreground = #ffffff
-
-#success = #50FA7B
-#danger = #FF5555
-#warning = #FFA96B
-#info = #8BE9FD
-
-color0 = #ffffff
-color1 = #000000
-color2 = #FF5555
-color3 = #50FA7B
-color4 = #F1FA8C
-color5 = #BD93F9
-color6 = #FF79C6
-color7 = #8BE9FD
-color8 = #BFBFBF
+color1 = #FF5555
+color2 = #F1FA8C
+color3 = #8BE9FD
 
 [variables]
-padding = 2
+padding = 1
+module_spacing = 1
+
+[settings]
+format-padding = ${variables.padding}
+
+[global/wm]
+margin-bottom = -5
 
 [bar/default]
-wm-restack = bspwm
-height = 35
-module-margin = 2
+cursor-click = pointer
 fixed-center = false
+wm-restack = bspwm
+
+font-0 = DejaVuSansMono:size=10;2
+font-1 = MaterialDesignIcons:size=13;3
+font-2 = MaterialDesignIcons:size=9;3
+
+height = 36
+module-margin = ${variables.module_spacing}
+
+background = ${colors.transparent}
+foreground = ${colors.foreground}
 
 modules-left = bspwm
 modules-center = xwindow
 modules-right = volume filesystem cpu memory temperature date power
 
-font-0 = DejaVuSansMono:pixelsize=10
-font-1 = MaterialDesignIcons:size=13
-font-2 = MaterialDesignIcons:size=9;1
-
-background = ${colors.transparent}
-foreground = ${colors.foreground}
-
-cursor-click = pointer
-
 [bar/tower]
 inherit = bar/default
-monitor = DP-0
+modules-right = volume filesystem-tower cpu memory temperature date power
 
 [bar/laptop]
 inherit = bar/default
-monitor = eDP1
 modules-right = wireless-network battery volume backlight filesystem cpu memory temperature date power
 
-[settings]
+[module/filesystem-tower]
+inherit = module/filesystem
 
+mount-1 = /mnt/raid
+mount-2 = /mnt/data
