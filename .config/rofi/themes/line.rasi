@@ -8,10 +8,12 @@ configuration {
   m: "-1";
   hide-scrollbar: true;
   scroll-method: 0;
+  drun-display-format: " {name}";
+  m: "primary";
 }
 
 * {
-  font: "NotoSans 10";
+  font: "DejaVu Sans Mono 9";
 
   text-color: #ffffff;
   text-color-selected: #000000;
@@ -49,11 +51,11 @@ configuration {
   format: bold;
 
   background-color: rgba(0,0,0,0.6);
-  padding: 8px 15px;
+  padding: 10px 15px 11px 15px;
 }
 
 #entry {
-  padding: 8px 15px;
+  padding: 10px 15px 11px 15px;
   background-color: rgba(0,0,0,0.4);
 }
 
@@ -62,7 +64,7 @@ configuration {
 }
 
 #element {
-  padding: 8px 15px;
+  padding: 10px 15px 11px 15px;
 }
 #element selected {
   background-color: rgba(255,255,255,0.1);
