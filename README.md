@@ -10,7 +10,7 @@ To add a new file to the repository, it has to be force added with `git add --fo
 To effortlessly get started on a fresh arch linux installation, an interactive installation script can be run:
 
 ```sh
-bash <(curl -s https://github.com/phisch/dotfiles/master/.install)
+bash <(curl -sL https://github.com/phisch/dotfiles/raw/master/.install)
 ```
 
 ### What does it do?
