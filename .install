@@ -12,7 +12,7 @@ install_dependencies() {
 # keep sudo alive
 sudo -k
 while true; do
-  pwd=$(dialog --insecure --keep-tite --nocancel --output-fd 1 --passwordbox "[sudo] password for $USER" 7 60 "")
+  pwd=$(dialog --keep-tite --nocancel --output-fd 1 --passwordbox "[sudo] password for $USER" 7 60 "")
   if echo "$pwd" | sudo -Sv 2>/dev/null; then break; else dialog --keep-tite --msgbox "Incorrect password for user '$USER', try again!" 8 40; fi
 done
 while true; do sleep 60; sudo -n true; kill -0 "$$" || exit; done 2>/dev/null &
@@ -63,7 +63,7 @@ else
   fi
   while [ -f "$key" ]; do
     login=$(dialog --keep-tite --nocancel --title "Upload SSH key to GitHub" --output-fd 1 --inputbox "Enter your GitHub Username" 7 60 "$USER")
-    password=$(dialog --insecure --keep-tite --nocancel --title "Upload SSH key to GitHub" --output-fd 1 --passwordbox "Enter your GitHub Password" 7 60 "")
+    password=$(dialog --keep-tite --nocancel --title "Upload SSH key to GitHub" --output-fd 1 --passwordbox "Enter your GitHub Password" 7 60 "")
     response=$(curl -sL -w "%{http_code}" -o /dev/null -u "$login:$password" --data "{\"key\":\"$(cat "$key")\"}" https://api.github.com/user/keys)
     case "$response" in
       "201") dialog --keep-tite --msgbox "Added SSH key $key to GitHub user $login" 8 40; SSH=true; break;;
@@ -97,5 +97,5 @@ yay -S --needed --noconfirm "${dependencies_aur[@]}" 2>&1 | dialog --progressbox
 
 # finalize
 {
-  chsh -s /usr/bin/zsh
+  sudo chsh -s /usr/bin/zsh "$USER"
 } | dialog --progressbox "Finalizing..." 30 70
