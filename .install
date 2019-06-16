@@ -1,0 +1,101 @@
+#!/bin/bash
+
+# define dependencies
+dependencies=(code curl eog feh git gnome-calculator gnome-disk-utility gnome-mpv go gucharmap jre-openjdk maim nautilus noto-fonts-emoji openssh pavucontrol rxvt-unicode slop ttf-dejavu vlc wmname xorg-server xorg-xinit xorg-xrandr xorg-xsetroot zsh)
+dependencies_aur=(bspwm-git compton-git giph-git google-chrome-dev jetbrains-toolbox phocus-gtk-theme-git polybar-git rofi-git sxhkd-git ttf-material-design-icons-git)
+
+install_dependencies() {
+  sudo pacman -S --needed --noconfirm "$@" 2>&1 | dialog --progressbox "Installing dependencies: $*" 30 70
+  [ "${PIPESTATUS[0]}" -ne 0 ] && exit 1
+}
+
+# keep sudo alive
+sudo -k
+while true; do
+  pwd=$(dialog --insecure --keep-tite --nocancel --output-fd 1 --passwordbox "[sudo] password for $USER" 7 60 "")
+  if echo "$pwd" | sudo -Sv 2>/dev/null; then break; else dialog --keep-tite --msgbox "Incorrect password for user '$USER', try again!" 8 40; fi
+done
+while true; do sleep 60; sudo -n true; kill -0 "$$" || exit; done 2>/dev/null &
+
+# update system
+sudo pacman -Syu --noconfirm 2>&1 | dialog --progressbox "Installing system updates..." 30 70
+[ "${PIPESTATUS[0]}" -ne 0 ] && exit 1
+
+# set locale and keymap
+mapfile -t locales < <(grep -Po "^#?\K[^ ]+(?= UTF-8)" /etc/locale.gen | sort)
+mapfile -t keymaps < <(localectl list-keymaps | sort)
+locale=$(dialog --default-item "$(localectl status | grep -Po '(LANG=)\K.*$')" --keep-tite --no-items --menu "Select your prefered locale" 17 60 10 "${locales[@]}" 3>&1 1>&2 2>&3)
+keymap=$(dialog --default-item "$(localectl status | grep -Po '(VC Keymap: )\K.*$')" --keep-tite --no-items --menu "Select your prefered keymap" 17 60 10 "${keymaps[@]}" 3>&1 1>&2 2>&3)
+{
+  if [ -n "$locale" ]; then
+    sudo sed -i "s/^#\($locale \)/\1/" /etc/locale.gen
+    sudo locale-gen
+    sudo localectl set-locale "$locale"
+  fi
+  [ -n "$keymap" ] && sudo localectl set-keymap "" && sudo localectl set-keymap "$keymap"
+} | dialog --progressbox "Setting locale and keymap..." 30 70
+
+# install dependencies for ssh keys
+install_dependencies curl openssh
+
+# add ssh key to github, use existing key or generate new one
+ssh -o StrictHostKeyChecking=accept-new -T git@github.com >/dev/null 2>&1
+if [ "$?" -eq 1 ]; then
+  SSH=true
+else 
+  mapfile -t public_keys < <(find ~/.ssh -name '*.pub' 2>/dev/null | sed =)
+  if [ ${#public_keys[@]} -gt 0 ]; then
+    choice=$(dialog --keep-tite --menu "Upload an existing SSH key to GitHub" 17 60 10 "${public_keys[@]}" 3>&1 1>&2 2>&3)
+    [ "$choice" ] && key=${public_keys[$((choice*2-1))]}
+  fi
+  if [ -z "$key" ]; then
+    while true; do
+      if key=$(dialog --output-fd 1 --inputbox "Enter file in which to save the SSH key" 8 60 ~/.ssh/id_rsa) && [ -n "$key" ]; then
+        if [ -f "$key" ]; then
+          dialog --keep-tite --yesno "Key '$key' already exists. Overwrite it?" 6 50 && rm -f "$key" "$key.pub" || continue
+        fi
+        label=$(dialog --nocancel --output-fd 1 --inputbox "Enter email to use as label for the SSH key" 7 60 "$USER@$HOSTNAME")
+        passphrase=$(dialog --nocancel --output-fd 1 --passwordbox "Enter passphrase to use for the SSH key" 7 60)
+        ssh-keygen -t rsa -b 4096 -C "$label" -f "$key" -P "$passphrase" | dialog --keep-tite --progressbox "Generating SSH key..." 30 70 && key="$key.pub"
+      fi
+      break
+    done
+  fi
+  while [ -f "$key" ]; do
+    login=$(dialog --keep-tite --nocancel --title "Upload SSH key to GitHub" --output-fd 1 --inputbox "Enter your GitHub Username" 7 60 "$USER")
+    password=$(dialog --insecure --keep-tite --nocancel --title "Upload SSH key to GitHub" --output-fd 1 --passwordbox "Enter your GitHub Password" 7 60 "")
+    response=$(curl -sL -w "%{http_code}" -o /dev/null -u "$login:$password" --data "{\"key\":\"$(cat "$key")\"}" https://api.github.com/user/keys)
+    case "$response" in
+      "201") dialog --keep-tite --msgbox "Added SSH key $key to GitHub user $login" 8 40; SSH=true; break;;
+      "422") break;;
+      *) dialog --keep-tite --msgbox "GitHub authentication failed, try again!" 8 40
+    esac
+  done
+fi
+
+# install dependencies
+install_dependencies "${dependencies[@]}"
+
+# install AUR helper 'yay'
+{
+  aur_tmp_dir=$(mktemp -d) && cd "$aur_tmp_dir" || exit 1
+  git clone "https://aur.archlinux.org/yay.git" "$aur_tmp_dir" 2>&1
+  makepkg -sim --noconfirm 2>&1
+} | dialog --progressbox "Installing AUR helper..." 30 70
+
+# install AUR dependencies
+yay -S --needed --noconfirm "${dependencies_aur[@]}" 2>&1 | dialog --progressbox "Installing AUR dependencies: ${dependencies_aur[*]}" 30 70
+[ "${PIPESTATUS[0]}" -ne 0 ] && exit 1
+
+# install dotfiles
+{
+  [ "$SSH" ] && url="git@github.com:phisch/dotfiles.git" || url="https://github.com/phisch/dotfiles.git"
+  temp_directory_dotfiles=$(mktemp -d)
+  git clone "$url" "$temp_directory_dotfiles" 2>&1
+  cp -rb "$temp_directory_dotfiles"/. ~
+} | dialog --progressbox "Installing dotfiles..." 30 70
+
+# finalize
+{
+  chsh -s /usr/bin/zsh
+} | dialog --progressbox "Finalizing..." 30 70
