@@ -49,6 +49,7 @@ The installation script performs the following steps:
 [pepper-flash](https://www.archlinux.org/packages/extra/x86_64/pepper-flash/),
 [phocus-gtk-theme-git](https://aur.archlinux.org/packages/phocus-gtk-theme-git/) *(AUR)*,
 [polybar-git](https://aur.archlinux.org/packages/polybar-git/) *(AUR)*,
+[pulseaudio](https://www.archlinux.org/packages/extra/x86_64/pulseaudio/),
 [rofi-git](https://aur.archlinux.org/packages/rofi-git/) *(AUR)*,
 [rxvt-unicode](https://www.archlinux.org/packages/community/x86_64/rxvt-unicode/),
 [slop](https://www.archlinux.org/packages/community/x86_64/slop/),
