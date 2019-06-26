@@ -19,6 +19,7 @@ bspc config pointer_motion_interval 7
 
 bspc rule -a Qemu-system-x86_64 state=floating monitor=^1 rectangle=800x628+1700+762
 bspc rule -a Toolbox state=tiled
+bspc rule -a java-lang-Thread state=floating
 
 wmname LG3D
 
