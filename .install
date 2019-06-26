@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # define dependencies
-dependencies=(chromium code curl eog feh git gnome-calculator gnome-disk-utility gnome-mpv go gucharmap jre-openjdk maim nautilus noto-fonts-emoji openssh pavucontrol pepper-flash rxvt-unicode slop ttf-dejavu vlc wmname xorg-server xorg-xinit xorg-xrandr xorg-xsetroot zsh)
+dependencies=(chromium code curl eog feh git gnome-calculator gnome-disk-utility gnome-mpv go gucharmap jre-openjdk maim nautilus noto-fonts-emoji openssh pavucontrol pepper-flash rxvt-unicode slop ttf-dejavu vlc wmname xdg-user-dirs xorg-server xorg-xinit xorg-xrandr xorg-xsetroot zsh)
 dependencies_aur=(bspwm-git compton-git giph-git jetbrains-toolbox phocus-gtk-theme-git polybar-git rofi-git sxhkd-git ttf-material-design-icons-git)
 
 install_dependencies() {
@@ -98,4 +98,5 @@ yay -S --needed --noconfirm "${dependencies_aur[@]}" 2>&1 | dialog --progressbox
 # finalize
 {
   sudo chsh -s /usr/bin/zsh "$USER"
+  xdg-user-dirs-update
 } | dialog --progressbox "Finalizing..." 30 70

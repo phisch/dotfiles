@@ -57,6 +57,7 @@ The installation script performs the following steps:
 [ttf-material-design-icons-git](https://aur.archlinux.org/packages/ttf-material-design-icons-git/) *(AUR)*,
 [vlc](https://www.archlinux.org/packages/extra/x86_64/vlc/),
 [wmname](https://www.archlinux.org/packages/community/x86_64/wmname/),
+[xdg-user-dirs](https://www.archlinux.org/packages/extra/x86_64/xdg-user-dirs/),
 [xorg-server](https://www.archlinux.org/packages/extra/x86_64/xorg-server/),
 [xorg-xinit](https://www.archlinux.org/packages/extra/x86_64/xorg-xinit/),
 [xorg-xrandr](https://www.archlinux.org/packages/extra/x86_64/xorg-xrandr/),
