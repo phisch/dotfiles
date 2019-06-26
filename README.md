@@ -26,6 +26,7 @@ The installation script performs the following steps:
 
 ### Dependencies and applications
 [bspwm-git](https://aur.archlinux.org/packages/bspwm-git/) *(AUR)*,
+[chromium](https://www.archlinux.org/packages/extra/x86_64/chromium/),
 [code](https://www.archlinux.org/packages/community/x86_64/code/),
 [compton-git](https://aur.archlinux.org/packages/compton-git/) *(AUR)*,
 [curl](https://www.archlinux.org/packages/core/x86_64/curl/),
@@ -37,7 +38,6 @@ The installation script performs the following steps:
 [gnome-disk-utility](https://www.archlinux.org/packages/extra/x86_64/gnome-disk-utility/),
 [gnome-mpv](https://www.archlinux.org/packages/community/x86_64/gnome-mpv/),
 [go](https://www.archlinux.org/packages/community/x86_64/go/),
-[google-chrome-dev](https://aur.archlinux.org/packages/google-chrome-dev/) *(AUR)*,
 [gucharmap](https://www.archlinux.org/packages/extra/x86_64/gucharmap/),
 [jetbrains-toolbox](https://aur.archlinux.org/packages/jetbrains-toolbox/) *(AUR)*,
 [jre-openjdk](https://www.archlinux.org/packages/extra/x86_64/jre-openjdk/),
@@ -46,6 +46,7 @@ The installation script performs the following steps:
 [noto-fonts-emoji](https://www.archlinux.org/packages/extra/any/noto-fonts-emoji/),
 [openssh](https://www.archlinux.org/packages/core/x86_64/openssh/),
 [pavucontrol](https://www.archlinux.org/packages/extra/x86_64/pavucontrol/),
+[pepper-flash](https://www.archlinux.org/packages/extra/x86_64/pepper-flash/),
 [phocus-gtk-theme-git](https://aur.archlinux.org/packages/phocus-gtk-theme-git/) *(AUR)*,
 [polybar-git](https://aur.archlinux.org/packages/polybar-git/) *(AUR)*,
 [rofi-git](https://aur.archlinux.org/packages/rofi-git/) *(AUR)*,
