@@ -99,4 +99,6 @@ yay -S --needed --noconfirm "${dependencies_aur[@]}" 2>&1 | dialog --progressbox
 {
   sudo chsh -s /usr/bin/zsh "$USER"
   xdg-user-dirs-update
+  sudo usermod -aG docker "$USER"
+  sudo systemctl enable docker
 } | dialog --progressbox "Finalizing..." 30 70
