@@ -30,6 +30,8 @@ The installation script performs the following steps:
 [code](https://www.archlinux.org/packages/community/x86_64/code/),
 [compton-git](https://aur.archlinux.org/packages/compton-git/) *(AUR)*,
 [curl](https://www.archlinux.org/packages/core/x86_64/curl/),
+[docker](https://www.archlinux.org/packages/community/x86_64/docker/),
+[docker-compose](https://www.archlinux.org/packages/community/any/docker-compose/),
 [eog](https://www.archlinux.org/packages/extra/x86_64/eog/),
 [feh](https://www.archlinux.org/packages/extra/x86_64/feh/),
 [giph-git](https://aur.archlinux.org/packages/giph-git/) *(AUR)*,
