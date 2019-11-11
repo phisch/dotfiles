@@ -27,6 +27,7 @@ The installation script performs the following steps:
 ### Dependencies and applications
 [bspwm-git](https://aur.archlinux.org/packages/bspwm-git/) *(AUR)*,
 [chromium](https://www.archlinux.org/packages/extra/x86_64/chromium/),
+[chromium-widevine](https://aur.archlinux.org/packages/chromium-widevine/) *(AUR)*,
 [code](https://www.archlinux.org/packages/community/x86_64/code/),
 [curl](https://www.archlinux.org/packages/core/x86_64/curl/),
 [docker](https://www.archlinux.org/packages/community/x86_64/docker/),
