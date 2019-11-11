@@ -32,16 +32,13 @@ configuration {
 }
 
 #mainbox {
-  children: [inputbar,listview];
   orientation: horizontal;
   spacing: 0;
 }
 
 #inputbar {
   children: [prompt, entry];
-  //background-color: #5CD68F;
-  //background-color: #19191A;
-  width: 15%;
+  width: 10%;
   spacing: 0;
 }
 
@@ -60,13 +57,22 @@ configuration {
 }
 
 #listview {
-  layout: horizontal;
+  spacing: 0;
+  // TODO: replace with `layout: horizontal;` when element width calculation is fixed
+  columns: 12;
+  lines: 1;
 }
 
 #element {
-  padding: 10px 15px 11px 15px;
+  padding: 10px 15px;
+  spacing: 0;
 }
+
 #element selected {
   background-color: rgba(255,255,255,0.1);
   text-color: white;
+}
+
+#element-icon {
+  size: 16;
 }
