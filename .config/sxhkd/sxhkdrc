@@ -88,6 +88,14 @@ alt + b + {Prior,Next}
 Print
   maim -s -l -c 0.3,0,0.5,0.3 ~/Pictures/$(date +%s).png
 
+# take a screenshot of a selection, upload to 0x0.st and copy url to clipboard
+shift + Print
+  maim -s -l -c 0.3,0,0.5,0.3 | curl -F "file=@-" 0x0.st | xclip -selection clipboard
+
 # start/stop a gif recording of a selection
 ctrl + Print
   { giph -s -l -c 0.3\,0\,0.5\,0.3 ~/Videos/$(date +%s).gif, killall -INT -g giph }
+
+# start/stop a gif recording of a selection, upload to 0x0.st and copy url to clipboard
+ctrl + shift + Print
+  { giph -s -l -c 0.3\,0\,0.5\,0.3 | (trap '' INT; curl -F "file=@-" 0x0.st | xclip -selection clipboard), killall -INT -g giph }
