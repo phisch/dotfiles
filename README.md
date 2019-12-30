@@ -26,6 +26,7 @@ The installation script performs the following steps:
 
 ### Dependencies and applications
 [bspwm-git](https://aur.archlinux.org/packages/bspwm-git/) *(AUR)*,
+[celluloid](https://www.archlinux.org/packages/community/x86_64/celluloid/),
 [chromium](https://www.archlinux.org/packages/extra/x86_64/chromium/),
 [chromium-widevine](https://aur.archlinux.org/packages/chromium-widevine/) *(AUR)*,
 [code](https://www.archlinux.org/packages/community/x86_64/code/),
@@ -38,7 +39,6 @@ The installation script performs the following steps:
 [git](https://www.archlinux.org/packages/extra/x86_64/git/),
 [gnome-calculator](https://www.archlinux.org/packages/extra/x86_64/gnome-calculator/),
 [gnome-disk-utility](https://www.archlinux.org/packages/extra/x86_64/gnome-disk-utility/),
-[gnome-mpv](https://www.archlinux.org/packages/community/x86_64/gnome-mpv/),
 [go](https://www.archlinux.org/packages/community/x86_64/go/),
 [gucharmap](https://www.archlinux.org/packages/extra/x86_64/gucharmap/),
 [jetbrains-toolbox](https://aur.archlinux.org/packages/jetbrains-toolbox/) *(AUR)*,
