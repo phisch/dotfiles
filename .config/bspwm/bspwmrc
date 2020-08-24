@@ -27,5 +27,5 @@ wmname LG3D
 
 bspc config -m primary top_padding 0 && polybar `hostname` -r &
 
-picom --experimental-backends &
+picom --experimental-backends -b
 sxhkd &
