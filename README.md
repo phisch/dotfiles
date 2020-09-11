@@ -35,7 +35,7 @@ The installation script performs the following steps:
 [docker-compose](https://www.archlinux.org/packages/community/any/docker-compose/),
 [eog](https://www.archlinux.org/packages/extra/x86_64/eog/),
 [feh](https://www.archlinux.org/packages/extra/x86_64/feh/),
-[giph-git](https://aur.archlinux.org/packages/giph-git/) *(AUR)*,
+[giph](https://aur.archlinux.org/packages/giph/) *(AUR)*,
 [git](https://www.archlinux.org/packages/extra/x86_64/git/),
 [gnome-calculator](https://www.archlinux.org/packages/extra/x86_64/gnome-calculator/),
 [gnome-disk-utility](https://www.archlinux.org/packages/extra/x86_64/gnome-disk-utility/),
