@@ -8,7 +8,7 @@ super + alt + Escape
 
 # open urxvt terminal
 super + Return
-  urxvt
+  termite
 
 # open rofi as application launcher
 {super + space, alt + space, XF86LaunchA}

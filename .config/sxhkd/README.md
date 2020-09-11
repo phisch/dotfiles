@@ -12,7 +12,7 @@ Shortcut|Action
 
 Shortcut|Action
 ---|---
-`Super + Return`|open urxvt terminal
+`Super + Return`|open terminal
 `(Super, Alt) + Space` or `XF86LaunchA`|open rofi as application launcher
 `Alt + Tab`|open rofi as window switcher
 
