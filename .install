@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # define dependencies
-dependencies=(celluloid chromium code curl docker docker-compose eog feh git gnome-calculator gnome-disk-utility go gucharmap jre-openjdk maim nautilus noto-fonts-emoji openssh pavucontrol pepper-flash pulseaudio slop termite ttf-dejavu vlc wmname xdg-user-dirs xorg-server xorg-xinit xorg-xrandr xorg-xsetroot zsh)
-dependencies_aur=(bspwm-git chromium-widevine giph jetbrains-toolbox phocus-gtk-theme-git picom-git polybar-git rofi-git sxhkd-git ttf-material-design-icons-git)
+dependencies=(bat celluloid chromium code curl docker docker-compose eog feh git gnome-calculator gnome-disk-utility go gucharmap jre-openjdk maim nano nautilus noto-fonts-emoji openssh pavucontrol pepper-flash pulseaudio slop termite ttf-dejavu vlc wmname xdg-user-dirs xorg-server xorg-xinit xorg-xrandr xorg-xsetroot zsh)
+dependencies_aur=(bspwm-git chromium-widevine giph jetbrains-toolbox numix-folders-git phocus-gtk-theme-git picom-git polybar-git rofi-git sxhkd-git ttf-material-design-icons-git)
 
 install_dependencies() {
   sudo pacman -S --needed --noconfirm "$@" 2>&1 | dialog --progressbox "Installing dependencies: $*" 30 70

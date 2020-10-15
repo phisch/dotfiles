@@ -25,6 +25,7 @@ The installation script performs the following steps:
 6) set zsh as user shell
 
 ### Dependencies and applications
+[bat](https://www.archlinux.org/packages/community/x86_64/bat/),
 [bspwm-git](https://aur.archlinux.org/packages/bspwm-git/) *(AUR)*,
 [celluloid](https://www.archlinux.org/packages/community/x86_64/celluloid/),
 [chromium](https://www.archlinux.org/packages/extra/x86_64/chromium/),
@@ -44,8 +45,10 @@ The installation script performs the following steps:
 [jetbrains-toolbox](https://aur.archlinux.org/packages/jetbrains-toolbox/) *(AUR)*,
 [jre-openjdk](https://www.archlinux.org/packages/extra/x86_64/jre-openjdk/),
 [maim](https://www.archlinux.org/packages/community/x86_64/maim/),
+[nano](https://www.archlinux.org/packages/core/x86_64/nano/),
 [nautilus](https://www.archlinux.org/packages/extra/x86_64/nautilus/),
 [noto-fonts-emoji](https://www.archlinux.org/packages/extra/any/noto-fonts-emoji/),
+[nimix-folders-git](https://aur.archlinux.org/packages/numix-folders-git/),
 [openssh](https://www.archlinux.org/packages/core/x86_64/openssh/),
 [pavucontrol](https://www.archlinux.org/packages/extra/x86_64/pavucontrol/),
 [pepper-flash](https://www.archlinux.org/packages/extra/x86_64/pepper-flash/),
