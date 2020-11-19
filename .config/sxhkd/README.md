@@ -43,10 +43,12 @@ Shortcut|Action
 `XF86AudioMute`|mute/unmute speaker
 `XF86AudioLowerVolume, XF86AudioRaiseVolume`|increase/decrease speaker volume
 `XF86AudioMicMute`|mute/unmute microphone
-`Alt + B + (Page Up, Page Down)` or `XF86MonBrightnessUp, XF86MonBrightnessDown`|increase/decrease monitor backlight
+`Alt + B + (Page Up, Page Down)` or<br> `XF86MonBrightnessUp, XF86MonBrightnessDown`|increase/decrease monitor backlight
 
 ## Screenshot & gif recording
 Shortcut|Action
 ---|---
-`Print`|take a screenshot of a selection
-`Ctrl + Print`|start/stop a gif recording of a selection
+`Print`|screenshot selection, safe to file and copy to clipboard
+`shift + Print`|*like above*, but also uploads to 0x0.st and copies url into primary clipboard
+`Ctrl + Print`|start/stop gif recording of selection and safe to file
+`Ctrl + Shift + Print`|*like above*, but also uploads to 0x0.st and copies url into primary clipboard
