@@ -28,4 +28,4 @@ wmname LG3D
 bspc config -m primary top_padding 0 && polybar `hostname` -r &
 
 picom --experimental-backends -b
-sxhkd &
+SXHKD_SHELL=bash sxhkd &
