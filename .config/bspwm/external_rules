@@ -8,6 +8,10 @@ function instance_name() {
   [ "$instance_name" = "$1" ] && return 0 || return 1
 }
 
+function class_name_starts_with() {
+  [[ "$class_name" = $1* ]] && return 0 || return 1
+}
+
 function window_role() {
   [ "$(xprop -id "$window_id" WM_WINDOW_ROLE | awk -F '"' '{print $2}')" = "$1" ] && return 0 || return 1
 }
@@ -18,3 +22,4 @@ function window_name() {
 
 instance_name "vlc" && window_name "vlc" && echo "layer=above"
 instance_name "chromium" && window_role "pop-up" && echo "state=floating center=on"
+window_name "win0" && class_name_starts_with "jetbrains" && echo "state=floating"
