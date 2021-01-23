@@ -1,0 +1,14 @@
+[module/temperature]
+type = internal/temperature
+
+interval = 1
+thermal-zone = 0
+warn-temperature = 60
+units = true
+
+format-prefix = 󰔐
+format-prefix-padding-right = ${variables.padding}
+
+format-warn-prefix = 󰔐
+format-warn-prefix-padding-right = ${variables.padding}
+format-warn-foreground = ${colors.color1}

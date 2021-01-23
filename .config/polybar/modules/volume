@@ -1,0 +1,17 @@
+[module/volume]
+type = internal/pulseaudio
+
+use-ui-max = true
+interval = 1
+
+format-volume = <ramp-volume><label-volume>
+
+ramp-volume-0 = 󰕿
+ramp-volume-1 = 󰖀
+ramp-volume-2 = 󰕾
+
+ramp-volume-padding-right = ${variables.padding}
+
+format-muted-foreground = ${colors.color1}
+format-muted-prefix = 󰝟
+format-muted-prefix-padding-right = ${variables.padding}

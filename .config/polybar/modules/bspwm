@@ -1,0 +1,28 @@
+[module/bspwm]
+type = internal/bspwm
+
+pin-workspaces = false
+enable-scroll = false
+
+format-spacing = 2
+format-padding = 0
+
+label-focused = 󰄯
+label-focused-font = 3
+label-focused-padding = ${variables.padding}
+label-focused-foreground = ${colors.foreground}
+
+label-urgent = 󰄯
+label-urgent-font = 3
+label-urgent-padding = ${variables.padding}
+label-urgent-foreground = ${colors.color1}
+
+label-occupied = 󰄯
+label-occupied-font = 3
+label-occupied-padding = ${variables.padding}
+label-occupied-foreground = #60ffffff
+
+label-empty = 󰄰
+label-empty-font = 3
+label-empty-padding = ${variables.padding}
+label-empty-foreground = #60ffffff

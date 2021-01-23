@@ -1,0 +1,12 @@
+[module/date]
+type = internal/date
+
+format-prefix = 󰅐
+format-prefix-padding-right = ${variables.padding}
+label = %date% %time%
+
+date = "%a %d.%m"
+date-alt = "%a %d.%m.%Y"
+
+time = "%H:%M"
+time-alt = "%H:%M:%S"

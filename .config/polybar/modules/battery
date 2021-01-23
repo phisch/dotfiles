@@ -1,0 +1,32 @@
+[module/battery]
+type = internal/battery
+
+full-at = 100
+
+battery = BAT0
+adapter = ADP1
+
+poll-interval = 3
+animation-charging-framerate = 800
+
+format-full-prefix = 󰁹
+format-full-prefix-padding-right = ${variables.padding}
+
+format-charging-prefix = 󰂄
+format-charging-prefix-padding-right = ${variables.padding}
+
+format-discharging = <ramp-capacity><label-discharging>
+
+ramp-capacity-0 = 󰂎
+ramp-capacity-1 = 󰁺
+ramp-capacity-2 = 󰁻
+ramp-capacity-3 = 󰁼
+ramp-capacity-4 = 󰁽
+ramp-capacity-5 = 󰁾
+ramp-capacity-6 = 󰁿
+ramp-capacity-7 = 󰂀
+ramp-capacity-8 = 󰂁
+ramp-capacity-9 = 󰂂
+ramp-capacity-10 = 󰁹
+
+ramp-capacity-padding-right = ${variables.padding}

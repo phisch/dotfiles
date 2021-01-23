@@ -1,0 +1,5 @@
+[module/cpu]
+type = internal/cpu
+
+format-prefix = 󰘚
+format-prefix-padding-right = ${variables.padding}

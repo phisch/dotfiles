@@ -1,0 +1,20 @@
+[module/wireless-network]
+type = internal/network
+
+interface = wlp2s0
+
+format-connected = <ramp-signal><label-connected>
+
+ramp-signal-0 = 󰤯
+ramp-signal-1 = 󰤟
+ramp-signal-2 = 󰤢
+ramp-signal-3 = 󰤥
+ramp-signal-4 = 󰤨
+
+ramp-signal-padding-right = ${variables.padding}
+
+label-connected = %essid%
+
+format-disconnected-prefix = 󰤮
+format-disconnected-prefix-padding-right = ${variables.padding}
+label-disconnected = %ifname%

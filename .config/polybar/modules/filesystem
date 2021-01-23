@@ -1,0 +1,16 @@
+[module/filesystem]
+type = internal/fs
+
+mount-0 = /
+
+interval = 10
+fixed-values = true
+spacing = 0
+
+format-mounted-prefix = 󰋊
+format-mounted-prefix-padding-right = ${variables.padding}
+label-mounted = %mountpoint% %free%
+
+format-unmounted-prefix = 󰋊
+format-unmounted-prefix-padding-right = ${variables.padding}
+format-unmounted-foreground = ${colors.color1}

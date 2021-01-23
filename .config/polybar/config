@@ -1,5 +1,5 @@
 [section/base]
-include-file = ~/.config/polybar/modules.config
+include-directory = ~/.config/polybar/modules
 
 [colors]
 transparent = #00000000
