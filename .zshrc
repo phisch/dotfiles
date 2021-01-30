@@ -78,7 +78,3 @@ prompt() {
 }
 
 PS1='$(session)$(path)$(git_status) $(prompt)'
-
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-        source /etc/profile.d/vte.sh
-fi
