@@ -1,6 +1,0 @@
-[module/backlight]
-type = internal/xbacklight
-enable-scroll = true
-
-format-prefix = 󰳲
-format-prefix-padding-right = ${variables.padding}
