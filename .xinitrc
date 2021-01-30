@@ -8,6 +8,4 @@ feh --randomize --bg-fill --recursive --no-fehbg ~/Pictures/wallpapers/*
 
 xsetroot -xcf /usr/share/icons/Adwaita/cursors/left_ptr 16
 
-export SUDO_ASKPASS=~/bin/askpass
-
 exec bspwm
