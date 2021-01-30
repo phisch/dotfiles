@@ -1,0 +1,8 @@
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+
+enable-scroll = true
+
+format-prefix = 󰳲
+format-prefix-padding-right = ${variables.padding}
