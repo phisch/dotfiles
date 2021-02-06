@@ -10,14 +10,14 @@ To add a new file to the repository, it has to be force added with `git add --fo
 A convenient installation script based on [archinstall](https://archlinux.org/packages/extra/any/archinstall/) can be used to install and setup Arch Linux, my dotfiles and dependencies. And this is how it works:
 
 ### Prepare Arch Linux live USB medium
-Download the [official Arch Linux iso](https://archlinux.org/download/) and create a bootable USB drive.
+Download the [official Arch Linux iso](https://archlinux.org/download/) and create a bootable USB drive:
 
 ```sh
 dd if=path/to/archlinux.iso of=/dev/sdX bs=4M status=progress oflag=sync
 ```
 
 ### Run the installer
-Boot into the live USB, connect to wifi, install [archinstall](https://archlinux.org/packages/extra/any/archinstall/) and run the installation script.
+Boot into the live USB, connect to wifi, install [archinstall](https://archlinux.org/packages/extra/any/archinstall/) and run the installation script:
 
 ```sh
 iwctl # [iwd] station DEVICE connect ESSID
@@ -60,7 +60,7 @@ The code is easy to read, so have a look at the [.install](.install) python scri
 [nano](https://www.archlinux.org/packages/core/x86_64/nano/),
 [nautilus](https://www.archlinux.org/packages/extra/x86_64/nautilus/),
 [openssh](https://www.archlinux.org/packages/core/x86_64/openssh/),
-[paru](https://aur.archlinux.org/packages/paru-bin/) *(AUR)*,
+[paru-bin](https://aur.archlinux.org/packages/paru-bin/) *(AUR)*,
 [pavucontrol](https://www.archlinux.org/packages/extra/x86_64/pavucontrol/),
 [picom-git](https://aur.archlinux.org/packages/picom-git/) *(AUR)*,
 [polybar](https://aur.archlinux.org/packages/polybar/) *(AUR)*,
