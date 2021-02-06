@@ -7,67 +7,76 @@ Yes, my home directory is a git repository! And the `.gitignore` file ignores ev
 To add a new file to the repository, it has to be force added with `git add --force file`. This way configuration **changes can be easily detected and committed**, and **nothing gets added accidentally**.
 
 ## Installation
-To effortlessly get started on a fresh arch linux installation, an interactive installation script can be run:
+A convenient installation script based on [archinstall](https://archlinux.org/packages/extra/any/archinstall/) can be used to install and setup Arch Linux, my dotfiles and dependencies. And this is how it works:
+
+### Prepare Arch Linux live USB medium
+Download the [official Arch Linux iso](https://archlinux.org/download/) and create a bootable USB drive.
 
 ```sh
-bash <(curl -sL https://github.com/phisch/dotfiles/raw/master/.install)
+dd if=path/to/archlinux.iso of=/dev/sdX bs=4M status=progress oflag=sync
 ```
 
-### What does it do?
-The installation script performs the following steps:
+### Run the installer
+Boot into the live USB, connect to wifi, install [archinstall](https://archlinux.org/packages/extra/any/archinstall/) and run the installation script.
 
-1) update arch linux
-2) ask for and set selected locale and keymap (from a list of all available ones)
-3) upload existing, or generate and upload new SSH key to GitHub (skipped if there already is a key that can authenticate with a GitHub account, can also be skipped manually)
-4) install AUR helper (yay)
-4) install Arch and AUR packages (listed below)
-5) clone and install dotfiles (uses HTTPS if no SSH key can authenticate with a GitHub account)
-6) set zsh as user shell
+```sh
+iwctl # [iwd] station DEVICE connect ESSID
+pacman -Sy archinstall
+python3 <(curl -sL https://github.com/phisch/dotfiles/raw/master/.install)
+```
+
+### What does the installer do?
+The code is easy to read, so have a look at the [.install](.install) python script to see in detail. To roughly sum it up:
+
+1) partition and install archlinux to selected hard drive
+2) set locale, keymaps, timezones
+3) install and configure the dependencies that are listed below
+4) create a user and install this repositories dotfiles for him
+5) enable services, configure autologin and some more
 
 ### Dependencies and applications
-[bat](https://www.archlinux.org/packages/community/x86_64/bat/),
-[bspwm-git](https://aur.archlinux.org/packages/bspwm-git/) *(AUR)*,
-[celluloid](https://www.archlinux.org/packages/community/x86_64/celluloid/),
-[chromium](https://www.archlinux.org/packages/extra/x86_64/chromium/),
+[acpilight](https://archlinux.org/packages/community/any/acpilight/),
+[baobab](https://archlinux.org/packages/extra/x86_64/baobab/),
+[bspwm](https://archlinux.org/packages/community/x86_64/bspwm/),
 [chromium-widevine](https://aur.archlinux.org/packages/chromium-widevine/) *(AUR)*,
+[chromium](https://www.archlinux.org/packages/extra/x86_64/chromium/),
 [code](https://www.archlinux.org/packages/community/x86_64/code/),
 [curl](https://www.archlinux.org/packages/core/x86_64/curl/),
-[docker](https://www.archlinux.org/packages/community/x86_64/docker/),
+[discord](https://archlinux.org/packages/community/x86_64/discord/),
 [docker-compose](https://www.archlinux.org/packages/community/any/docker-compose/),
+[docker](https://www.archlinux.org/packages/community/x86_64/docker/),
 [eog](https://www.archlinux.org/packages/extra/x86_64/eog/),
+[evince](https://archlinux.org/packages/extra/x86_64/evince/),
 [feh](https://www.archlinux.org/packages/extra/x86_64/feh/),
+[foliate](https://archlinux.org/packages/community/x86_64/foliate/),
+[font-manager](https://aur.archlinux.org/packages/font-manager/) *(AUR)*,
 [giph](https://aur.archlinux.org/packages/giph/) *(AUR)*,
 [git](https://www.archlinux.org/packages/extra/x86_64/git/),
 [gnome-calculator](https://www.archlinux.org/packages/extra/x86_64/gnome-calculator/),
 [gnome-disk-utility](https://www.archlinux.org/packages/extra/x86_64/gnome-disk-utility/),
-[go](https://www.archlinux.org/packages/community/x86_64/go/),
-[gucharmap](https://www.archlinux.org/packages/extra/x86_64/gucharmap/),
 [jetbrains-toolbox](https://aur.archlinux.org/packages/jetbrains-toolbox/) *(AUR)*,
-[jre-openjdk](https://www.archlinux.org/packages/extra/x86_64/jre-openjdk/),
 [maim](https://www.archlinux.org/packages/community/x86_64/maim/),
+[man-db](https://archlinux.org/packages/core/x86_64/man-db/),
 [nano](https://www.archlinux.org/packages/core/x86_64/nano/),
 [nautilus](https://www.archlinux.org/packages/extra/x86_64/nautilus/),
-[noto-fonts-emoji](https://www.archlinux.org/packages/extra/any/noto-fonts-emoji/),
-[nimix-folders-git](https://aur.archlinux.org/packages/numix-folders-git/),
 [openssh](https://www.archlinux.org/packages/core/x86_64/openssh/),
+[paru](https://aur.archlinux.org/packages/paru-bin/) *(AUR)*,
 [pavucontrol](https://www.archlinux.org/packages/extra/x86_64/pavucontrol/),
-[pepper-flash](https://www.archlinux.org/packages/extra/x86_64/pepper-flash/),
-[phocus-gtk-theme-git](https://aur.archlinux.org/packages/phocus-gtk-theme-git/) *(AUR)*,
 [picom-git](https://aur.archlinux.org/packages/picom-git/) *(AUR)*,
-[polybar-git](https://aur.archlinux.org/packages/polybar-git/) *(AUR)*,
+[polybar](https://aur.archlinux.org/packages/polybar/) *(AUR)*,
 [pulseaudio](https://www.archlinux.org/packages/extra/x86_64/pulseaudio/),
-[rofi-git](https://aur.archlinux.org/packages/rofi-git/) *(AUR)*,
-[slop](https://www.archlinux.org/packages/community/x86_64/slop/),
-[sxhkd-git](https://aur.archlinux.org/packages/sxhkd-git/) *(AUR)*,
+[reflector](https://archlinux.org/packages/community/any/reflector/),
+[rofi](https://archlinux.org/packages/community/x86_64/rofi/),
+[sxhkd](https://archlinux.org/packages/community/x86_64/sxhkd/),
 [termite](https://www.archlinux.org/packages/community/x86_64/termite/),
 [ttf-dejavu](https://www.archlinux.org/packages/extra/any/ttf-dejavu/),
 [ttf-material-design-icons-git](https://aur.archlinux.org/packages/ttf-material-design-icons-git/) *(AUR)*,
 [vlc](https://www.archlinux.org/packages/extra/x86_64/vlc/),
 [wmname](https://www.archlinux.org/packages/community/x86_64/wmname/),
+[xclip](https://archlinux.org/packages/extra/x86_64/xclip/),
 [xdg-user-dirs](https://www.archlinux.org/packages/extra/x86_64/xdg-user-dirs/),
 [xorg-server](https://www.archlinux.org/packages/extra/x86_64/xorg-server/),
 [xorg-xinit](https://www.archlinux.org/packages/extra/x86_64/xorg-xinit/),
 [xorg-xrandr](https://www.archlinux.org/packages/extra/x86_64/xorg-xrandr/),
 [xorg-xsetroot](https://www.archlinux.org/packages/extra/x86_64/xorg-xsetroot/),
-[yay](https://aur.archlinux.org/packages/yay/) *(AUR)*
 [zsh](https://www.archlinux.org/packages/extra/x86_64/zsh/)

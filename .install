@@ -1,104 +1,130 @@
-#!/bin/bash
+#!/usr/bin/env python3
+import getpass
+import os
 
-# define dependencies
-dependencies=(bat celluloid chromium code curl docker docker-compose eog feh git gnome-calculator gnome-disk-utility go gucharmap jre-openjdk maim nano nautilus noto-fonts-emoji openssh pavucontrol pepper-flash pulseaudio slop termite ttf-dejavu vlc wmname xdg-user-dirs xorg-server xorg-xinit xorg-xrandr xorg-xsetroot zsh)
-dependencies_aur=(bspwm-git chromium-widevine giph jetbrains-toolbox numix-folders-git phocus-gtk-theme-git picom-git polybar-git rofi-git sxhkd-git ttf-material-design-icons-git)
+import archinstall
+import requests
 
-install_dependencies() {
-  sudo pacman -S --needed --noconfirm "$@" 2>&1 | dialog --progressbox "Installing dependencies: $*" 30 70
-  [ "${PIPESTATUS[0]}" -ne 0 ] && exit 1
-}
+KEYMAP = 'de'
+LOCALE = 'en_US'
+ENCODING = 'UTF-8'
+TIMEZONE = 'Europe/Berlin'
+DOWNLOAD_REGION = 'Germany'
+DEFAULT_USER = 'phisch'
 
-# keep sudo alive
-sudo -k
-while true; do
-  pwd=$(dialog --keep-tite --nocancel --output-fd 1 --passwordbox "[sudo] password for $USER" 7 60 "")
-  if echo "$pwd" | sudo -Sv 2>/dev/null; then break; else dialog --keep-tite --msgbox "Incorrect password for user '$USER', try again!" 8 40; fi
-done
-while true; do sleep 60; sudo -n true; kill -0 "$$" || exit; done 2>/dev/null &
+dependencies = [
+    'acpilight', 'baobab', 'bspwm', 'chromium', 'code', 'curl', 'discord', 'docker', 'docker-compose', 'eog', 'evince',
+    'feh', 'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility', 'maim', 'man-db', 'nautilus', 'openssh',
+    'pavucontrol', 'pulseaudio', 'reflector', 'rofi', 'sxhkd', 'termite', 'ttf-dejavu', 'vlc', 'wmname', 'xclip',
+    'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh'
+]
+dependencies_aur = [
+    'chromium-widevine', 'font-manager', 'giph', 'jetbrains-toolbox', 'picom-git', 'polybar',
+    'ttf-material-design-icons-git'
+]
 
-# update system
-sudo pacman -Syu --noconfirm 2>&1 | dialog --progressbox "Installing system updates..." 30 70
-[ "${PIPESTATUS[0]}" -ne 0 ] && exit 1
 
-# set locale and keymap
-mapfile -t locales < <(grep -Po "^#?\K[^ ]+(?= UTF-8)" /etc/locale.gen | sort)
-mapfile -t keymaps < <(localectl list-keymaps | sort)
-locale=$(dialog --default-item "$(localectl status | grep -Po '(LANG=)\K.*$')" --keep-tite --no-items --menu "Select your prefered locale" 17 60 10 "${locales[@]}" 3>&1 1>&2 2>&3)
-keymap=$(dialog --default-item "$(localectl status | grep -Po '(VC Keymap: )\K.*$')" --keep-tite --no-items --menu "Select your prefered keymap" 17 60 10 "${keymaps[@]}" 3>&1 1>&2 2>&3)
-{
-  if [ -n "$locale" ]; then
-    sudo sed -i "s/^#\($locale \)/\1/" /etc/locale.gen
-    sudo locale-gen
-    sudo localectl set-locale "$locale"
-  fi
-  [ -n "$keymap" ] && sudo localectl set-keymap "" && sudo localectl set-keymap "$keymap"
-} | dialog --progressbox "Setting locale and keymap..." 30 70
+def get_password(name='Password', default=None):
+    while password := getpass.getpass(f'{name}{f" (default: {default})" if default is not None else ""}: '):
+        if password == getpass.getpass('Repeat to confirm: '):
+            break
+        archinstall.log("Passwords didn't match. Try again!", fg='red')
+    return password or default
 
-# install dependencies for ssh keys
-install_dependencies curl openssh
 
-# add ssh key to github, use existing key or generate new one
-ssh -o StrictHostKeyChecking=accept-new -T git@github.com >/dev/null 2>&1
-if [ "$?" -eq 1 ]; then
-  SSH=true
-else 
-  mapfile -t public_keys < <(find ~/.ssh -name '*.pub' 2>/dev/null | sed =)
-  if [ ${#public_keys[@]} -gt 0 ]; then
-    choice=$(dialog --keep-tite --menu "Upload an existing SSH key to GitHub" 17 60 10 "${public_keys[@]}" 3>&1 1>&2 2>&3)
-    [ "$choice" ] && key=${public_keys[$((choice*2-1))]}
-  fi
-  if [ -z "$key" ]; then
-    while true; do
-      if key=$(dialog --output-fd 1 --inputbox "Enter file in which to save the SSH key" 8 60 ~/.ssh/id_rsa) && [ -n "$key" ]; then
-        if [ -f "$key" ]; then
-          dialog --keep-tite --yesno "Key '$key' already exists. Overwrite it?" 6 50 && rm -f "$key" "$key.pub" || continue
-        fi
-        label=$(dialog --nocancel --output-fd 1 --inputbox "Enter email to use as label for the SSH key" 7 60 "$USER@$HOSTNAME")
-        passphrase=$(dialog --nocancel --output-fd 1 --passwordbox "Enter passphrase to use for the SSH key" 7 60)
-        ssh-keygen -t rsa -b 4096 -C "$label" -f "$key" -P "$passphrase" | dialog --keep-tite --progressbox "Generating SSH key..." 30 70 && key="$key.pub"
-      fi
-      break
-    done
-  fi
-  while [ -f "$key" ]; do
-    login=$(dialog --keep-tite --nocancel --title "Upload SSH key to GitHub" --output-fd 1 --inputbox "Enter your GitHub Username" 7 60 "$USER")
-    password=$(dialog --keep-tite --nocancel --title "Upload SSH key to GitHub" --output-fd 1 --passwordbox "Enter your GitHub Password" 7 60 "")
-    response=$(curl -sL -w "%{http_code}" -o /dev/null -u "$login:$password" --data "{\"key\":\"$(cat "$key")\"}" https://api.github.com/user/keys)
-    case "$response" in
-      "201") dialog --keep-tite --msgbox "Added SSH key $key to GitHub user $login" 8 40; SSH=true; break;;
-      "422") break;;
-      *) dialog --keep-tite --msgbox "GitHub authentication failed, try again!" 8 40
-    esac
-  done
-fi
+try:
+    archinstall.sys_command(f'umount -R /mnt', suppress_errors=True)
 
-# install dependencies
-install_dependencies "${dependencies[@]}"
+    archinstall.set_keyboard_language(KEYMAP)
+    archinstall.validate_package_list(dependencies)
 
-# install AUR helper 'yay'
-{
-  aur_tmp_dir=$(mktemp -d) && cd "$aur_tmp_dir" || exit 1
-  git clone "https://aur.archlinux.org/yay.git" "$aur_tmp_dir" 2>&1
-  makepkg -sim --noconfirm 2>&1
-} | dialog --progressbox "Installing AUR helper..." 30 70
+    disk = archinstall.select_disk(archinstall.all_disks())
+    hostname = archinstall.generic_select(['tower', 'laptop'], 'Select hostname (default: tower):') or 'tower'
+    root_password = get_password('Root password', 'root')
+    user = input(f'Username (default: {DEFAULT_USER}): ') or DEFAULT_USER
+    user_password = get_password(default=user)
 
-# install AUR dependencies
-yay -S --needed --noconfirm "${dependencies_aur[@]}" 2>&1 | dialog --progressbox "Installing AUR dependencies: ${dependencies_aur[*]}" 30 70
-[ "${PIPESTATUS[0]}" -ne 0 ] && exit 1
+    while github_access_token := input('Github Access Token (default: none): '):
+        response = requests.post(
+            url='https://api.github.com/',
+            headers={'Authorization': f'token {github_access_token}'}
+        )
+        if response.status_code == 401 or 'admin:public_key' not in response.headers.get('X-OAuth-Scopes'):
+            archinstall.log("Token invalid or doesn't have the 'admin:public_key' scope. Try again!", fg='red')
+            continue
+        break
 
-# install dotfiles
-{
-  [ "$SSH" ] && url="git@github.com:phisch/dotfiles.git" || url="https://github.com/phisch/dotfiles.git"
-  temp_directory_dotfiles=$(mktemp -d)
-  git clone "$url" "$temp_directory_dotfiles" 2>&1
-  cp -rb "$temp_directory_dotfiles"/. ~
-} | dialog --progressbox "Installing dotfiles..." 30 70
+    input('No more input required. Press return to start the installation.')
 
-# finalize
-{
-  sudo chsh -s /usr/bin/zsh "$USER"
-  xdg-user-dirs-update
-  sudo usermod -aG docker "$USER"
-  sudo systemctl enable docker
-} | dialog --progressbox "Finalizing..." 30 70
+    with archinstall.Filesystem(disk, archinstall.GPT) as fs:
+        fs.use_entire_disk('ext4')
+        disk.partition[0].format('fat32')
+        disk.partition[1].format('ext4')
+
+        with archinstall.Installer(disk.partition[1], disk.partition[0], hostname=hostname) as i:
+            mirror_regions = {DOWNLOAD_REGION: archinstall.list_mirrors().get(DOWNLOAD_REGION)}
+            archinstall.use_mirrors(mirror_regions)
+
+            i.minimal_installation()
+            i.set_mirrors(mirror_regions)
+            i.add_bootloader()
+            i.copy_ISO_network_config(enable_services=True)
+
+            i.add_additional_packages(dependencies)
+
+            i.set_locale(LOCALE, ENCODING)
+            i.arch_chroot(f'localectl set-x11-keymap {KEYMAP}')
+            i.set_keyboard_language(KEYMAP)
+            i.set_timezone(TIMEZONE)
+
+            i.user_set_pw('root', root_password)
+            i.arch_chroot(r"sed -i 's/# \(%wheel ALL=(ALL) ALL\)/\1/' /etc/sudoers")
+
+            i.user_create(user, user_password, ['video', 'docker'])
+            i.arch_chroot(f'chsh -s /usr/bin/zsh "{user}"')
+
+            i.arch_chroot(f"su {user} -c 'xdg-user-dirs-update'")
+            i.arch_chroot(f"su {user} -c 'mkdir -p ~/Pictures/screenshots && mkdir ~/Videos/recordings'")
+
+            i.enable_service('systemd-timesyncd')
+            i.enable_service('docker')
+
+            backlight_rule_file_name = f'{i.mountpoint}/etc/udev/rules.d/backlight.rules'
+            with open(backlight_rule_file_name, 'w+') as file:
+                file.write('ACTION=="add", SUBSYSTEM=="backlight", GROUP="video"')
+                os.chmod(backlight_rule_file_name, 0o664)
+
+            autologin_file_name = f'{i.mountpoint}/etc/systemd/system/getty@tty1.service.d/autologin.conf'
+            os.makedirs(os.path.dirname(autologin_file_name), exist_ok=True)
+            with open(autologin_file_name, "w") as file:
+                file.write(f'[Service]\nExecStart=\nExecStart=-/usr/bin/agetty --autologin {user} --noclear %I $TERM')
+
+            if hostname == 'laptop':
+                i.arch_chroot(r"sed -i 's/\(FONT=\).*/\1TER16x32/' /etc/vconsole.conf")
+
+            i.arch_chroot(f"su {user} -c 'ssh-keygen -t rsa -b 4096 -C \"{user}@{hostname}\" -f ~/.ssh/id_rsa -N \"\"'")
+            i.arch_chroot(f"su {user} -c 'ssh-keyscan github.com >> ~/.ssh/known_hosts'")
+
+            if github_access_token:
+                with open(f'{i.mountpoint}/home/{user}/.ssh/id_rsa.pub', 'r') as key:
+                    requests.post(
+                        url='https://api.github.com/user/keys',
+                        json={'title': f'{user}@{hostname}', 'key': f'{key.read().strip()}'},
+                        headers={'Authorization': f'token {github_access_token}'}
+                    )
+
+            i.arch_chroot(f"su {user} -c 'cd $(mktemp -d) && git clone {'git@github.com:phisch/dotfiles.git' if github_access_token else 'https://github.com/phisch/dotfiles.git'} . && cp -rb . ~'")
+
+            i.arch_chroot(r"sed -i 's/# \(%wheel ALL=(ALL) NOPASSWD: ALL\)/\1/' /etc/sudoers")
+            i.arch_chroot(f"su {user} -c 'cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm'")
+            i.arch_chroot(f'su {user} -c "paru -S --needed --noconfirm {" ".join(dependencies_aur)}"')
+            i.arch_chroot(r"sed -i 's/\(%wheel ALL=(ALL) NOPASSWD: ALL\)/# \1/' /etc/sudoers")
+
+            archinstall.reboot()
+
+except archinstall.DiskError as e:
+    print(str(e))
+except IndexError as e:
+    print('The selected index does not exist.')
+except archinstall.RequirementError as e:
+    print(f"The package dependencies contain packages that don't exist.\n{str(e)}")
