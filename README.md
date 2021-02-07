@@ -62,6 +62,7 @@ The code is easy to read, so have a look at the [.install](.install) python scri
 [openssh](https://www.archlinux.org/packages/core/x86_64/openssh/),
 [paru-bin](https://aur.archlinux.org/packages/paru-bin/) *(AUR)*,
 [pavucontrol](https://www.archlinux.org/packages/extra/x86_64/pavucontrol/),
+[phocus-gtk-theme-git](https://aur.archlinux.org/packages/phocus-gtk-theme-git/) *(AUR)*,
 [picom-git](https://aur.archlinux.org/packages/picom-git/) *(AUR)*,
 [polybar](https://aur.archlinux.org/packages/polybar/) *(AUR)*,
 [pulseaudio](https://www.archlinux.org/packages/extra/x86_64/pulseaudio/),
