@@ -73,7 +73,6 @@ try:
             i.add_additional_packages(dependencies)
 
             i.set_locale(LOCALE, ENCODING)
-            i.arch_chroot(f'localectl set-x11-keymap {KEYMAP}')
             i.set_keyboard_language(KEYMAP)
             i.set_timezone(TIMEZONE)
 
