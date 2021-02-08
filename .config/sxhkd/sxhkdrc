@@ -6,7 +6,7 @@ super + Escape
 super + alt + Escape
   bspc quit
 
-# open urxvt terminal
+# open terminal
 super + Return
   termite
 
@@ -40,7 +40,7 @@ control + alt + {Up,Right,Down,Left}
 
 # set preselect ratio from 10-90%
 control + alt + {1-9}
-	bspc node -o 0.{1-9}
+  bspc node -o 0.{1-9}
 
 # select node in given direction
 # move node in given direction
