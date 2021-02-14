@@ -86,11 +86,11 @@ alt + b + {Prior,Next}
 
 # screenshot selection, safe to file and copy to clipboard
 Print
-  maim -s -l -c 0.3,0,0.5,0.3 | tee >(xclip -selection clipboard -t image/png) ~/Pictures/screenshots/$(date +%s).png
+  maim -s -u -l -c 0.3,0,0.5,0.3 | tee >(xclip -selection clipboard -t image/png) ~/Pictures/screenshots/$(date +%s).png
 
 # like above, but also uploads to 0x0.st and copies url into primary clipboard
 shift + Print
-  maim -s -l -c 0.3,0,0.5,0.3 | tee >(xclip -selection clipboard -t image/png) >(curl -F "file=@-" 0x0.st | xclip -selection primary) ~/Pictures/screenshots/$(date +%s).png
+  maim -s -u -l -c 0.3,0,0.5,0.3 | tee >(xclip -selection clipboard -t image/png) >(curl -F "file=@-" 0x0.st | xclip -selection primary) ~/Pictures/screenshots/$(date +%s).png
 
 # start/stop gif recording of selection and safe to file
 ctrl + Print
