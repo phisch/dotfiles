@@ -48,6 +48,7 @@ The code is easy to read, so have a look at the [.install](.install) python scri
 [eog](https://www.archlinux.org/packages/extra/x86_64/eog/),
 [evince](https://archlinux.org/packages/extra/x86_64/evince/),
 [feh](https://www.archlinux.org/packages/extra/x86_64/feh/),
+[figma-linux](https://aur.archlinux.org/packages/figma-linux/) *(AUR)*,
 [foliate](https://archlinux.org/packages/community/x86_64/foliate/),
 [font-manager](https://aur.archlinux.org/packages/font-manager/) *(AUR)*,
 [giph](https://aur.archlinux.org/packages/giph/) *(AUR)*,

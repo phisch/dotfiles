@@ -19,7 +19,7 @@ dependencies = [
     'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh'
 ]
 dependencies_aur = [
-    'chromium-widevine', 'font-manager', 'giph', 'jetbrains-toolbox', 'phocus-gtk-theme-git', 'picom-git', 'polybar',
+    'chromium-widevine', 'figma-linux', 'font-manager', 'giph', 'jetbrains-toolbox', 'phocus-gtk-theme-git', 'picom-git', 'polybar',
     'ttf-material-design-icons-git'
 ]
 
