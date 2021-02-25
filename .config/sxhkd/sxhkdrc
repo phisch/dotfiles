@@ -80,9 +80,9 @@ XF86AudioMicMute
 
 # increase/decrease monitor backlight
 {XF86MonBrightnessUp, XF86MonBrightnessDown}
-  xbacklight -{inc,dec} 5 -time 0
-alt + b + {Prior,Next}
-  xbacklight -{inc,dec} 5 -time 0
+  xbacklight {+,-}5
+alt + {Prior,Next}
+  xbacklight {+,-}1
 
 # screenshot selection, safe to file and copy to clipboard
 Print
