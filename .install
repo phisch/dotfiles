@@ -13,13 +13,13 @@ DOWNLOAD_REGION = 'Germany'
 DEFAULT_USER = 'phisch'
 
 dependencies = [
-    'acpilight', 'baobab', 'bspwm', 'chromium', 'code', 'curl', 'discord', 'docker', 'docker-compose', 'eog', 'evince',
+    'acpilight', 'baobab', 'bspwm', 'code', 'curl', 'discord', 'docker', 'docker-compose', 'eog', 'evince',
     'feh', 'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility', 'maim', 'man-db', 'nautilus', 'openssh',
     'pavucontrol', 'pulseaudio', 'reflector', 'rofi', 'sxhkd', 'termite', 'ttf-dejavu', 'vlc', 'wmname', 'xclip',
     'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh'
 ]
 dependencies_aur = [
-    'chromium-widevine', 'figma-linux', 'font-manager', 'giph', 'jetbrains-toolbox', 'phocus-gtk-theme-git', 'picom-git', 'polybar',
+    'figma-linux', 'font-manager', 'giph', 'google-chrome-dev', 'jetbrains-toolbox', 'phocus-gtk-theme-git', 'picom-git', 'polybar',
     'ttf-material-design-icons-git'
 ]
 
