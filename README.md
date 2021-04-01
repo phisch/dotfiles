@@ -21,7 +21,6 @@ Boot into the live USB, connect to wifi, install [archinstall](https://archlinux
 
 ```sh
 iwctl # [iwd] station DEVICE connect ESSID
-pacman -Sy archinstall
 python3 <(curl -sL https://github.com/phisch/dotfiles/raw/master/.install)
 ```
 
