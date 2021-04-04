@@ -61,9 +61,9 @@ try:
     input('No more input required. Press return to start the installation.')
 
     with archinstall.Filesystem(disk, archinstall.GPT) as fs:
-        fs.use_entire_disk('ext4')
+        fs.use_entire_disk('btrfs')
         disk.partition[0].format('fat32')
-        disk.partition[1].format('ext4')
+        disk.partition[1].format('btrfs')
 
         with archinstall.Installer(disk.partition[1], disk.partition[0], hostname=hostname) as i:
             mirror_regions = {DOWNLOAD_REGION: archinstall.list_mirrors().get(DOWNLOAD_REGION)}
