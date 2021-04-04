@@ -16,9 +16,9 @@ dependencies = [
     'acpilight', 'baobab', 'bluez', 'bluez-utils', 'bspwm', 'code', 'curl',
     'discord', 'dkms', 'docker', 'docker-compose', 'eog', 'evince', 'feh',
     'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility', 'intel-ucode',
-    'linux-headers', 'maim', 'man-db', 'nautilus', 'openssh', 'pavucontrol',
-    'pulseaudio', 'pulseaudio-bluetooth', 'reflector', 'rofi', 'sxhkd',
-    'termite', 'ttf-dejavu', 'vlc', 'wmname', 'xclip', 'xdg-user-dirs',
+    'iwd', 'linux-headers', 'maim', 'man-db', 'nautilus', 'openssh',
+    'pavucontrol', 'pulseaudio', 'pulseaudio-bluetooth', 'reflector', 'rofi',
+    'sxhkd', 'termite', 'ttf-dejavu', 'vlc', 'wmname', 'xclip', 'xdg-user-dirs',
     'xorg-server', 'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh'
 ]
 dependencies_aur = [
@@ -95,6 +95,7 @@ try:
             i.arch_chroot(f"su {user} -c 'xdg-user-dirs-update'")
             i.arch_chroot(f"su {user} -c 'mkdir -p ~/Pictures/screenshots && mkdir ~/Videos/recordings'")
 
+            i.enable_service('iwd')
             i.enable_service('systemd-timesyncd')
             i.enable_service('docker')
             i.enable_service('bluetooth')
