@@ -36,6 +36,8 @@ The code is easy to read, so have a look at the [.install](.install) python scri
 ### Dependencies and applications
 [acpilight](https://archlinux.org/packages/community/any/acpilight/),
 [baobab](https://archlinux.org/packages/extra/x86_64/baobab/),
+[bluez](https://archlinux.org/packages/extra/x86_64/bluez/),
+[bluez-utils](https://archlinux.org/packages/extra/x86_64/bluez-utils/),
 [bspwm](https://archlinux.org/packages/community/x86_64/bspwm/),
 [code](https://www.archlinux.org/packages/community/x86_64/code/),
 [curl](https://www.archlinux.org/packages/core/x86_64/curl/),
@@ -65,6 +67,7 @@ The code is easy to read, so have a look at the [.install](.install) python scri
 [picom-git](https://aur.archlinux.org/packages/picom-git/) *(AUR)*,
 [polybar](https://aur.archlinux.org/packages/polybar/) *(AUR)*,
 [pulseaudio](https://www.archlinux.org/packages/extra/x86_64/pulseaudio/),
+[pulseaudio-bluetooth](https://archlinux.org/packages/extra/x86_64/pulseaudio-bluetooth/),
 [reflector](https://archlinux.org/packages/community/any/reflector/),
 [rofi](https://archlinux.org/packages/community/x86_64/rofi/),
 [sxhkd](https://archlinux.org/packages/community/x86_64/sxhkd/),

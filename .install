@@ -13,14 +13,15 @@ DOWNLOAD_REGION = 'Germany'
 DEFAULT_USER = 'phisch'
 
 dependencies = [
-    'acpilight', 'baobab', 'bspwm', 'code', 'curl', 'discord', 'docker', 'docker-compose', 'eog', 'evince',
-    'feh', 'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility', 'maim', 'man-db', 'nautilus', 'openssh',
-    'pavucontrol', 'pulseaudio', 'reflector', 'rofi', 'sxhkd', 'termite', 'ttf-dejavu', 'vlc', 'wmname', 'xclip',
-    'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh'
+    'acpilight', 'baobab', 'bluez', 'bluez-utils', 'bspwm', 'code', 'curl', 'discord', 'docker',
+    'docker-compose', 'eog', 'evince', 'feh', 'foliate', 'git', 'gnome-calculator',
+    'gnome-disk-utility', 'maim', 'man-db', 'nautilus', 'openssh', 'pavucontrol', 'pulseaudio',
+    'pulseaudio-bluetooth', 'reflector', 'rofi', 'sxhkd', 'termite', 'ttf-dejavu', 'vlc', 'wmname',
+    'xclip', 'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh'
 ]
 dependencies_aur = [
-    'figma-linux', 'font-manager', 'giph', 'google-chrome-dev', 'jetbrains-toolbox', 'phocus-gtk-theme-git', 'picom-git', 'polybar',
-    'ttf-material-design-icons-git'
+    'figma-linux', 'font-manager', 'giph', 'google-chrome-dev', 'jetbrains-toolbox',
+    'phocus-gtk-theme-git', 'picom-git', 'polybar', 'ttf-material-design-icons-git'
 ]
 
 
@@ -87,6 +88,9 @@ try:
 
             i.enable_service('systemd-timesyncd')
             i.enable_service('docker')
+            i.enable_service('bluetooth')
+            
+            i.arch_chroot(r"sed 's/[#]*\(AutoEnable=\)\(true\|false\)/\1true/' /etc/bluetooth/main.conf")
 
             backlight_rule_file_name = f'{i.mountpoint}/etc/udev/rules.d/backlight.rules'
             with open(backlight_rule_file_name, 'w+') as file:
