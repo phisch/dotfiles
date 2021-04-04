@@ -78,6 +78,7 @@ try:
             i.arch_chroot(r"ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf")
 
             i.arch_chroot(r"sed -i \"/\[multilib\]/,/Include/\"'s/^#//' /etc/pacman.conf")
+            i.arch_chroot(r"sed -i 's/#\(Color\)/\1/' /etc/pacman.conf")
             i.add_additional_packages(dependencies)
 
             i.set_locale(LOCALE, ENCODING)
