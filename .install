@@ -13,15 +13,18 @@ DOWNLOAD_REGION = 'Germany'
 DEFAULT_USER = 'phisch'
 
 dependencies = [
-    'acpilight', 'baobab', 'bluez', 'bluez-utils', 'bspwm', 'code', 'curl', 'discord', 'docker',
-    'docker-compose', 'eog', 'evince', 'feh', 'foliate', 'git', 'gnome-calculator',
-    'gnome-disk-utility', 'maim', 'man-db', 'nautilus', 'openssh', 'pavucontrol', 'pulseaudio',
-    'pulseaudio-bluetooth', 'reflector', 'rofi', 'sxhkd', 'termite', 'ttf-dejavu', 'vlc', 'wmname',
-    'xclip', 'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh'
+    'acpilight', 'baobab', 'bluez', 'bluez-utils', 'bspwm', 'code', 'curl',
+    'discord', 'docker', 'docker-compose', 'eog', 'evince', 'feh', 'foliate',
+    'git', 'gnome-calculator', 'gnome-disk-utility', 'intel-ucode', 'maim',
+    'man-db', 'nautilus', 'openssh', 'pavucontrol', 'pulseaudio',
+    'pulseaudio-bluetooth', 'reflector', 'rofi', 'sxhkd', 'termite',
+    'ttf-dejavu', 'vlc', 'wmname', 'xclip', 'xdg-user-dirs', 'xorg-server',
+    'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh'
 ]
 dependencies_aur = [
-    'figma-linux', 'font-manager', 'giph', 'google-chrome-dev', 'jetbrains-toolbox',
-    'phocus-gtk-theme-git', 'picom-git', 'polybar', 'ttf-material-design-icons-git'
+    'figma-linux', 'font-manager', 'giph', 'google-chrome-dev',
+    'jetbrains-toolbox', 'phocus-gtk-theme-git', 'picom-git', 'polybar',
+    'ttf-material-design-icons-git'
 ]
 
 
@@ -69,6 +72,8 @@ try:
             i.minimal_installation()
             i.set_mirrors(mirror_regions)
             i.add_bootloader()
+            # TODO: add `initrd /intel-ucode.img` to `/boot/loader/entries/ENTRYFILE.conf` BEFORE `initrd /initramfs-linux.img`
+            # this currently can't be done because archinstall doesn't return the entryfile
             i.copy_ISO_network_config(enable_services=True)
             i.arch_chroot(r"ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf")
 

@@ -55,6 +55,7 @@ The code is easy to read, so have a look at the [.install](.install) python scri
 [gnome-calculator](https://www.archlinux.org/packages/extra/x86_64/gnome-calculator/),
 [gnome-disk-utility](https://www.archlinux.org/packages/extra/x86_64/gnome-disk-utility/),
 [google-chrome-dev](https://aur.archlinux.org/packages/google-chrome-dev/) *(AUR)*,
+[intel-ucode](https://archlinux.org/packages/extra/any/intel-ucode/),
 [jetbrains-toolbox](https://aur.archlinux.org/packages/jetbrains-toolbox/) *(AUR)*,
 [maim](https://www.archlinux.org/packages/community/x86_64/maim/),
 [man-db](https://archlinux.org/packages/core/x86_64/man-db/),
