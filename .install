@@ -43,6 +43,8 @@ try:
     archinstall.validate_package_list(dependencies)
 
     disk = archinstall.select_disk(archinstall.all_disks())
+    # TODO: remove this once it is set by detault in archinstall
+    disk.keep_partitions = False
     hostname = archinstall.generic_select(['tower', 'laptop'], 'Select hostname (default: tower):') or 'tower'
     root_password = get_password('Root password', 'root')
     user = input(f'Username (default: {DEFAULT_USER}): ') or DEFAULT_USER
