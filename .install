@@ -130,7 +130,7 @@ try:
             i.arch_chroot(r"sed -i 's/#\(MAKEFLAGS=\).*/\1\"-j$(($(nproc)-2))\"/' /etc/makepkg.conf")
             i.arch_chroot(r"sed -i 's/# \(%wheel ALL=(ALL) NOPASSWD: ALL\)/\1/' /etc/sudoers")
             i.arch_chroot(f"su {user} -c 'cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm'")
-            i.arch_chroot(f'su {user} -c "paru -S --needed --noconfirm {" ".join(dependencies_aur)}"')
+            i.arch_chroot(f'su {user} -c "paru -Sy --needed --noconfirm {" ".join(dependencies_aur)}"')
             i.arch_chroot(r"sed -i 's/\(%wheel ALL=(ALL) NOPASSWD: ALL\)/# \1/' /etc/sudoers")
 
             archinstall.reboot()
