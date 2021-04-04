@@ -40,7 +40,7 @@ modules-right = volume filesystem cpu memory temperature date power
 
 [bar/tower]
 inherit = bar/default
-modules-right = volume filesystem-tower cpu memory temperature date power
+modules-right = wireless-network-tower volume filesystem-tower cpu memory temperature date power
 
 [bar/laptop]
 inherit = bar/default
@@ -50,3 +50,7 @@ modules-right = wireless-network battery volume backlight filesystem cpu memory 
 inherit = module/filesystem
 
 mount-1 = /mnt/raid
+
+[module/wireless-network-tower]
+inherit = module/wireless-network
+interface = wlp0s20u8
