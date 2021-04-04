@@ -78,7 +78,7 @@ try:
             # this currently can't be done because archinstall doesn't return the entryfile
             i.copy_ISO_network_config(enable_services=True)
 
-            i.arch_chroot(r"sed -i \"/\[multilib\]/,/Include/\"'s/^#//' /etc/pacman.conf")
+            i.arch_chroot(r"sed -i '/\[multilib\]/,/Include/''s/^#//' /etc/pacman.conf")
             i.arch_chroot(r"sed -i 's/#\(Color\)/\1/' /etc/pacman.conf")
             i.add_additional_packages(dependencies)
 
