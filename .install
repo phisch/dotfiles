@@ -14,17 +14,17 @@ DEFAULT_USER = 'phisch'
 
 dependencies = [
     'acpilight', 'baobab', 'bluez', 'bluez-utils', 'bspwm', 'code', 'curl',
-    'discord', 'docker', 'docker-compose', 'eog', 'evince', 'feh', 'foliate',
-    'git', 'gnome-calculator', 'gnome-disk-utility', 'intel-ucode', 'maim',
-    'man-db', 'nautilus', 'openssh', 'pavucontrol', 'pulseaudio',
-    'pulseaudio-bluetooth', 'reflector', 'rofi', 'sxhkd', 'termite',
-    'ttf-dejavu', 'vlc', 'wmname', 'xclip', 'xdg-user-dirs', 'xorg-server',
-    'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh'
+    'discord', 'dkms', 'docker', 'docker-compose', 'eog', 'evince', 'feh',
+    'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility', 'intel-ucode',
+    'linux-headers', 'maim', 'man-db', 'nautilus', 'openssh', 'pavucontrol',
+    'pulseaudio', 'pulseaudio-bluetooth', 'reflector', 'rofi', 'sxhkd',
+    'termite', 'ttf-dejavu', 'vlc', 'wmname', 'xclip', 'xdg-user-dirs',
+    'xorg-server', 'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh'
 ]
 dependencies_aur = [
     'figma-linux', 'font-manager', 'giph', 'google-chrome-dev',
     'jetbrains-toolbox', 'phocus-gtk-theme-git', 'picom-git', 'polybar',
-    'ttf-material-design-icons-git'
+    'rtl88xxau-aircrack-dkms-git', 'ttf-material-design-icons-git'
 ]
 
 
