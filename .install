@@ -77,7 +77,6 @@ try:
             # TODO: add `initrd /intel-ucode.img` to `/boot/loader/entries/ENTRYFILE.conf` BEFORE `initrd /initramfs-linux.img`
             # this currently can't be done because archinstall doesn't return the entryfile
             i.copy_ISO_network_config(enable_services=True)
-            i.arch_chroot(r"ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf")
 
             i.arch_chroot(r"sed -i \"/\[multilib\]/,/Include/\"'s/^#//' /etc/pacman.conf")
             i.arch_chroot(r"sed -i 's/#\(Color\)/\1/' /etc/pacman.conf")
