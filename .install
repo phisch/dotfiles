@@ -64,7 +64,7 @@ try:
 
     with archinstall.Filesystem(disk, archinstall.GPT) as fs:
         fs.use_entire_disk('btrfs')
-        disk.partition[0].format('fat32')
+        disk.partition[0].format('vfat')
         disk.partition[1].format('btrfs')
 
         with archinstall.Installer(disk.partition[1], disk.partition[0], hostname=hostname) as i:
