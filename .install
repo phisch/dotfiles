@@ -71,6 +71,7 @@ try:
             i.add_bootloader()
             i.copy_ISO_network_config(enable_services=True)
 
+            i.arch_chroot(r"sed -i \"/\[multilib\]/,/Include/\"'s/^#//' /etc/pacman.conf")
             i.add_additional_packages(dependencies)
 
             i.set_locale(LOCALE, ENCODING)
