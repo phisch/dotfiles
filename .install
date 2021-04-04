@@ -70,6 +70,7 @@ try:
             i.set_mirrors(mirror_regions)
             i.add_bootloader()
             i.copy_ISO_network_config(enable_services=True)
+            i.arch_chroot(r"ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf")
 
             i.arch_chroot(r"sed -i \"/\[multilib\]/,/Include/\"'s/^#//' /etc/pacman.conf")
             i.add_additional_packages(dependencies)
@@ -90,7 +91,7 @@ try:
             i.enable_service('systemd-timesyncd')
             i.enable_service('docker')
             i.enable_service('bluetooth')
-            
+
             i.arch_chroot(r"sed 's/[#]*\(AutoEnable=\)\(true\|false\)/\1true/' /etc/bluetooth/main.conf")
 
             backlight_rule_file_name = f'{i.mountpoint}/etc/udev/rules.d/backlight.rules'
