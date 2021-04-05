@@ -18,8 +18,9 @@ dependencies = [
     'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility', 'intel-ucode',
     'iwd', 'linux-headers', 'maim', 'man-db', 'nautilus', 'openssh',
     'pavucontrol', 'pulseaudio', 'pulseaudio-bluetooth', 'reflector', 'rofi',
-    'sxhkd', 'termite', 'ttf-dejavu', 'vlc', 'wmname', 'xclip', 'xdg-user-dirs',
-    'xorg-server', 'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh'
+    'sxhkd', 'termite', 'ttf-dejavu', 'unzip', 'vlc', 'wmname', 'xclip',
+    'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr',
+    'xorg-xsetroot', 'zsh'
 ]
 dependencies_aur = [
     'figma-linux', 'font-manager', 'giph', 'google-chrome-dev',
