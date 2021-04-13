@@ -10,4 +10,6 @@ feh --randomize --bg-fill --recursive --no-fehbg ~/Pictures/wallpapers/*
 echo "Xcursor.size: 32" | xrdb -merge
 xsetroot -xcf /usr/share/icons/Adwaita/cursors/left_ptr 32
 
+xset s off
+
 exec bspwm
