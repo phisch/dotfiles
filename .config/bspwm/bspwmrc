@@ -22,7 +22,7 @@ bspc rule -a java-lang-Thread state=floating
 
 wmname LG3D
 
-~/.config/bspwm/subscriber/floating_state &
+~/.config/bspwm/subscriber/state_hint &
 
 bspc config -m primary top_padding 0 && polybar $HOSTNAME -r &
 

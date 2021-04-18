@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+bspc subscribe node_state | while read -r _ _ _ node state status; do
+    case "$state" in
+        floating) prop="_WM_STATE_FLOATING";;
+        tiled) prop="_WM_STATE_TILING";;
+        *) prop="";;
+    esac
+
+    if [[ "$prop" ]]; then
+        case "$status" in
+            off) xprop -id "$node" -remove "$prop";;
+            on) xprop -id "$node" -f "$prop" 32c -set "$prop" 1;;
+        esac
+    fi
+done
