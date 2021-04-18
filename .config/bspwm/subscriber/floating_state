@@ -1,18 +1,11 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 
-bspc subscribe node_state | while read node_status; do
-
-  id="${"${node_status#* * * }"%% *}"
-  state="${node_status#* * * * }"
-  state_name="${state%% *}"
-  state_switch="${state#* }"
-
-  if [ $state_name = "floating" ]; then
-    if [ $state_switch = "on" ]; then
-      xprop -id "$id" -f _WM_STATE_FLOATING 32c -set _WM_STATE_FLOATING 1
-    else
-      xprop -id "$id" -f _WM_STATE_FLOATING 32c -set _WM_STATE_FLOATING 0
+bspc subscribe node_state | while read -r _ _ _ node state status; do
+    echo $node $state $status
+    if [[ "$state" == "floating" ]]; then
+        case "$status" in
+            off) xprop -id "$node" -remove _WM_STATE_FLOATING;;
+            on) xprop -id "$node" -f _WM_STATE_FLOATING 32c -set _WM_STATE_FLOATING 1;;
+        esac
     fi
-  fi
-
 done
