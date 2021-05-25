@@ -19,8 +19,9 @@ dependencies = [
     'intel-ucode', 'iwd', 'linux-headers', 'maim', 'man-db', 'nautilus',
     'openssh', 'pavucontrol', 'polkit', 'polkit-gnome', 'pulseaudio',
     'pulseaudio-bluetooth', 'reflector', 'rofi', 'sxhkd', 'ttf-dejavu',
-    'ttf-jetbrains-mono', 'vlc', 'wmname', 'xclip', 'xdg-user-dirs',
-    'xorg-server', 'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh'
+    'ttf-jetbrains-mono', 'ttf-joypixels', 'vlc', 'wmname', 'xclip',
+    'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr',
+    'xorg-xsetroot', 'zsh'
 ]
 dependencies_aur = [
     'figma-linux', 'font-manager', 'giph', 'google-chrome-dev',
