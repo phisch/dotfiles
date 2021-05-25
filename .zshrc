@@ -37,11 +37,13 @@ setopt share_history
 setopt inc_append_history
 setopt share_history
 
-
 # history search
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
+
+bindkey "^[[A" history-beginning-search-backward-end # up
+bindkey "^[[B" history-beginning-search-forward-end # down
 
 bindkey "^[[3~" delete-char # del
 bindkey "^[[3;5~" delete-word # ctrl + del
