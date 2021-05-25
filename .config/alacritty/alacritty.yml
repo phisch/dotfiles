@@ -5,6 +5,11 @@ window:
   dynamic_padding: true
   dynamic_title: true
 
+font:
+  normal:
+    family: JetBrains Mono
+  size: 11
+
 colors:
   primary:
     background: '#050505'
