@@ -13,11 +13,11 @@ DOWNLOAD_REGION = 'Germany'
 DEFAULT_USER = 'phisch'
 
 dependencies = [
-    'acpilight', 'alacritty', 'baobab', 'bluez', 'bluez-utils', 'bspwm', 'code',
-    'curl', 'discord', 'dkms', 'docker', 'docker-compose', 'eog', 'evince',
-    'feh', 'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility',
-    'intel-ucode', 'iwd', 'linux-headers', 'maim', 'man-db', 'nautilus',
-    'openssh', 'pavucontrol', 'polkit', 'polkit-gnome', 'pulseaudio',
+    'acpilight', 'alacritty', 'baobab', 'bluez', 'bluez-utils', 'bspwm', 'curl',
+    'discord', 'dkms', 'docker', 'docker-compose', 'eog', 'evince', 'feh',
+    'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility', 'intel-ucode',
+    'iwd', 'linux-headers', 'maim', 'man-db', 'nautilus', 'openssh',
+    'pavucontrol', 'polkit', 'polkit-gnome', 'pulseaudio',
     'pulseaudio-bluetooth', 'reflector', 'rofi', 'sxhkd', 'ttf-dejavu',
     'ttf-jetbrains-mono', 'ttf-joypixels', 'vlc', 'wmname', 'xclip',
     'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr',
@@ -26,7 +26,8 @@ dependencies = [
 dependencies_aur = [
     'figma-linux', 'font-manager', 'giph', 'google-chrome-dev',
     'jetbrains-toolbox', 'phocus-gtk-theme-git', 'picom-git', 'polybar',
-    'rtl88xxau-aircrack-dkms-git', 'ttf-material-design-icons-git'
+    'rtl88xxau-aircrack-dkms-git', 'ttf-material-design-icons-git',
+    'visual-studio-code-bin'
 ]
 
 def get_password(name='Password', default=None):
