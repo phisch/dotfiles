@@ -1,7 +1,8 @@
 window:
   padding:
-    x: 20
-    y: 20
+    x: 15
+    y: 15
+  dynamic_padding: true
   dynamic_title: true
 
 colors:
@@ -25,11 +26,6 @@ colors:
     magenta: '#ff92d0'
     cyan:    '#9aedfe'
     white:   '#ffffff'
-
-bell:
-  animation: Linear
-  duration: 100
-  color: '#000000'
 
 background_opacity: 0.8
 
