@@ -1,0 +1,43 @@
+window:
+  padding:
+    x: 20
+    y: 20
+  dynamic_title: true
+
+colors:
+  primary:
+    background: '#050505'
+  normal:
+    black:   '#000000'
+    red:     '#ff5555'
+    green:   '#50fa7b'
+    yellow:  '#f1fa8c'
+    blue:    '#bd93f9'
+    magenta: '#ff79c6'
+    cyan:    '#8be9fd'
+    white:   '#e6e6e6'
+  bright:
+    black:   '#4d4d4d'
+    red:     '#ff6e67'
+    green:   '#5af78e'
+    yellow:  '#f4f99d'
+    blue:    '#caa9fa'
+    magenta: '#ff92d0'
+    cyan:    '#9aedfe'
+    white:   '#ffffff'
+
+bell:
+  animation: Linear
+  duration: 100
+  color: '#000000'
+
+background_opacity: 0.8
+
+cursor:
+  style:
+    shape: Underline
+    blinking: On
+
+key_bindings:
+  - { key: Up, mods: Control, action: ScrollPageUp }
+  - { key: Down, mods: Control, action: ScrollPageDown }

@@ -8,7 +8,7 @@ super + alt + Escape
 
 # open terminal
 super + Return
-  termite
+  alacritty
 
 # open rofi as application launcher
 {super + space, alt + space, XF86LaunchA}

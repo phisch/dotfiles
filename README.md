@@ -35,6 +35,7 @@ The code is easy to read, so have a look at the [.install](.install) python scri
 
 ### Dependencies and applications
 [acpilight](https://archlinux.org/packages/community/any/acpilight/),
+[alacritty](https://archlinux.org/packages/community/x86_64/alacritty/),
 [baobab](https://archlinux.org/packages/extra/x86_64/baobab/),
 [bluez](https://archlinux.org/packages/extra/x86_64/bluez/),
 [bluez-utils](https://archlinux.org/packages/extra/x86_64/bluez-utils/),
@@ -78,7 +79,6 @@ The code is easy to read, so have a look at the [.install](.install) python scri
 [rofi](https://archlinux.org/packages/community/x86_64/rofi/),
 [rtl88xxau-aircrack-dkms-git](https://aur.archlinux.org/packages/rtl88xxau-aircrack-dkms-git/) *(AUR)*,
 [sxhkd](https://archlinux.org/packages/community/x86_64/sxhkd/),
-[termite](https://www.archlinux.org/packages/community/x86_64/termite/),
 [ttf-dejavu](https://www.archlinux.org/packages/extra/any/ttf-dejavu/),
 [ttf-material-design-icons-git](https://aur.archlinux.org/packages/ttf-material-design-icons-git/) *(AUR)*,
 [vlc](https://www.archlinux.org/packages/extra/x86_64/vlc/),
