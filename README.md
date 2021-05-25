@@ -80,6 +80,7 @@ The code is easy to read, so have a look at the [.install](.install) python scri
 [rtl88xxau-aircrack-dkms-git](https://aur.archlinux.org/packages/rtl88xxau-aircrack-dkms-git/) *(AUR)*,
 [sxhkd](https://archlinux.org/packages/community/x86_64/sxhkd/),
 [ttf-dejavu](https://www.archlinux.org/packages/extra/any/ttf-dejavu/),
+[ttf-jetbrains-mono](https://archlinux.org/packages/community/any/ttf-jetbrains-mono/),
 [ttf-material-design-icons-git](https://aur.archlinux.org/packages/ttf-material-design-icons-git/) *(AUR)*,
 [vlc](https://www.archlinux.org/packages/extra/x86_64/vlc/),
 [wmname](https://www.archlinux.org/packages/community/x86_64/wmname/),
