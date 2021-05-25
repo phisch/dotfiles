@@ -42,8 +42,28 @@ setopt share_history
 autoload -U history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
-bindkey "^[[A" history-beginning-search-backward-end
-bindkey "^[[B" history-beginning-search-forward-end
+
+bindkey "^[[3~" delete-char # del
+bindkey "^[[3;5~" delete-word # ctrl + del
+bindkey "^H" backward-delete-word # ctrl + backspace
+
+bindkey "^[[5~" up-line-or-history # pgup
+bindkey "^[[6~" down-line-or-history # pgdown
+
+bindkey "^[[5;5~" beginning-of-history # ctrl + pgup
+bindkey "^[[6;5~" end-of-history # ctrl + pgdown
+
+bindkey "^[[1;5D" backward-word # ctrl + left
+bindkey "^[[1;5C" forward-word # ctrl + right
+
+bindkey "^[[1;3D" backward-word # alt + left
+bindkey "^[[1;3C" forward-word # alt + right
+
+bindkey "^[[1;6D" beginning-of-line # ctrl + shift + left
+bindkey "^[[1;6C" end-of-line # ctrl + shift + right
+
+bindkey "^[[H" beginning-of-line # pos1
+bindkey "^[[F" end-of-line # end
 
 # color manpages
 man() {
