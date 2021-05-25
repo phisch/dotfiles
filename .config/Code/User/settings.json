@@ -1,0 +1,11 @@
+{
+    "editor.fontFamily": "'JetBrains Mono', 'DejaVuSansMono', 'monospace', monospace",
+    "editor.fontSize": 15,
+    "editor.minimap.enabled": false,
+    "editor.suggestSelection": "first",
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "window.menuBarVisibility": "hidden",
+    "workbench.startupEditor": "none",
+    "workbench.statusBar.visible": false
+}
