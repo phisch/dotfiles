@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-import getpass
 import os
 
 import archinstall
 import requests
+import logging
 
 KEYMAP = 'de'
 LOCALE = 'en_US'
@@ -15,13 +15,12 @@ DEFAULT_USER = 'phisch'
 dependencies = [
     'acpilight', 'alacritty', 'baobab', 'bluez', 'bluez-utils', 'bspwm', 'curl',
     'discord', 'dkms', 'docker', 'docker-compose', 'eog', 'evince', 'feh',
-    'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility', 'intel-ucode',
-    'iwd', 'linux-headers', 'maim', 'man-db', 'nautilus', 'openssh',
-    'pavucontrol', 'polkit', 'polkit-gnome', 'pulseaudio',
-    'pulseaudio-bluetooth', 'reflector', 'rofi', 'sxhkd', 'ttf-dejavu',
-    'ttf-jetbrains-mono', 'ttf-joypixels', 'vlc', 'wmname', 'xclip',
-    'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr',
-    'xorg-xsetroot', 'zsh'
+    'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility', 'iwd',
+    'linux-headers', 'maim', 'man-db', 'nautilus', 'openssh', 'pavucontrol',
+    'polkit', 'polkit-gnome', 'pulseaudio', 'pulseaudio-bluetooth', 'reflector',
+    'rofi', 'sxhkd', 'ttf-dejavu', 'ttf-jetbrains-mono', 'ttf-joypixels', 'vlc',
+    'wmname', 'xclip', 'xdg-user-dirs', 'xorg-server', 'xorg-xinit',
+    'xorg-xrandr', 'xorg-xsetroot', 'zsh'
 ]
 dependencies_aur = [
     'figma-linux', 'font-manager', 'giph', 'google-chrome-dev',
@@ -30,116 +29,101 @@ dependencies_aur = [
     'visual-studio-code-bin'
 ]
 
-def get_password(name='Password', default=None):
-    while password := getpass.getpass(f'{name}{f" (default: {default})" if default is not None else ""}: '):
-        if password == getpass.getpass('Repeat to confirm: '):
-            break
-        archinstall.log("Passwords didn't match. Try again!", fg='red')
-    return password or default
+archinstall.set_keyboard_language(KEYMAP)
 
-try:
-    archinstall.sys_command(f'umount -R /mnt', suppress_errors=True)
+disk = archinstall.select_disk(archinstall.all_disks())
+hostname = archinstall.generic_select(['tower', 'laptop'], 'Select hostname (default: tower):') or 'tower'
+root_password = archinstall.get_password('Root password (default: root):') or 'root'
+user = input(f'Username (default: {DEFAULT_USER}): ') or DEFAULT_USER
+user_password = archinstall.get_password(f'Password (default: {user}):') or user
 
-    archinstall.set_keyboard_language(KEYMAP)
-    archinstall.validate_package_list(dependencies)
+while github_access_token := input('Github Access Token (default: none): '):
+    response = requests.post(
+        url='https://api.github.com/',
+        headers={'Authorization': f'token {github_access_token}'}
+    )
+    if response.status_code == 401 or 'admin:public_key' not in response.headers.get('X-OAuth-Scopes'):
+        archinstall.log("Token invalid or doesn't have the 'admin:public_key' scope. Try again!", fg='red')
+        continue
+    break
 
-    disk = archinstall.select_disk(archinstall.all_disks())
-    # TODO: remove this once it is set by detault in archinstall
-    disk.keep_partitions = False
-    hostname = archinstall.generic_select(['tower', 'laptop'], 'Select hostname (default: tower):') or 'tower'
-    root_password = get_password('Root password', 'root')
-    user = input(f'Username (default: {DEFAULT_USER}): ') or DEFAULT_USER
-    user_password = get_password(default=user)
+input('No more input required. Press return to start the installation.')
 
-    while github_access_token := input('Github Access Token (default: none): '):
-        response = requests.post(
-            url='https://api.github.com/',
-            headers={'Authorization': f'token {github_access_token}'}
-        )
-        if response.status_code == 401 or 'admin:public_key' not in response.headers.get('X-OAuth-Scopes'):
-            archinstall.log("Token invalid or doesn't have the 'admin:public_key' scope. Try again!", fg='red')
-            continue
-        break
+with archinstall.Filesystem(disk, archinstall.GPT) as fs:
+    fs.use_entire_disk('btrfs')
 
-    input('No more input required. Press return to start the installation.')
+    root = fs.find_partition('/')
+    root.format('btrfs')
+    root.mount('/mnt')
 
-    with archinstall.Filesystem(disk, archinstall.GPT) as fs:
-        fs.use_entire_disk('btrfs')
-        disk.partition[0].format('vfat')
-        disk.partition[1].format('btrfs')
+    boot = fs.find_partition('/boot')
+    boot.format('vfat')
+    boot.mount('/mnt/boot')
 
-        with archinstall.Installer(disk.partition[1], disk.partition[0], hostname=hostname) as i:
-            mirror_regions = {DOWNLOAD_REGION: archinstall.list_mirrors().get(DOWNLOAD_REGION)}
-            archinstall.use_mirrors(mirror_regions)
+with archinstall.Installer('/mnt') as i:
+    mirror_regions = {DOWNLOAD_REGION: archinstall.list_mirrors().get(DOWNLOAD_REGION)}
+    archinstall.use_mirrors(mirror_regions)
 
-            i.minimal_installation()
-            i.set_mirrors(mirror_regions)
-            i.add_bootloader()
-            # TODO: add `initrd /intel-ucode.img` to `/boot/loader/entries/ENTRYFILE.conf` BEFORE `initrd /initramfs-linux.img`
-            # this currently can't be done because archinstall doesn't return the entryfile
-            i.copy_ISO_network_config(enable_services=True)
+    if hostname == 'laptop':
+        i.MODULES.append('i915')
 
-            i.arch_chroot(r"sed -i '/\[multilib\]/,/Include/''s/^#//' /etc/pacman.conf")
-            i.arch_chroot(r"sed -i 's/#\(Color\)/\1/' /etc/pacman.conf")
-            i.add_additional_packages(dependencies)
+    i.minimal_installation()
 
-            i.set_locale(LOCALE, ENCODING)
-            i.set_keyboard_language(KEYMAP)
-            i.set_timezone(TIMEZONE)
+    i.set_hostname(hostname)
+    i.set_mirrors(mirror_regions)
+    i.add_bootloader('systemd-bootctl')
+    i.copy_iso_network_config(True)
 
-            i.user_set_pw('root', root_password)
-            i.arch_chroot(r"sed -i 's/# \(%wheel ALL=(ALL) ALL\)/\1/' /etc/sudoers")
+    i.arch_chroot(r"sed -i '/\[multilib\]/,/Include/''s/^#//' /etc/pacman.conf")
+    i.arch_chroot(r"sed -i 's/#\(Color\)/\1/' /etc/pacman.conf")
+    i.add_additional_packages(dependencies)
 
-            i.user_create(user, user_password, ['video', 'docker'])
-            i.arch_chroot(f'chsh -s /usr/bin/zsh "{user}"')
+    i.set_locale(LOCALE, ENCODING)
+    i.set_keyboard_language(KEYMAP)
+    i.set_timezone(TIMEZONE)
 
-            i.arch_chroot(f"su {user} -c 'xdg-user-dirs-update'")
-            i.arch_chroot(f"su {user} -c 'mkdir -p ~/Pictures/screenshots && mkdir ~/Videos/recordings'")
+    i.user_set_pw('root', root_password)
+    i.arch_chroot(r"sed -i 's/# \(%wheel ALL=(ALL) ALL\)/\1/' /etc/sudoers")
 
-            i.enable_service('iwd')
-            i.enable_service('systemd-timesyncd')
-            i.enable_service('docker')
-            i.enable_service('bluetooth')
+    i.user_create(user, user_password, ['video', 'docker'])
+    i.arch_chroot(f'chsh -s /usr/bin/zsh "{user}"')
 
-            i.arch_chroot(r"sed 's/[#]*\(AutoEnable=\)\(true\|false\)/\1true/' /etc/bluetooth/main.conf")
+    i.arch_chroot(f"su {user} -c 'xdg-user-dirs-update'")
+    i.arch_chroot(f"su {user} -c 'mkdir -p ~/Pictures/screenshots && mkdir ~/Videos/recordings'")
 
-            backlight_rule_file_name = f'{i.mountpoint}/etc/udev/rules.d/backlight.rules'
-            with open(backlight_rule_file_name, 'w+') as file:
-                file.write('ACTION=="add", SUBSYSTEM=="backlight", GROUP="video"')
-                os.chmod(backlight_rule_file_name, 0o664)
+    i.enable_service('iwd', 'systemd-timesyncd', 'docker', 'bluetooth')
 
-            autologin_file_name = f'{i.mountpoint}/etc/systemd/system/getty@tty1.service.d/autologin.conf'
-            os.makedirs(os.path.dirname(autologin_file_name), exist_ok=True)
-            with open(autologin_file_name, "w") as file:
-                file.write(f'[Service]\nExecStart=\nExecStart=-/usr/bin/agetty --autologin {user} --noclear %I $TERM')
+    i.arch_chroot(r"sed -i 's/[#]*\(AutoEnable=\)\(true\|false\)/\1true/' /etc/bluetooth/main.conf")
 
-            if hostname == 'laptop':
-                i.arch_chroot(r"sed -i 's/\(FONT=\).*/\1TER16x32/' /etc/vconsole.conf")
+    backlight_rule_file_name = f'{i.target}/etc/udev/rules.d/backlight.rules'
+    with open(backlight_rule_file_name, 'w+') as file:
+        file.write('ACTION=="add", SUBSYSTEM=="backlight", GROUP="video"')
+        os.chmod(backlight_rule_file_name, 0o664)
 
-            i.arch_chroot(f"su {user} -c 'ssh-keygen -t rsa -b 4096 -C \"{user}@{hostname}\" -f ~/.ssh/id_rsa -N \"\"'")
-            i.arch_chroot(f"su {user} -c 'ssh-keyscan github.com >> ~/.ssh/known_hosts'")
+    autologin_file_name = f'{i.target}/etc/systemd/system/getty@tty1.service.d/autologin.conf'
+    os.makedirs(os.path.dirname(autologin_file_name), exist_ok=True)
+    with open(autologin_file_name, "w") as file:
+        file.write(f'[Service]\nExecStart=\nExecStart=-/usr/bin/agetty --autologin {user} --noclear %I $TERM')
 
-            if github_access_token:
-                with open(f'{i.mountpoint}/home/{user}/.ssh/id_rsa.pub', 'r') as key:
-                    requests.post(
-                        url='https://api.github.com/user/keys',
-                        json={'title': f'{user}@{hostname}', 'key': f'{key.read().strip()}'},
-                        headers={'Authorization': f'token {github_access_token}'}
-                    )
+    if hostname == 'laptop':
+        i.arch_chroot(r"sed -i 's/\(FONT=\).*/\1TER16x32/' /etc/vconsole.conf")
 
-            i.arch_chroot(f"su {user} -c 'cd $(mktemp -d) && git clone {'git@github.com:phisch/dotfiles.git' if github_access_token else 'https://github.com/phisch/dotfiles.git'} . && cp -rb . ~'")
+    i.arch_chroot(f"su {user} -c 'ssh-keygen -t ed25519 -C \"{user}@{hostname}\" -f ~/.ssh/id_ed25519 -N \"\"'")
+    i.arch_chroot(f"su {user} -c 'ssh-keyscan github.com >> ~/.ssh/known_hosts'")
 
-            i.arch_chroot(r"sed -i 's/#\(MAKEFLAGS=\).*/\1\"-j$(($(nproc)-2))\"/' /etc/makepkg.conf")
-            i.arch_chroot(r"sed -i 's/# \(%wheel ALL=(ALL) NOPASSWD: ALL\)/\1/' /etc/sudoers")
-            i.arch_chroot(f"su {user} -c 'cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm'")
-            i.arch_chroot(f'su {user} -c "paru -Sy --needed --noconfirm {" ".join(dependencies_aur)}"')
-            i.arch_chroot(r"sed -i 's/\(%wheel ALL=(ALL) NOPASSWD: ALL\)/# \1/' /etc/sudoers")
+    if github_access_token:
+        with open(f'{i.target}/home/{user}/.ssh/id_ed25519.pub', 'r') as key:
+            requests.post(
+                url='https://api.github.com/user/keys',
+                json={'title': f'{user}@{hostname}', 'key': f'{key.read().strip()}'},
+                headers={'Authorization': f'token {github_access_token}'}
+            )
 
-            archinstall.reboot()
+    i.arch_chroot(f"su {user} -c 'cd $(mktemp -d) && git clone {'git@github.com:phisch/dotfiles.git' if github_access_token else 'https://github.com/phisch/dotfiles.git'} . && cp -rb . ~'")
 
-except archinstall.DiskError as e:
-    print(str(e))
-except IndexError as e:
-    print('The selected index does not exist.')
-except archinstall.RequirementError as e:
-    print(f"The package dependencies contain packages that don't exist.\n{str(e)}")
+    i.arch_chroot(r"sed -i 's/#\(MAKEFLAGS=\).*/\1\"-j$(($(nproc)-2))\"/' /etc/makepkg.conf")
+    i.arch_chroot(r"sed -i 's/# \(%wheel ALL=(ALL) NOPASSWD: ALL\)/\1/' /etc/sudoers")
+    i.log(i.arch_chroot(f"su {user} -c 'cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm'"), level=logging.INFO)
+    i.log(i.arch_chroot(f'su {user} -c "paru -Sy --nosudoloop --needed --noconfirm {" ".join(dependencies_aur)}"'), level=logging.INFO)
+    i.arch_chroot(r"sed -i 's/\(%wheel ALL=(ALL) NOPASSWD: ALL\)/# \1/' /etc/sudoers")
+    
