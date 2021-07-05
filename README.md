@@ -61,6 +61,7 @@ The code is easy to read, so have a look at the [.install](.install) python scri
 [linux-headers](https://archlinux.org/packages/core/x86_64/linux-headers/),
 [maim](https://www.archlinux.org/packages/community/x86_64/maim/),
 [man-db](https://archlinux.org/packages/core/x86_64/man-db/),
+[mkcert](https://archlinux.org/packages/community/x86_64/mkcert/),
 [nano](https://www.archlinux.org/packages/core/x86_64/nano/),
 [nautilus](https://www.archlinux.org/packages/extra/x86_64/nautilus/),
 [openssh](https://www.archlinux.org/packages/core/x86_64/openssh/),
