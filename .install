@@ -16,11 +16,12 @@ dependencies = [
     'acpilight', 'alacritty', 'baobab', 'bluez', 'bluez-utils', 'bspwm', 'curl',
     'discord', 'dkms', 'docker', 'docker-compose', 'eog', 'evince', 'feh',
     'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility', 'iwd',
-    'linux-headers', 'maim', 'man-db', 'nautilus', 'openssh', 'pavucontrol',
-    'polkit', 'polkit-gnome', 'pulseaudio', 'pulseaudio-bluetooth', 'reflector',
-    'rofi', 'sxhkd', 'ttf-dejavu', 'ttf-jetbrains-mono', 'ttf-joypixels', 'vlc',
-    'wmname', 'xclip', 'xdg-user-dirs', 'xorg-server', 'xorg-xinit',
-    'xorg-xrandr', 'xorg-xsetroot', 'zsh'
+    'linux-headers', 'maim', 'man-db', 'nano', 'nautilus', 'openssh',
+    'pavucontrol', 'polkit', 'polkit-gnome', 'pulseaudio',
+    'pulseaudio-bluetooth', 'reflector', 'rofi', 'sxhkd', 'ttf-dejavu',
+    'ttf-jetbrains-mono', 'ttf-joypixels', 'vlc', 'wmname', 'xclip',
+    'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr',
+    'xorg-xsetroot', 'zsh'
 ]
 dependencies_aur = [
     'figma-linux', 'font-manager', 'giph', 'google-chrome-dev',
