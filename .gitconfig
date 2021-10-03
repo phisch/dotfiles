@@ -1,3 +1,5 @@
 [user]
 	email = philipp.schaffrath@gmail.com
 	name = Philipp Schaffrath
+[core]
+	excludesFile = ~/.gitignore.global
