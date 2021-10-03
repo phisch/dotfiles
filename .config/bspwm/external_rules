@@ -22,5 +22,6 @@ function window_name() {
 
 instance_name "vlc" && window_name "vlc" && echo "layer=above"
 instance_name "chromium" && window_role "pop-up" && echo "state=floating center=on"
-window_name "win0" && class_name_starts_with "jetbrains" && echo "state=floating"
 window_name "Picture in picture" && echo "state=floating"
+window_name "win0" && class_name_starts_with "jetbrains" && echo "state=floating"
+window_name "Welcome to IntelliJ IDEA" && echo "state=floating"
