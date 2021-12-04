@@ -44,6 +44,14 @@ modules-right = wireless-network volume filesystem-tower cpu memory temperature 
 
 [bar/laptop]
 inherit = bar/default
+
+font-0 = DejaVuSansMono:size=8;3
+font-1 = MaterialDesignIcons:size=10;3
+font-2 = MaterialDesignIcons:size=8;3
+
+height = 46
+
+dpi=158
 modules-right = wireless-network battery volume backlight filesystem cpu memory temperature date power
 
 [module/filesystem-tower]
