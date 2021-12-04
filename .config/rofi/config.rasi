@@ -1,3 +1,16 @@
 configuration {
-	theme: "themes/line";
+  modi: "drun";
+  dpi: 158;
+
+  click-to-exit: true;
+  show-icons: true;
+  cycle: false;
+  sidebar-mode: false;
+  m: "-1";
+  hide-scrollbar: true;
+  scroll-method: 0;
+  drun-display-format: " {name}";
+  m: "primary";
 }
+
+@theme "themes/line"

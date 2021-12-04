@@ -1,17 +1,3 @@
-configuration {
-  modi: "drun";
-
-  click-to-exit: true;
-  show-icons: true;
-  cycle: false;
-  sidebar-mode: false;
-  m: "-1";
-  hide-scrollbar: true;
-  scroll-method: 0;
-  drun-display-format: " {name}";
-  m: "primary";
-}
-
 * {
   font: "DejaVu Sans Mono 9";
 
