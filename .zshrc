@@ -100,3 +100,13 @@ prompt() {
 }
 
 PS1='$(session)$(path)$(git_status) $(prompt)'
+
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+path+=("$GEM_HOME/bin")
+
+path+=(~/.cargo/bin)
+
+export npm_config_prefix="$HOME/.local"
+path+=($HOME/.local/bin)
+
+export PATH
