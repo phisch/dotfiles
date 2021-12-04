@@ -6,10 +6,10 @@
 
 feh --randomize --bg-fill --recursive --no-fehbg ~/Pictures/wallpapers/*
 
-[ "$HOSTNAME" == "laptop" ] && echo "Xft.dpi: 126" | xrdb -merge
-echo "Xcursor.size: 32" | xrdb -merge
-xsetroot -xcf /usr/share/icons/Adwaita/cursors/left_ptr 32
+[ "$HOSTNAME" == "laptop" ] && echo "Xft.dpi: 144" | xrdb -merge # 1.5x?
 
+echo "Xcursor.size: 42" | xrdb -merge
+xsetroot -cursor_name left_ptr
 xset s off
 
 exec bspwm
