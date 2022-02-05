@@ -1,5 +1,8 @@
 [user]
 	email = philipp.schaffrath@gmail.com
 	name = Philipp Schaffrath
+	signingkey = E5D3C326D00A7C3D!
 [core]
 	excludesFile = ~/.gitignore.global
+[commit]
+	gpgSign = true
