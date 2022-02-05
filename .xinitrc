@@ -7,9 +7,11 @@ source /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
 
 feh --randomize --bg-fill --recursive --no-fehbg ~/Pictures/wallpapers/*
 
-[ "$HOSTNAME" == "laptop" ] && echo "Xft.dpi: 144" | xrdb -merge # 1.5x?
+if [ "$HOSTNAME" == "laptop" ]; then
+    echo "Xft.dpi: 144" | xrdb -merge
+    echo "Xcursor.size: 48" | xrdb -merge
+fi
 
-echo "Xcursor.size: 42" | xrdb -merge
 xsetroot -cursor_name left_ptr
 xset s off
 
