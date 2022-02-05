@@ -1,2 +1,4 @@
-[icon theme] 
-Inherits=vimix-cursors
+[Icon Theme]
+Name=Default
+Comment=Default Cursor Theme
+Inherits=phinger-cursors-light
