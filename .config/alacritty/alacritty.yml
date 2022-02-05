@@ -7,6 +7,7 @@ window:
     y: 15
   dynamic_padding: true
   dynamic_title: true
+  opacity: 0.8
 
 font:
   normal:
@@ -34,8 +35,6 @@ colors:
     magenta: '#ff92d0'
     cyan:    '#9aedfe'
     white:   '#ffffff'
-
-background_opacity: 0.8
 
 cursor:
   style:
