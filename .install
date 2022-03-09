@@ -2,129 +2,158 @@
 import os
 
 import archinstall
-import requests
 import logging
 
-KEYMAP = 'de'
-LOCALE = 'en_US'
-ENCODING = 'UTF-8'
-TIMEZONE = 'Europe/Berlin'
-DOWNLOAD_REGION = 'Germany'
-DEFAULT_USER = 'phisch'
+user = os.environ.get('DEFAULT_USER') or 'phisch'
 
-dependencies = [
-    'acpilight', 'alacritty', 'baobab', 'bluez', 'bluez-utils', 'bspwm', 'curl',
-    'discord', 'dkms', 'docker', 'docker-compose', 'eog', 'evince', 'feh',
-    'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility', 'iwd',
-    'linux-headers', 'maim', 'man-db', 'mkcert', 'nano', 'nautilus', 'openssh',
-    'pavucontrol', 'polkit', 'polkit-gnome', 'pulseaudio',
-    'pulseaudio-bluetooth', 'reflector', 'rofi', 'sxhkd', 'ttf-dejavu',
-    'ttf-jetbrains-mono', 'ttf-joypixels', 'vlc', 'wmname', 'xclip',
-    'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr',
-    'xorg-xsetroot', 'zsh'
-]
-dependencies_aur = [
-    'figma-linux', 'font-manager', 'giph', 'google-chrome-dev',
-    'jetbrains-toolbox', 'phocus-gtk-theme-git', 'picom-git', 'polybar',
-    'rtl88xxau-aircrack-dkms-git', 'ttf-material-design-icons-git',
-    'visual-studio-code-bin'
-]
+DEPENDENCIES = {
+    'default': {
+        'official': [
+            'alacritty', 'baobab', 'bluez', 'bluez-utils', 'bspwm', 'curl', 'discord', 'docker', 'docker-compose',
+            'eog', 'feh', 'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility', 'gnome-keyring', 'iwd',
+            'libsecret', 'linux-headers', 'maim', 'man-db', 'mkcert', 'nano', 'nautilus', 'openssh', 'polkit',
+            'polkit-gnome', 'rofi', 'sxhkd', 'ttf-dejavu', 'ttf-jetbrains-mono', 'ttf-joypixels', 'vlc', 'wmname',
+            'xclip', 'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh', 'pipewire',
+            'pipewire-alsa', 'pipewire-jack', 'pipewire-media-session', 'pipewire-pulse', 'gst-plugin-pipewire',
+            'libpulse', 'helvum'
+        ],
+        'aur': [
+            'figma-linux', 'font-manager', 'giph', 'google-chrome-dev', 'jetbrains-toolbox', 'phocus-gtk-theme-git',
+            'picom-git', 'polybar', 'ttf-material-design-icons-git', 'visual-studio-code-bin'
+        ]
+    },
+    'tower': {
+        'official': ['dkms'],
+        'aur': ['rtl88xxau-aircrack-dkms-git']
+    },
+    'laptop': {
+        'official': ['acpilight', 'xf86-video-intel'],
+        'aur': []
+    }
+}
 
-archinstall.set_keyboard_language(KEYMAP)
+archinstall.set_keyboard_language(os.environ.get('KEYMAP') or 'de-latin1-nodeadkeys')
 
-disk = archinstall.select_disk(archinstall.all_disks())
-hostname = archinstall.generic_select(['tower', 'laptop'], 'Select hostname (default: tower):') or 'tower'
-root_password = archinstall.get_password('Root password (default: root):') or 'root'
-user = input(f'Username (default: {DEFAULT_USER}): ') or DEFAULT_USER
-user_password = archinstall.get_password(f'Password (default: {user}):') or user
+disk = archinstall.generic_select(
+    archinstall.all_disks(),
+    input_text="Select block device for installation:",
+    allow_empty_input=False
+)
 
-while github_access_token := input('Github Access Token (default: none): '):
-    response = requests.post(
-        url='https://api.github.com/',
-        headers={'Authorization': f'token {github_access_token}'}
-    )
-    if response.status_code == 401 or 'admin:public_key' not in response.headers.get('X-OAuth-Scopes'):
-        archinstall.log("Token invalid or doesn't have the 'admin:public_key' scope. Try again!", fg='red')
-        continue
-    break
+disk_layouts = {
+    disk.path: {
+        "partitions": [
+            {
+                "boot": True,
+                "filesystem": {
+                    "format": "fat32"
+                },
+                "format": True,
+                "mountpoint": "/boot",
+                "size": "512MB",
+                "start": "0MB"
+            },
+            {
+                "btrfs": {
+                    "subvolumes": {
+                        "@.snapshots": "/.snapshots",
+                        "@home": "/home",
+                        "@log": "/var/log",
+                        "@pkgs": "/var/cache/pacman/pkg"
+                    }
+                },
+                "filesystem": {
+                    "format": "btrfs"
+                },
+                "format": True,
+                "mountpoint": "/",
+                "start": "512MB"
+            }
+        ],
+        "wipe": True
+    }
+}
 
-input('No more input required. Press return to start the installation.')
+variant = archinstall.generic_select(
+    list(DEPENDENCIES.keys())[1:],
+    'Select variant (default: {}):'.format(list(DEPENDENCIES.keys())[1:][0])
+) or list(DEPENDENCIES.keys())[1:][0]
+
+dependencies = DEPENDENCIES.get('default', {}).get('official', []) + DEPENDENCIES.get(variant, {}).get('official', [])
+dependencies_aur = DEPENDENCIES.get('default', {}).get('aur', []) + DEPENDENCIES.get(variant, {}).get('aur', [])
+
+input(f"About to install {variant} variant to {disk.path}. Press return to confirm!")
 
 with archinstall.Filesystem(disk, archinstall.GPT) as fs:
-    fs.use_entire_disk('btrfs')
-
-    root = fs.find_partition('/')
-    root.format('btrfs')
-    root.mount('/mnt')
-
-    boot = fs.find_partition('/boot')
-    boot.format('vfat')
-    boot.mount('/mnt/boot')
+    fs.load_layout(disk_layouts.get(disk.path))
 
 with archinstall.Installer('/mnt') as i:
-    mirror_regions = {DOWNLOAD_REGION: archinstall.list_mirrors().get(DOWNLOAD_REGION)}
+    i.mount_ordered_layout(disk_layouts)
+
+    mirror_regions = {
+        os.environ.get('DOWNLOAD_REGION') or 'Germany': archinstall.list_mirrors().get(
+            os.environ.get('DOWNLOAD_REGION') or 'Germany'
+        )
+    }
     archinstall.use_mirrors(mirror_regions)
 
-    if hostname == 'laptop':
+    if variant == 'laptop':
         i.MODULES.append('i915')
 
     i.minimal_installation()
-
-    i.set_hostname(hostname)
     i.set_mirrors(mirror_regions)
+
+    i.set_hostname(variant)
+
     i.add_bootloader('systemd-bootctl')
+    i.setup_swap('zram')
     i.copy_iso_network_config(True)
 
     i.arch_chroot(r"sed -i '/\[multilib\]/,/Include/''s/^#//' /etc/pacman.conf")
     i.arch_chroot(r"sed -i 's/#\(Color\)/\1/' /etc/pacman.conf")
     i.add_additional_packages(dependencies)
 
-    i.set_locale(LOCALE, ENCODING)
-    i.set_keyboard_language(KEYMAP)
-    i.set_timezone(TIMEZONE)
+    i.set_locale(os.environ.get('LOCALE') or 'en_US', os.environ.get('ENCODING') or 'UTF-8')
+    i.set_keyboard_language(os.environ.get('KEYMAP') or 'de')
+    i.set_timezone(os.environ.get('TIMEZONE') or 'Europe/Berlin')
 
-    i.user_set_pw('root', root_password)
+    i.user_set_pw('root', os.environ.get('ROOT_PASSWORD') or 'root')
     i.arch_chroot(r"sed -i 's/# \(%wheel ALL=(ALL) ALL\)/\1/' /etc/sudoers")
 
-    i.user_create(user, user_password, ['video', 'docker'])
-    i.arch_chroot(f'chsh -s /usr/bin/zsh "{user}"')
+    i.user_create(user, user, ['video', 'docker'])
+    i.user_set_shell(user, '/usr/bin/zsh')
 
     i.arch_chroot(f"su {user} -c 'xdg-user-dirs-update'")
     i.arch_chroot(f"su {user} -c 'mkdir -p ~/Pictures/screenshots && mkdir ~/Videos/recordings'")
-
+    
     i.enable_service('iwd', 'systemd-timesyncd', 'docker', 'bluetooth')
 
     i.arch_chroot(r"sed -i 's/[#]*\(AutoEnable=\)\(true\|false\)/\1true/' /etc/bluetooth/main.conf")
 
-    backlight_rule_file_name = f'{i.target}/etc/udev/rules.d/backlight.rules'
-    with open(backlight_rule_file_name, 'w+') as file:
-        file.write('ACTION=="add", SUBSYSTEM=="backlight", GROUP="video"')
-        os.chmod(backlight_rule_file_name, 0o664)
-
+    i.log("configuring auto login", level=logging.INFO)
     autologin_file_name = f'{i.target}/etc/systemd/system/getty@tty1.service.d/autologin.conf'
     os.makedirs(os.path.dirname(autologin_file_name), exist_ok=True)
     with open(autologin_file_name, "w") as file:
         file.write(f'[Service]\nExecStart=\nExecStart=-/usr/bin/agetty --autologin {user} --noclear %I $TERM')
 
-    if hostname == 'laptop':
+    if variant == 'laptop':
         i.arch_chroot(r"sed -i 's/\(FONT=\).*/\1TER16x32/' /etc/vconsole.conf")
+        i.create_file("/etc/X11/xorg.conf.d/20-intel.conf").write((
+            'Section "Device"\n'
+            '  Identifier "Intel Graphics"\n'
+            '  Driver "intel"\n'
+            '  Option "TripleBuffer" "true"\n'
+            '  Option "TearFree" "true"\n'
+            'EndSection'
+        ))
+        i.create_file('/etc/udev/rules.d/backlight.rules').write(
+            'ACTION=="add", SUBSYSTEM=="backlight", GROUP="video"'
+        )
 
-    i.arch_chroot(f"su {user} -c 'ssh-keygen -t ed25519 -C \"{user}@{hostname}\" -f ~/.ssh/id_ed25519 -N \"\"'")
-    i.arch_chroot(f"su {user} -c 'ssh-keyscan github.com >> ~/.ssh/known_hosts'")
-
-    if github_access_token:
-        with open(f'{i.target}/home/{user}/.ssh/id_ed25519.pub', 'r') as key:
-            requests.post(
-                url='https://api.github.com/user/keys',
-                json={'title': f'{user}@{hostname}', 'key': f'{key.read().strip()}'},
-                headers={'Authorization': f'token {github_access_token}'}
-            )
-
-    i.arch_chroot(f"su {user} -c 'cd $(mktemp -d) && git clone {'git@github.com:phisch/dotfiles.git' if github_access_token else 'https://github.com/phisch/dotfiles.git'} . && cp -rb . ~'")
+    i.arch_chroot(f"su {user} -c 'cd $(mktemp -d) && git clone https://github.com/phisch/dotfiles.git . && cp -rb . ~'")
 
     i.arch_chroot(r"sed -i 's/#\(MAKEFLAGS=\).*/\1\"-j$(($(nproc)-2))\"/' /etc/makepkg.conf")
     i.arch_chroot(r"sed -i 's/# \(%wheel ALL=(ALL) NOPASSWD: ALL\)/\1/' /etc/sudoers")
     i.log(i.arch_chroot(f"su {user} -c 'cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm'"), level=logging.INFO)
     i.log(i.arch_chroot(f'su {user} -c "paru -Sy --nosudoloop --needed --noconfirm {" ".join(dependencies_aur)}"'), level=logging.INFO)
     i.arch_chroot(r"sed -i 's/\(%wheel ALL=(ALL) NOPASSWD: ALL\)/# \1/' /etc/sudoers")
-    
