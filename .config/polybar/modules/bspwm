@@ -5,17 +5,17 @@ pin-workspaces = false
 enable-scroll = false
 
 label-focused = 󱓻
-label-focused-padding-left = ${variables.padding}
+label-focused-padding-left = ${variables.module_spacing}
 label-focused-foreground = ${colors.strong}
 
-label-urgent = 󱨇
-label-urgent-padding-left = ${variables.padding}
+label-urgent = 󱓻
+label-urgent-padding-left = ${variables.module_spacing}
 label-urgent-foreground = ${colors.red}
 
 label-occupied = 󱓻
-label-occupied-padding-left = ${variables.padding}
+label-occupied-padding-left = ${variables.module_spacing}
 label-occupied-foreground = ${colors.weak}
 
 label-empty = 󱓼
-label-empty-padding-left = ${variables.padding}
-label-empty-foreground = ${colors.weak}
+label-empty-padding-left = ${variables.module_spacing}
+label-empty-foreground = ${colors.weakest}

@@ -14,3 +14,9 @@ label-mounted = %mountpoint% %free%
 format-unmounted-prefix = 󰋊
 format-unmounted-prefix-padding-right = ${variables.padding}
 format-unmounted-foreground = ${colors.red}
+
+warn-percentage = 80
+format-warn = <label-mounted>
+format-warn-prefix = 󰋊
+format-warn-prefix-padding-right = ${variables.padding}
+format-warn-foreground = ${colors.red}
