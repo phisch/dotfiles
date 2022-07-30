@@ -4,5 +4,5 @@ card = intel_backlight
 
 enable-scroll = true
 
-format-prefix = 󰳲
-format-prefix-padding-right = ${variables.padding}
+format = %{A1:echo 1 > /sys/class/backlight/intel_backlight/brightness:}󰃞<label>%{A1}
+label-padding-left = ${variables.padding}

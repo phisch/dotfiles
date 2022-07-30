@@ -13,4 +13,4 @@ label-mounted = %mountpoint% %free%
 
 format-unmounted-prefix = 󰋊
 format-unmounted-prefix-padding-right = ${variables.padding}
-format-unmounted-foreground = ${colors.color1}
+format-unmounted-foreground = ${colors.red}

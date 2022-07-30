@@ -1,0 +1,11 @@
+[module/headphone-battery]
+type = custom/script
+hidden = true
+
+interval = 10
+exec = upower -i $(upower -e | grep '2C_41_A1_04_6D_09') | grep percentage | tr -s ' ' | cut -d ' ' -f 3
+
+label = %output:0:15:...%
+
+format-prefix = 󰥉
+format-prefix-padding-right = ${variables.padding}

@@ -5,7 +5,7 @@ format-prefix = 󰅐
 format-prefix-padding-right = ${variables.padding}
 label = %date% %time%
 
-date = "%a %d.%m"
+date = "%a"
 date-alt = "%a %d.%m.%Y"
 
 time = "%H:%M"

@@ -3,3 +3,9 @@ type = internal/cpu
 
 format-prefix = 󰘚
 format-prefix-padding-right = ${variables.padding}
+
+warn-percentage = 95
+format-warn = <label-warn>
+format-warn-prefix = 󰘚
+format-warn-prefix-padding-right = ${variables.padding}
+format-warn-foreground = ${colors.red}
