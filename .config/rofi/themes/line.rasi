@@ -1,14 +1,7 @@
 * {
-  font: "DejaVu Sans Mono 9";
-
-  text-color: #ffffff;
-  text-color-selected: #000000;
-
+  font: "DejaVu Sans Mono 16";
+  text-color: #FFFFFFDE;
   background-color: transparent;
-
-  transparent-dark: rgba(30,35,40,0.88);
-  element-alternate-shading: rgba(0,0,0,0.15);
-  element-selected-color: #FFFFFF;
 }
 
 #window {
@@ -17,48 +10,40 @@
   transparency: "background";
 }
 
-#mainbox {
+mainbox {
   orientation: horizontal;
+  children: [inputbar, listview];
   spacing: 0;
+  background-image: linear-gradient(to right, #0A0A0A, #00000000);
 }
 
 #inputbar {
-  children: [prompt, entry];
-  width: 10%;
-  spacing: 0;
-}
-
-#prompt {
-  color: #5CD68F;
-  highlight: bold orange;
-  format: bold;
-
-  background-color: rgba(0,0,0,0.6);
-  padding: 10px 15px 11px 15px;
+  children: [entry];
+  width: 16%;
 }
 
 #entry {
-  padding: 10px 15px 11px 15px;
-  background-color: rgba(0,0,0,0.4);
+  padding: 12px 24px;
 }
 
 #listview {
-  spacing: 0;
-  // TODO: replace with `layout: horizontal;` when element width calculation is fixed
-  columns: 12;
-  lines: 1;
+  layout: horizontal;
+  dynamic: true;
 }
 
 #element {
-  padding: 10px 15px;
-  spacing: 0;
+  padding: 12px 24px;
+  spacing: 12px;
 }
 
 #element selected {
-  background-color: rgba(255,255,255,0.1);
-  text-color: white;
+  background-color: #FFFFFF0F;
 }
 
 #element-icon {
-  size: 16;
+  size: 24;
 }
+
+#element-text {
+  vertical-align: 0.5;
+} 

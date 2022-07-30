@@ -1,16 +1,14 @@
 configuration {
-  modi: "drun";
-  dpi: 158;
-
-  click-to-exit: true;
-  show-icons: true;
   cycle: false;
-  sidebar-mode: false;
-  m: "-1";
-  hide-scrollbar: true;
-  scroll-method: 0;
-  drun-display-format: " {name}";
-  m: "primary";
+  drun-display-format: "{name}";
+  modi: [drun];
+  monitor: "primary";
+  show-icons: true;
+  sort: true;
+  timeout {
+    delay: 10;
+    action: "kb-cancel";
+  }
 }
 
 @theme "themes/line"
