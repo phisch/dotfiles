@@ -14,7 +14,7 @@ mainbox {
   orientation: horizontal;
   children: [inputbar, listview];
   spacing: 0;
-  background-image: linear-gradient(to right, #0A0A0A, #00000000);
+  background-image: linear-gradient(to right, #0000006B, transparent, transparent);
 }
 
 #inputbar {
