@@ -18,4 +18,4 @@ label-occupied-foreground = ${colors.weak}
 
 label-empty = 󱓼
 label-empty-padding-left = ${variables.module_spacing}
-label-empty-foreground = ${colors.weakest}
+label-empty-foreground = ${colors.weak}
