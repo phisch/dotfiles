@@ -56,9 +56,10 @@ disk_layouts = {
             {
                 "btrfs": {
                     "subvolumes": {
+                        "@": "/",
                         "@.snapshots": "/.snapshots",
                         "@home": "/home",
-                        "@log": "/var/log",
+                        "@var": "/var",
                         "@pkgs": "/var/cache/pacman/pkg"
                     }
                 },
