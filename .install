@@ -110,7 +110,7 @@ with archinstall.Installer('/mnt') as i:
     i.setup_swap('zram')
     i.copy_iso_network_config(True)
 
-    i.arch_chroot(r"sed -i '/\[multilib\]/,/Include/''s/^#//' /etc/pacman.conf")
+    i.enable_multilib_repository()
     i.arch_chroot(r"sed -i 's/#\(Color\)/\1/' /etc/pacman.conf")
     i.add_additional_packages(dependencies)
 
