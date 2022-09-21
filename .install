@@ -147,9 +147,6 @@ with archinstall.Installer('/mnt') as i:
             '  Option "TearFree" "true"\n'
             'EndSection'
         ))
-        i.create_file('/etc/udev/rules.d/backlight.rules').write(
-            'ACTION=="add", SUBSYSTEM=="backlight", GROUP="video"'
-        )
 
     i.arch_chroot(f"su {user} -c 'cd $(mktemp -d) && git clone https://github.com/phisch/dotfiles.git . && cp -rb . ~'")
 
