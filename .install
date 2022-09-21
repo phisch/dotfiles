@@ -9,17 +9,16 @@ user = os.environ.get('DEFAULT_USER') or 'phisch'
 DEPENDENCIES = {
     'default': {
         'official': [
-            'alacritty', 'baobab', 'bluez', 'bluez-utils', 'bspwm', 'curl', 'discord', 'docker', 'docker-compose',
-            'eog', 'feh', 'foliate', 'git', 'gnome-calculator', 'gnome-disk-utility', 'gnome-keyring', 'iwd',
-            'libsecret', 'linux-headers', 'maim', 'man-db', 'mkcert', 'nano', 'nautilus', 'openssh', 'polkit',
-            'polkit-gnome', 'rofi', 'sxhkd', 'ttf-dejavu', 'ttf-jetbrains-mono', 'ttf-joypixels', 'vlc', 'wmname',
-            'xclip', 'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot', 'zsh', 'pipewire',
-            'pipewire-alsa', 'pipewire-jack', 'pipewire-media-session', 'pipewire-pulse', 'gst-plugin-pipewire',
-            'libpulse', 'helvum'
+            'alacritty', 'baobab', 'bluez', 'bluez-utils', 'bspwm', 'chromium', 'curl', 'discord', 'docker',
+            'docker-compose', 'eog', 'feh', 'foliate', 'font-manager', 'git', 'gnome-calculator', 'gnome-disk-utility',
+            'gnome-keyring', 'iwd', 'libsecret', 'linux-headers', 'maim', 'man-db', 'mkcert', 'nano', 'nautilus',
+            'openssh', 'polkit', 'polkit-gnome', 'rofi', 'sxhkd', 'ttf-dejavu', 'ttf-jetbrains-mono', 'ttf-joypixels',
+            'vlc', 'wmname', 'xclip', 'xdg-user-dirs', 'xorg-server', 'xorg-xinit', 'xorg-xrandr', 'xorg-xsetroot',
+            'zsh', 'picom', 'pipewire', 'pipewire-alsa', 'pipewire-jack', 'pipewire-media-session', 'pipewire-pulse',
+            'polybar', 'gst-plugin-pipewire', 'libpulse', 'helvum'
         ],
         'aur': [
-            'figma-linux', 'font-manager', 'giph', 'google-chrome-dev', 'jetbrains-toolbox', 'phocus-gtk-theme-git',
-            'picom-git', 'polybar', 'ttf-material-design-icons-git', 'visual-studio-code-bin'
+            'figma-linux', 'giph', 'phocus-gtk-theme-git', 'ttf-material-design-icons-git', 'visual-studio-code-bin'
         ]
     },
     'tower': {
