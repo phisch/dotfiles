@@ -91,11 +91,7 @@ with archinstall.Filesystem(disk, archinstall.GPT) as fs:
 with archinstall.Installer('/mnt') as i:
     i.mount_ordered_layout(disk_layouts)
 
-    mirror_regions = {
-        os.environ.get('DOWNLOAD_REGION') or 'Germany': archinstall.list_mirrors().get(
-            os.environ.get('DOWNLOAD_REGION') or 'Germany'
-        )
-    }
+    mirror_regions = { 'Germany': archinstall.list_mirrors().get('Germany') }
     archinstall.use_mirrors(mirror_regions)
 
     if variant == 'laptop':
