@@ -4,7 +4,7 @@ import os
 import archinstall
 import logging
 
-user = os.environ.get('DEFAULT_USER') or 'phisch'
+user = 'phisch'
 
 DEPENDENCIES = {
     'default': {
@@ -31,7 +31,7 @@ DEPENDENCIES = {
     }
 }
 
-archinstall.set_keyboard_language(os.environ.get('KEYMAP') or 'de-latin1-nodeadkeys')
+archinstall.set_keyboard_language('de-latin1-nodeadkeys')
 
 disk = archinstall.generic_select(
     archinstall.all_disks(),
@@ -104,13 +104,14 @@ with archinstall.Installer('/mnt') as i:
     i.add_bootloader('systemd-bootctl')
     i.setup_swap('zram')
     i.copy_iso_network_config(True)
+    i.enable_periodic_trim()
 
     i.arch_chroot(r"sed -i 's/#\(Color\)/\1/' /etc/pacman.conf")
     i.add_additional_packages(dependencies)
 
-    i.set_locale(os.environ.get('LOCALE') or 'en_US', os.environ.get('ENCODING') or 'UTF-8')
-    i.set_keyboard_language(os.environ.get('KEYMAP') or 'de')
-    i.set_timezone(os.environ.get('TIMEZONE') or 'Europe/Berlin')
+    i.set_locale('en_US', 'UTF-8')
+    i.set_keyboard_language('de')
+    i.set_timezone('Europe/Berlin')
 
     i.user_set_pw('root', 'root')
     i.user_create(user, user, ['video', 'docker'], True)
@@ -119,11 +120,11 @@ with archinstall.Installer('/mnt') as i:
     i.arch_chroot(f"su {user} -c 'xdg-user-dirs-update'")
     i.arch_chroot(f"su {user} -c 'mkdir -p ~/Pictures/screenshots && mkdir ~/Videos/recordings'")
     
-    i.enable_service('iwd', 'systemd-timesyncd', 'docker', 'bluetooth')
+    i.enable_service('iwd', 'docker', 'bluetooth')
+    i.activate_time_syncronization()
 
     i.arch_chroot(r"sed -i 's/[#]*\(AutoEnable=\)\(true\|false\)/\1true/' /etc/bluetooth/main.conf")
 
-    i.log("configuring auto login", level=logging.INFO)
     autologin_file_name = f'{i.target}/etc/systemd/system/getty@tty1.service.d/autologin.conf'
     os.makedirs(os.path.dirname(autologin_file_name), exist_ok=True)
     with open(autologin_file_name, "w") as file:
