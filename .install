@@ -89,7 +89,13 @@ DEPENDENCIES = {
 
 archinstall.set_keyboard_language('de-latin1-nodeadkeys')
 
-disk = archinstall.select_disk(archinstall.all_blockdevices())
+disk_path = archinstall.Menu(
+    "Select block device for installation:",
+    archinstall.all_blockdevices(),
+    skip=False,
+).run().value
+
+disk = archinstall.all_blockdevices()[disk_path]
 
 disk_layouts = {
     disk.path: {
@@ -126,10 +132,11 @@ disk_layouts = {
     }
 }
 
-variant = archinstall.generic_select(
+variant = archinstall.Menu(
+    "Select variant",
     list(DEPENDENCIES.keys())[1:],
-    'Select variant (default: {}):'.format(list(DEPENDENCIES.keys())[1:][0])
-) or list(DEPENDENCIES.keys())[1:][0]
+    skip=False
+).run().value
 
 dependencies = DEPENDENCIES.get('default', {}).get(
     'official', []) + DEPENDENCIES.get(variant, {}).get('official', [])
@@ -159,7 +166,7 @@ with archinstall.Installer('/mnt') as i:
     i.setup_swap('zram')
     i.copy_iso_network_config(True)
     i.enable_periodic_trim()
-    
+
     i.genfstab()
 
     i.arch_chroot(r"sed -i 's/#\(Color\)/\1/' /etc/pacman.conf")
