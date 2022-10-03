@@ -89,11 +89,7 @@ DEPENDENCIES = {
 
 archinstall.set_keyboard_language('de-latin1-nodeadkeys')
 
-disk = archinstall.generic_select(
-    archinstall.all_disks(),
-    input_text="Select block device for installation:",
-    allow_empty_input=False
-)
+disk = archinstall.select_disk(archinstall.all_blockdevices())
 
 disk_layouts = {
     disk.path: {
