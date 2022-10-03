@@ -21,8 +21,6 @@ DEPENDENCIES = {
             'docker',
             'eog',
             'feh',
-            'foliate',
-            'font-manager',
             'git',
             'gnome-calculator',
             'gnome-disk-utility',
