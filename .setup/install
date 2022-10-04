@@ -18,3 +18,6 @@ cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg
 paru -Sy --nosudoloop --needed --noconfirm - < "$setup_directory/packages/arch_aur"
 
 sudo systemctl enable --now bluetooth docker fstrim.timer pcscd systemd-timesyncd
+
+gpg --import "$setup_directory/gpg/public-keys.asc"
+gpg --import-ownertrust < "$setup_directory/gpg/ownertrust"
