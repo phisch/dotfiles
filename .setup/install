@@ -24,7 +24,8 @@ paru -Sy --nosudoloop --needed --noconfirm - < "$setup_directory/packages/arch_a
 sudo usermod -aG docker,video $USER
 sudo chsh -s $(which zsh) $USER
 
-sudo systemctl enable --now bluetooth docker fstrim.timer pcscd systemd-timesyncd
+sudo systemctl enable bluetooth docker fstrim.timer pcscd systemd-timesyncd
+sudo systemctl start pcscd
 
 gpg --import "$setup_directory/gpg/public-keys.asc"
 gpg --import-ownertrust < "$setup_directory/gpg/ownertrust"
