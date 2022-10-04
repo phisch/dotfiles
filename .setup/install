@@ -31,6 +31,10 @@ gpg --import "$setup_directory/gpg/public-keys.asc"
 gpg --import-ownertrust < "$setup_directory/gpg/ownertrust"
 gpg-connect-agent "scd serialno" "learn --force" /bye
 
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent && gpg-connect-agent updatestartuptty /bye
+
 sudo find ~/.gnupg -type d -exec chmod 700 {} \;
 sudo find ~/.gnupg -type f -exec chmod 600 {} \;
 
