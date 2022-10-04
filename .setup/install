@@ -25,6 +25,10 @@ sudo chsh -s $(which zsh) $USER
 sudo systemctl enable bluetooth docker fstrim.timer pcscd systemd-timesyncd
 sudo systemctl start pcscd
 
+xdg-user-dirs-update && mkdir -p ~/Pictures/screenshots ~/Videos/recordings
+
+read -p "Starting smart-card setup, press return to continue."
+
 gpg --import "$setup_directory/gpg/public-keys.asc"
 gpg --import-ownertrust < "$setup_directory/gpg/ownertrust"
 gpg-connect-agent "scd serialno" "learn --force" /bye
@@ -41,13 +45,13 @@ sudo sed -i '2 i auth sufficient pam_u2f.so cue [cue_prompt=Confirm sudo by touc
 sudo sed -i '2 i auth sufficient pam_u2f.so cue [cue_prompt=Grant sudo by touching the YubiKey!]' /etc/pam.d/polkit-1
 sudo sed -i '2 i auth sufficient pam_u2f.so cue [cue_prompt=Login by touching the YubiKey!]' /etc/pam.d/login
 
-xdg-user-dirs-update && mkdir -p ~/Pictures/screenshots ~/Videos/recordings
+git -C ~ remote set-url origin git@github.com:phisch/dotfiles.git
+git clone git@github.com:phisch/passwords.git ~/.password-store
 
 for extension in $(cat "$setup_directory/packages/vscode"); do
     code --install-extension "$extension"
 done
 
-git -C ~ remote set-url origin git@github.com:phisch/dotfiles.git
-git clone git@github.com:phisch/passwords.git ~/.password-store
+read -p "Setup finished, press return to reboot."
 
 reboot
