@@ -31,5 +31,5 @@ Using it is as simple as installing these dotfiles, and running the install scri
 
 ```sh
 cd $(mktemp -d) && git clone https://github.com/phisch/dotfiles.git . && cp -rb . ~
-~/.setup/install
+~/.setup/install > ~/install.log
 ```
