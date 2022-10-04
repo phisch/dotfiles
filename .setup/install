@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+setup_directory=$(dirname "$0")
+
 localectl set-keymap de-latin1-nodeadkeys
 localectl set-locale en_US.UTF-8
 timedatectl set-timezone Europe/Berlin
+
+sudo pacman -S - < "$setup_directory/packages/arch_official"
