@@ -35,6 +35,7 @@ man-db
 nano
 nautilus
 openssh
+pam-u2f
 pass
 patch
 pavucontrol
