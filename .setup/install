@@ -9,7 +9,7 @@ localectl set-keymap de-latin1-nodeadkeys
 localectl set-locale en_US.UTF-8
 timedatectl set-timezone Europe/Berlin
 
-sudo pacman -S - < "$setup_directory/packages/arch_official"
+sudo pacman -Syu --needed --noconfirm - < "$setup_directory/packages/arch_official"
 
 cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm
-paru -S - < "$setup_directory/packages/arch_aur"
+paru -Sy --nosudoloop --needed --noconfirm - < "$setup_directory/packages/arch_aur"
