@@ -9,3 +9,4 @@ timedatectl set-timezone Europe/Berlin
 sudo pacman -S - < "$setup_directory/packages/arch_official"
 
 cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm
+paru -S - < "$setup_directory/packages/arch_aur"
