@@ -25,3 +25,8 @@ gpg-connect-agent "scd serialno" "learn --force" /bye
 
 sudo find ~/.gnupg -type d -exec chmod 700 {} \;
 sudo find ~/.gnupg -type f -exec chmod 600 {} \;
+
+pamu2fcfg > ~/.config/Yubico/u2f_keys
+for pam_file in "sudo" "polkit-1" "login"; do
+    sudo sed -i '2 i auth sufficient pam_u2f.so cue [cue_prompt=Touch the YubiKey to use sudo]' "/etc/pam.d/$pam_file"
+done
