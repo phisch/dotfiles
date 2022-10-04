@@ -9,8 +9,6 @@ localectl set-keymap de-latin1-nodeadkeys
 localectl set-locale en_US.UTF-8
 timedatectl set-timezone Europe/Berlin
 
-echo -e "[zram0]\n" | sudo tee /etc/systemd/zram-generator.conf > /dev/null
-
 sudo sed -i '/^#Color$/s/^#//g' /etc/pacman.conf
 sudo sed -i '/^#ParallelDownloads =/s/^#//g' /etc/pacman.conf
 
