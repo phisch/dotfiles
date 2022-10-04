@@ -51,6 +51,7 @@ polybar
 rofi
 rustup
 sudo
+sxhkd
 ttf-dejavu
 ttf-jetbrains-mono
 ttf-joypixels
