@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+localectl set-keymap de-latin1-nodeadkeys
+localectl set-locale en_US.UTF-8
+timedatectl set-timezone Europe/Berlin
