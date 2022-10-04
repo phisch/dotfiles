@@ -38,7 +38,6 @@ openssh
 pass
 patch
 pavucontrol
-phocus-gtk-theme-git
 picom
 pipewire
 pipewire-alsa
