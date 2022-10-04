@@ -21,3 +21,6 @@ sudo systemctl enable --now bluetooth docker fstrim.timer pcscd systemd-timesync
 
 gpg --import "$setup_directory/gpg/public-keys.asc"
 gpg --import-ownertrust < "$setup_directory/gpg/ownertrust"
+
+sudo find ~/.gnupg -type d -exec chmod 700 {} \;
+sudo find ~/.gnupg -type f -exec chmod 600 {} \;
