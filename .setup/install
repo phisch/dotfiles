@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+sudo -v
+while true; do sleep 60; sudo -n true; kill -0 "$$" || exit; done 2>/dev/null &
+
 setup_directory=$(dirname "$0")
 
 localectl set-keymap de-latin1-nodeadkeys
