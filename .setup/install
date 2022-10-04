@@ -51,3 +51,5 @@ done
 
 git -C ~ remote set-url origin git@github.com:phisch/dotfiles.git
 git clone git@github.com:phisch/passwords.git ~/.password-store
+
+reboot
