@@ -19,6 +19,8 @@ sudo pacman -Syu --needed --noconfirm - < "$setup_directory/packages/arch_offici
 cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm
 paru -Sy --nosudoloop --needed --noconfirm - < "$setup_directory/packages/arch_aur"
 
+[ "$HOSTNAME" == "tower" ] && paru -S rtl88xxau-aircrack-dkms-git
+
 sudo usermod -aG docker,video $USER
 sudo chsh -s $(which zsh) $USER
 
