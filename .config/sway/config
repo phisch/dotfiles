@@ -104,10 +104,16 @@ mouse_warping none
 
 include /etc/sway/config.d/*
 
+set $gnome-schema org.gnome.desktop.interface
+set $my_cursor phinger-cursors-light
+set $my_cursor_size 32
+
+seat seat0 xcursor_theme $my_cursor $my_cursor_size
 exec_always {
     gsettings set $gnome-schema gtk-theme 'phocus'
-    gsettings set $gnome-schema icon-theme 'Numix'
-    gsettings set $gnome-schema cursor-theme 'phinger-cursors-light'
+    gsettings set $gnome-schema icon-theme 'Adwaita'
+    gsettings set $gnome-schema cursor-theme $my_cursor
+    gsettings set $gnome-schema cursor-size $my_cursor_size
     gsettings set $gnome-schema font-name 'DejaVuSans 9'
-    gsettings set $gnome-schama decoration-layout ':close'
+    gsettings set $gnome-schema decoration-layout ':minimize,nclose'
 }
