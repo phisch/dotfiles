@@ -28,7 +28,7 @@ button:hover {
     color: transparent;
     min-width: 12px;
     min-height: 12px;
-    margin: calc(1rem - 4px) 0.8rem;
+    margin: calc(1rem - 3px) 0.8rem;
     padding: 1px;
     border-radius: 4px;
 }
