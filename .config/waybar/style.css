@@ -1,0 +1,56 @@
+* {
+    font-family: DejaVuSans, sans-serif;
+    font-size: 14px;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.87);
+}
+
+button {
+    border: none;
+    border-radius: 0;
+    transition: background ease-in-out 0.2s;
+}
+
+button:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+#workspaces button {
+    padding: 0;
+}
+
+#workspaces button label {
+    background: rgba(255, 255, 255, 0.14);
+    font-size: 0;
+    color: transparent;
+    min-width: 12px;
+    min-height: 12px;
+    margin: calc(1rem - 4px) 0.8rem;
+    padding: 1px;
+    border-radius: 4px;
+}
+
+#workspaces button.persistent label {
+    padding: 0;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+#workspaces button.focused label {
+    background: rgba(255, 255, 255, 0.87);
+}
+
+#workspaces button.urgent label {
+    background: #E36D6D;
+}
+
+.modules-right widget > * {
+    padding: 0 1em;
+}
+
+#battery.critical {
+    background: rgba(218, 88, 88, 0.3);
+}
