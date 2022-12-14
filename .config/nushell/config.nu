@@ -67,7 +67,7 @@ let-env config = {
     abbreviations: true
   }
   table: {
-    mode: rounded
+    mode: compact
     index_mode: auto
     trim: {
       methodology: wrapping
