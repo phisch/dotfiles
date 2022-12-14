@@ -53,6 +53,7 @@
     },
     "temperature": {
         "critical-threshold": 70,
+        "interval": 3,
         "format": "{icon} {temperatureC}°C",
         "format-icons": ["󱃃", "󰔏", "󱃂"]
     },

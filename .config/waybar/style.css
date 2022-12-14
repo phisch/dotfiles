@@ -1,6 +1,6 @@
 * {
     font-family: DejaVuSans, sans-serif;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 window#waybar {
@@ -26,11 +26,11 @@ button:hover {
     background: rgba(255, 255, 255, 0.14);
     font-size: 0;
     color: transparent;
-    min-width: 12px;
-    min-height: 12px;
-    margin: calc(1rem - 3px) 0.8rem;
+    min-width: 10px;
+    min-height: 10px;
+    margin: calc(1rem - 2px) 0.8rem;
     padding: 1px;
-    border-radius: 4px;
+    border-radius: 3px;
 }
 
 #workspaces button.persistent label {
@@ -48,7 +48,11 @@ button:hover {
 }
 
 .modules-right widget > * {
-    padding: 0 1em;
+    padding: 0 0.8em;
+}
+
+widget #tray {
+    padding: 0;
 }
 
 #battery.critical {
