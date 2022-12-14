@@ -1,0 +1,25 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+
+format = "$all"
+
+[directory]
+style = "yellow bold"
+
+[line_break]
+disabled = true
+
+[character]
+success_symbol = "[❯](bold white)"
+
+
+[git_branch]
+style = "bold #555555"
+
+[git_status]
+format = '([$all_status$ahead_behind]($style) )'
+style = "bold #555555"
+modified = "󰈅"
+deleted = "󰅖"
+
