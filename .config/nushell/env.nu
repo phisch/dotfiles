@@ -22,6 +22,10 @@ let-env GPG_TTY = (tty)
 let-env SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
+
+let-env _JAVA_AWT_WM_NONREPARENTING = 1
+let-env _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=gasp"
+
 #export EDITOR="nano"
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
