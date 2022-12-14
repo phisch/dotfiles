@@ -4,7 +4,7 @@ set $alt Mod1
 output * bg ~/Pictures/wallpapers/grape.png fill
 
 output HDMI-A-1 resolution 2560x1440 scale 1
-output eDP-1 resolution 2560x1440 scale 1.56
+output eDP-1 resolution 2560x1440 scale 1.6
 
 input "type:keyboard" {
     xkb_layout de,de
@@ -95,6 +95,9 @@ bindsym $super+r mode "resize"
 bar swaybar_command waybar
 
 default_border none
+default_floating_border none
+client.focused #00000000 #00000000 #00000000 #7154F280
+
 smart_gaps on
 gaps inner 10
 gaps outer -10
@@ -116,4 +119,11 @@ exec_always {
     gsettings set $gnome-schema cursor-size $my_cursor_size
     gsettings set $gnome-schema font-name 'DejaVuSans 9'
     gsettings set $gnome-schema decoration-layout ':minimize,nclose'
+    autotiling-rs
 }
+
+bindsym Print exec grim -g "$(slurp)" - | tee >(wl-copy) ~/Pictures/screenshots/$(date +%s).png
+bindsym shift+Print exec grim -g "$(slurp)" - | tee >(wl-copy) ~/Pictures/screenshots/$(date +%s).png | curl -s -F "file=@-" 0x0.st | wl-copy -p
+
+bindsym Ctrl+Print exec wf-recorder -g "$$(slurp)" -f ~/Videos/recordings/$(date +%s).mp4
+bindsym Ctrl+Escape exec killall -s SIGINT wf-recorder
