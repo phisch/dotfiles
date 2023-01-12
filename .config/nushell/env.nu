@@ -30,11 +30,13 @@ let-env _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=gasp"
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # let-env PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
+let-env PATH = ($env.PATH | split row (char esep) | prepend '~/.cargo/bin')
 
+let-env MOZ_ENABLE_WAYLAND = 1
 #path+=(~/.cargo/bin)
 
 #export npm_config_prefix="$HOME/.local"
 #path+=($HOME/.local/bin)
 
 mkdir ~/.cache/starship
-starship init nu | str replace --string "size -c" "size" | save ~/.cache/starship/init.nu
+starship init nu | str replace --string "size -c" "size" | save ~/.cache/starship/init.nu -f
