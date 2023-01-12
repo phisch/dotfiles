@@ -5,6 +5,7 @@ output * bg ~/Pictures/wallpapers/grape.png fill
 
 output HDMI-A-1 resolution 2560x1440 scale 1
 output eDP-1 resolution 2560x1440 scale 1.6
+#output eDP-1 resolution 2560x1440 scale 1
 
 input "type:keyboard" {
     xkb_layout de,de
