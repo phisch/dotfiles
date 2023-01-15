@@ -121,6 +121,7 @@ exec_always {
     gsettings set $gnome-schema font-name 'DejaVuSans 9'
     gsettings set $gnome-schema decoration-layout ':minimize,nclose'
     autotiling-rs
+    gammastep
 }
 
 bindsym Print exec grim -g "$(slurp)" - | tee >(wl-copy) ~/Pictures/screenshots/$(date +%s).png
