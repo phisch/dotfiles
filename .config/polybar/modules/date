@@ -9,4 +9,4 @@ date = "%a"
 date-alt = "%a %d.%m.%Y"
 
 time = "%H:%M"
-time-alt = "%H:%M:%S"
+time-alt = "%H:%M"
