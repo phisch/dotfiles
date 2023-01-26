@@ -1,3 +1,5 @@
+#!/usr/bin/env nu
+
 let theme = {
     separator: "#222222"
     leading_trailing_space_bg: { attr: n }

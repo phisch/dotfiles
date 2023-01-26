@@ -1,3 +1,5 @@
+#!/usr/bin/env nu
+
 let-env ENV_CONVERSIONS = {
   "PATH": {
     from_string: { |s| $s | split row (char esep) | path expand -n }
