@@ -1,5 +1,5 @@
 * {
-  font: "DejaVu Sans Mono 16";
+  font: "DejaVu Sans Mono 12";
   text-color: #FFFFFFDE;
   background-color: transparent;
 }
@@ -23,7 +23,7 @@ mainbox {
 }
 
 #entry {
-  padding: 12px 24px;
+  padding: 11px;
 }
 
 #listview {
@@ -32,7 +32,7 @@ mainbox {
 }
 
 #element {
-  padding: 12px 24px;
+  padding: 9px 12px 9px 12px;
   spacing: 12px;
 }
 
