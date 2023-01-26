@@ -6,22 +6,10 @@ bspc config remove_unplugged_monitors true
 bspc config remove_disabled_monitors true
 bspc config merge_overlapping_monitors true
 
-if [ "$(cat /sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-HDMI-A-1/status)" = "connected" ]; then
-    echo "Xft.dpi: 96" | xrdb -merge
-    echo "Xcursor.size: 32" | xrdb -merge
-    xsetroot -cursor_name left_ptr
-    xrandr --output HDMI1 --mode 2560x1440 --rate 59.95 --rotate normal --pos 2560x0 --primary
-    xrandr --output eDP1 --mode 2560x1440 --rate 60.01 --rotate normal --pos 0x0
-    bspc monitor eDP1 -d 1 2 3 4
-    bspc monitor HDMI1 -d 5 6 7 8 9
-else
-    echo "Xft.dpi: 144" | xrdb -merge
-    echo "Xcursor.size: 48" | xrdb -merge
-    xsetroot -cursor_name left_ptr
-    xrandr --output eDP1 --mode 2560x1440 --rate 60.01 --rotate normal --pos 0x0 --primary
-    xrandr --output HDMI1 --off
-    bspc monitor eDP1 -d 1 2 3 4 5 6 7 8 9
-fi
+xrandr --output DP-0 --mode 2560x1440 --rate 144.00 --rotate normal --pos 0x0
+bspc monitor DP-0 -d 1 2 3 4 5 6 7 8 9
+echo "Xcursor.size: 32" | xrdb -merge
+xsetroot -cursor_name left_ptr
 
 feh --randomize --bg-fill --recursive --no-fehbg ~/Pictures/wallpapers/*
 
