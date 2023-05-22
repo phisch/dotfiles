@@ -1,5 +1,5 @@
 orientation=horizontal
-width=2560
+width=100%
 height=32
 image_size=16
 allow_images=true
@@ -11,4 +11,3 @@ prompt=
 normal_window=false
 content_halign=center
 halign=start
-#monitor=eDP-1
