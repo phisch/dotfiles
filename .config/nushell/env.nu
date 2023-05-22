@@ -41,4 +41,4 @@ let-env MOZ_ENABLE_WAYLAND = 1
 #path+=($HOME/.local/bin)
 
 mkdir ~/.cache/starship
-starship init nu | str replace --string "size -c" "size" | save ~/.cache/starship/init.nu -f
+starship init nu | save -f ~/.cache/starship/init.nu
