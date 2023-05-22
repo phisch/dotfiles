@@ -17,10 +17,8 @@ sudo pacman -Syu --needed --noconfirm - < "$setup_directory/packages/arch_offici
 cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm
 paru -Sy --nosudoloop --needed --noconfirm - < "$setup_directory/packages/arch_aur"
 
-[ "$HOSTNAME" == "tower" ] && paru -S rtl88xxau-aircrack-dkms-git
-
 sudo usermod -aG docker,video $USER
-sudo chsh -s $(which zsh) $USER
+sudo chsh -s $(which nu) $USER
 
 sudo systemctl enable bluetooth docker fstrim.timer pcscd systemd-timesyncd
 sudo systemctl start pcscd
@@ -47,10 +45,6 @@ sudo sed -i '2 i auth sufficient pam_u2f.so cue [cue_prompt=Login by touching th
 
 git -C ~ remote set-url origin git@github.com:phisch/dotfiles.git
 git clone git@github.com:phisch/passwords.git ~/.password-store
-
-for extension in $(cat "$setup_directory/packages/vscode"); do
-    code --install-extension "$extension"
-done
 
 read -p "Setup finished, press return to reboot."
 
