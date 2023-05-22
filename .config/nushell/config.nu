@@ -58,6 +58,7 @@ let carapace_completer = {|spans|
 
 # The default config record. This is where much of your global configuration is setup.
 let-env config = {
+  show_banner: false
   ls: {
     use_ls_colors: true
     clickable_links: true
@@ -71,9 +72,37 @@ let-env config = {
   table: {
     mode: compact
     index_mode: auto
+    show_empty: true
     trim: {
       methodology: wrapping
       wrapping_try_keep_words: true
+    }
+  }
+  explore: {
+    help_banner: true
+    exit_esc: true
+    command_bar_text: '#C4C9C6'
+    status_bar_background: {fg: '#1D1F21' bg: '#C4C9C6' }
+    highlight: {bg: 'yellow' fg: 'black' }
+    status: {}
+    try: {}
+
+    table: {
+      split_line: '#404040'
+
+      cursor: true
+
+      line_index: true
+      line_shift: true
+      line_head_top: true
+      line_head_bottom: true
+
+      show_head: true
+      show_index: true
+    }
+
+    config: {
+      cursor_color: {bg: 'yellow' fg: 'black' }
     }
   }
   history: {
@@ -96,30 +125,36 @@ let-env config = {
     metric: true
     format: "auto"
   }
+  cursor_shape: {
+    emacs: line
+    vi_insert: block
+    vi_normal: underscore
+  }
   color_config: $theme
   use_grid_icons: true
   footer_mode: "never"
   float_precision: 2
-  # buffer_editor: "emacs" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
   use_ansi_coloring: true
   edit_mode: emacs
   shell_integration: true
-  show_banner: false
   render_right_prompt_on_last_line: false
   hooks: {
-    pre_prompt: [{
-      $nothing
+    pre_prompt: [{||
+      null
     }]
-    pre_execution: [{
-      $nothing
+    pre_execution: [{||
+      null
     }]
     env_change: {
       PWD: [{|before, after|
-        $nothing
+        null
       }]
     }
-    display_output: {
+    display_output: {||
       if (term size).columns >= 100 { table -e } else { table }
+    }
+    command_not_found: {||
+      null
     }
   }
   menus: [
