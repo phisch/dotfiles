@@ -6,3 +6,5 @@
 	excludesFile = ~/.gitignore.global
 [commit]
 	gpgSign = true
+[advice]
+	addIgnoredFile = false
