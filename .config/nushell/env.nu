@@ -42,3 +42,5 @@ let-env MOZ_ENABLE_WAYLAND = 1
 
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
+
+let-env NPM_PACKAGES = ~/.npm-packages
