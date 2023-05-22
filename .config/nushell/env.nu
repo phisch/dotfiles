@@ -24,21 +24,12 @@ let-env GPG_TTY = (tty)
 let-env SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
 
-
 let-env _JAVA_AWT_WM_NONREPARENTING = 1
 let-env _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=gasp"
 
-#export EDITOR="nano"
-
-# To add entries to PATH (on Windows you might use Path), you can use the following pattern:
-# let-env PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
 let-env PATH = ($env.PATH | split row (char esep) | prepend '~/.cargo/bin')
 
 let-env MOZ_ENABLE_WAYLAND = 1
-#path+=(~/.cargo/bin)
-
-#export npm_config_prefix="$HOME/.local"
-#path+=($HOME/.local/bin)
 
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
@@ -46,3 +37,11 @@ starship init nu | save -f ~/.cache/starship/init.nu
 let-env NPM_PACKAGES = ~/.npm-packages
 
 let-env PATH = ($env.PATH | split row (char esep) | prepend '~/.cargo/bin' | prepend '~/.npm-packages/bin')
+
+let-env XDG_CURRENT_DESKTOP = "sway"
+let-env XDG_SESSION_TYPE = "wayland"
+
+let-env QT_QPA_PLATFORM = "wayland"
+let-env QT_WAYLAND_DISABLE_WINDOWDECORATION = 1
+let-env BEMENU_BACKEND = "wayland"
+let-env WLR_DRM_NO_MODIFIERS = 1
