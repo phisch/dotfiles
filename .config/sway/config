@@ -1,15 +1,27 @@
+exec --no-startup-id dbus-update-activation-environment --all
+
 set $super Mod4
 set $alt Mod1
 
 output * bg ~/Pictures/wallpapers/grape.png fill
 
-output HDMI-A-1 resolution 2560x1440 scale 1
-output eDP-1 resolution 2560x1440 scale 1.6
-#output eDP-1 resolution 2560x1440 scale 1
+output eDP-1 resolution 2560x1440 pos 0 0 scale 1.6
+output DP-1 resolution 2560x1440 pos -2560 0 scale 1
+
+workspace 1 output eDP-1
+workspace 2 output eDP-1
+workspace 3 output eDP-1
+workspace 4 output eDP-1
+workspace 5 output eDP-1
+
+workspace 6 output DP-1
+workspace 7 output DP-1
+workspace 8 output DP-1
+workspace 9 output DP-1
+workspace 10 output DP-1
 
 input "type:keyboard" {
-    xkb_layout de,de
-    xkb_variant ,nodeadkeys
+    xkb_layout de(nodeadkeys),de
     xkb_options grp:alt_shift_toggle
 }
 
@@ -17,42 +29,12 @@ bindsym $super+Return exec alacritty
 bindsym $super+w kill
 bindsym $super+space exec wofi --show drun
 
-
 floating_modifier $super normal
 bindsym $alt+Escape reload
 bindsym $super+$alt+Escape exec swaymsg exit
 
-# Move focus
-bindsym $alt+Left focus left
-bindsym $alt+Down focus down
-bindsym $alt+Right focus right
-bindsym $alt+Up focus up
-
-bindsym $super+1 workspace number 1
-bindsym $super+2 workspace number 2
-bindsym $super+3 workspace number 3
-bindsym $super+4 workspace number 4
-bindsym $super+5 workspace number 5
-bindsym $super+6 workspace number 6
-bindsym $super+7 workspace number 7
-bindsym $super+8 workspace number 8
-bindsym $super+9 workspace number 9
-bindsym $super+0 workspace number 10
-
-bindsym $super+$alt+1 move container to workspace number 1
-bindsym $super+$alt+2 move container to workspace number 2
-bindsym $super+$alt+3 move container to workspace number 3
-bindsym $super+$alt+4 move container to workspace number 4
-bindsym $super+$alt+5 move container to workspace number 5
-bindsym $super+$alt+6 move container to workspace number 6
-bindsym $super+$alt+7 move container to workspace number 7
-bindsym $super+$alt+8 move container to workspace number 8
-bindsym $super+$alt+9 move container to workspace number 9
-bindsym $super+$alt+0 move container to workspace number 10
-
-
-set $next $(swaymsg -t get_workspaces | jq -r '.[] | select(.focused).name' | awk '{print $1 % 9 + 1}')
-set $previous $(swaymsg -t get_workspaces | jq -r '.[] | select(.focused).name' | awk '{print ($1 + 7) % 9 + 1}')
+set $next $(swaymsg -t get_workspaces | jq -r '.[] | select(.focused).name' | awk '{print $1 % 10 + 1}')
+set $previous $(swaymsg -t get_workspaces | jq -r '.[] | select(.focused).name' | awk '{print ($1 + 8) % 10 + 1}')
 
 # switch to next/previous workspace
 bindsym $super+Right exec swaymsg workspace $next
@@ -70,6 +52,7 @@ bindsym $super+t splittoggle
 
 bindsym $super+F11 fullscreen
 bindsym $super+f floating toggle
+bindsym $super+s sticky toggle
 
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
@@ -77,9 +60,8 @@ bindsym XF86MonBrightnessDown exec light -U 5
 bindsym $alt+Prior exec light -A 1
 bindsym $alt+Next exec light -U 1
 
-bindsym Control_R exec xdotool keydown Control_R
-bindsym --release Control_R exec xdotool keyup Control_R
-
+bindsym Control_R exec pactl set-source-mute 0 false
+bindsym --release Control_R exec pactl set-source-mute 0 true
 
 mode "resize" {
     bindsym Left resize shrink width 10px
@@ -127,5 +109,5 @@ exec_always {
 bindsym Print exec grim -g "$(slurp)" - | tee >(wl-copy) ~/Pictures/screenshots/$(date +%s).png
 bindsym shift+Print exec grim -g "$(slurp)" - | tee >(wl-copy) ~/Pictures/screenshots/$(date +%s).png | curl -s -F "file=@-" 0x0.st | wl-copy -p
 
-bindsym Ctrl+Print exec wf-recorder -g "$$(slurp)" -f ~/Videos/recordings/$(date +%s).mp4
+bindsym Ctrl+Print exec wf-recorder --no-damage -g "$$(slurp)" -f ~/Videos/recordings/$(date +%s).mp4
 bindsym Ctrl+Escape exec killall -s SIGINT wf-recorder
