@@ -3,7 +3,8 @@
 sudo -v
 while true; do sleep 60; sudo -n true; kill -0 "$$" || exit; done 2>/dev/null &
 
-setup_directory=$(dirname "$0")
+setup_directory=$(realpath $(dirname "$0"))
+echo $setup_directory
 
 localectl set-keymap de-latin1-nodeadkeys
 localectl set-locale en_US.UTF-8
@@ -13,6 +14,7 @@ sudo sed -i '/^#Color$/s/^#//g' /etc/pacman.conf
 sudo sed -i '/^#ParallelDownloads =/s/^#//g' /etc/pacman.conf
 
 sudo pacman -Syu --needed --noconfirm - < "$setup_directory/packages/arch_official"
+
 
 cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm
 paru -Sy --nosudoloop --needed --noconfirm - < "$setup_directory/packages/arch_aur"
