@@ -6,7 +6,7 @@
     "fixed-center": false,
     "modules-left": ["sway/workspaces"],
     "modules-center": ["sway/window"],
-    "modules-right": ["network", "pulseaudio", "idle_inhibitor", "battery", "backlight", "cpu", "memory", "temperature", "clock", "tray"],
+    "modules-right": ["network", "pulseaudio", "battery", "backlight", "cpu", "memory", "temperature", "clock", "tray"],
     "sway/window": {
         "max-length": 50,
         "max-length-mode": "middle",
@@ -27,13 +27,6 @@
             "8": ["DP-1"],
             "9": ["DP-1"],
             "10": ["DP-1"]
-        }
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
         }
     },
     "tray": {
