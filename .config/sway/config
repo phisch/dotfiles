@@ -1,5 +1,3 @@
-exec --no-startup-id dbus-update-activation-environment --all
-
 set $super Mod4
 set $alt Mod1
 
@@ -104,8 +102,6 @@ exec_always {
     gsettings set $gnome-schema cursor-size $my_cursor_size
     gsettings set $gnome-schema font-name 'DejaVuSans 9'
     gsettings set $gnome-schema decoration-layout ':minimize,nclose'
-    autotiling-rs
-    gammastep
 }
 
 bindsym Print exec grim -g "$(slurp)" - | tee >(wl-copy) ~/Pictures/screenshots/$(date +%s).png
@@ -113,3 +109,8 @@ bindsym shift+Print exec grim -g "$(slurp)" - | tee >(wl-copy) ~/Pictures/screen
 
 bindsym Ctrl+Print exec wf-recorder --no-damage -g "$$(slurp)" -f ~/Videos/recordings/$(date +%s).mp4
 bindsym Ctrl+Escape exec killall -s SIGINT wf-recorder
+
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec autotiling-rs
+exec gammastep
+exec --no-startup-id dbus-update-activation-environment --all
