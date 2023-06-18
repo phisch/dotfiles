@@ -8,3 +8,5 @@
 	gpgSign = true
 [advice]
 	addIgnoredFile = false
+[push]
+	autoSetupRemote = true
