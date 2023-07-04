@@ -27,9 +27,6 @@ let-env PATH = ($env.PATH | split row (char esep) | prepend '~/.cargo/bin')
 
 let-env MOZ_ENABLE_WAYLAND = 1
 
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
-
 let-env NPM_PACKAGES = ~/.npm-packages
 
 let-env PATH = ($env.PATH | split row (char esep) | prepend '~/.cargo/bin' | prepend '~/.npm-packages/bin')
