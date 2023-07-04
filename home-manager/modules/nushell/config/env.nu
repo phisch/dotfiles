@@ -20,11 +20,6 @@ let-env NU_PLUGIN_DIRS = [
     ($nu.config-path | path dirname | path join 'plugins')
 ]
 
-let-env GPG_TTY = (tty)
-let-env SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent
-gpg-connect-agent updatestartuptty /bye
-
 let-env _JAVA_AWT_WM_NONREPARENTING = 1
 let-env _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=gasp"
 
