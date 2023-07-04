@@ -18,10 +18,6 @@
   home.packages = with pkgs; [
     jq
     font-manager
-    chromium
-    vscode
-    #jetbrains-mono
-    #material-design-icons
     grim
     slurp
     wl-clipboard

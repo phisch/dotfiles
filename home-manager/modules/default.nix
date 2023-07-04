@@ -17,5 +17,7 @@
     ./nushell
     ./gtk
     ./gammastep
+    ./rust
+    ./nodejs
   ];
 }

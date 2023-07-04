@@ -23,18 +23,13 @@ let-env NU_PLUGIN_DIRS = [
 let-env _JAVA_AWT_WM_NONREPARENTING = 1
 let-env _JAVA_OPTIONS = "-Dawt.useSystemAAFontSettings=gasp"
 
-let-env PATH = ($env.PATH | split row (char esep) | prepend '~/.cargo/bin')
-
 let-env MOZ_ENABLE_WAYLAND = 1
-
-let-env NPM_PACKAGES = ~/.npm-packages
-
-let-env PATH = ($env.PATH | split row (char esep) | prepend '~/.cargo/bin' | prepend '~/.npm-packages/bin')
 
 let-env XDG_CURRENT_DESKTOP = "sway"
 let-env XDG_SESSION_TYPE = "wayland"
 
 let-env QT_QPA_PLATFORM = "wayland"
 let-env QT_WAYLAND_DISABLE_WINDOWDECORATION = 1
+
 let-env BEMENU_BACKEND = "wayland"
 let-env WLR_DRM_NO_MODIFIERS = 1
