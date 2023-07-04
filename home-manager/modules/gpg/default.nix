@@ -9,12 +9,9 @@
     ];
   };
 
-  programs.nushell.environmentVariables = {
-    GPT_TTY = "(tty)";
-    SSH_AUTH_SOCK = "(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)";
-  };
-
   programs.nushell.extraEnv = ''
+    let-env GPG_TTY = (tty)
+    let-env SSH_AUTH_SOCK = (${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)
     gpg-connect-agent updatestartuptty /bye out> /dev/null
   '';
 
