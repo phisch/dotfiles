@@ -57,7 +57,7 @@ let carapace_completer = {|spans|
 }
 
 # The default config record. This is where much of your global configuration is setup.
-let-env config = {
+$env.config = {
   show_banner: false
   ls: {
     use_ls_colors: true
@@ -139,8 +139,10 @@ let-env config = {
   shell_integration: true
   render_right_prompt_on_last_line: false
   hooks: {
-    pre_prompt: [{||
-      null
+    pre_prompt: [{ ||
+      let direnv = (direnv export json | from json)
+      let direnv = if ($direnv | length) == 1 { $direnv } else { {} }
+      $direnv | load-env
     }]
     pre_execution: [{||
       null
