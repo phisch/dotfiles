@@ -16,7 +16,7 @@ sudo pacman -Syu --needed --noconfirm - < "$setup_directory/packages/official"
 cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm
 paru -Sy --nosudoloop --needed --noconfirm - < "$setup_directory/packages/aur"
 
-sudo chsh -s $(which zsh) $USER
+sudo chsh -s $(which nu) $USER
 
 sudo usermod -aG docker,video $USER
 sudo systemctl enable bluetooth docker fstrim.timer systemd-timesyncd
