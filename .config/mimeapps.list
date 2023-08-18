@@ -1,0 +1,4 @@
+
+[Default Applications]
+x-scheme-handler/figma=figma-linux.desktop
+inode/directory=org.gnome.Nautilus.desktop
