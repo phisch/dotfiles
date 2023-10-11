@@ -59,13 +59,13 @@
 @define-color window_bg_color @surface-strong;
 @define-color window_fg_color @white-strong;
 
-@define-color view_bg_color @surface-strongest;
+@define-color view_bg_color @surface-strong;
 @define-color view_fg_color @white-strong;
 
-@define-color headerbar_bg_color @surface-moderate;
+@define-color headerbar_bg_color @surface-strongest;
 @define-color headerbar_fg_color @white-strong;
 @define-color headerbar_border_color @surface-moderate;
-@define-color headerbar_backdrop_color transparent;
+@define-color headerbar_backdrop_color @surface-strongest;
 @define-color headerbar_shade_color transparent;
 
 @define-color card_bg_color @white-weakest;
@@ -83,11 +83,18 @@
 
 @define-color borders transparent;
 
+@define-color sidebar_bg_color @surface-strongest;
+@define-color sidebar_fg_color @white-strong;
+@define-color sidebar_backdrop_color @surface-strongest;
+@define-color sidebar_shade_color @surface-strongest;
 
+
+/*
 window contents {
     background: @surface-strongest;
     box-shadow: none;
 }
+*/
 
 popover contents, popover arrow {
 	background: @surface-weakest;
