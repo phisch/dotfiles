@@ -11,8 +11,9 @@ $env.ENV_CONVERSIONS = {
   }
 }
 
+$env.npm_config_prefix = ~/.local
 $env.NPM_PACKAGES = ~/.npm-packages
-$env.PATH = ($env.PATH | append '~/.cargo/bin' | append $'($env.NPM_PACKAGES)/bin')
+$env.PATH = ($env.PATH | append '~/.cargo/bin' | append '~/.local/bin' | append $'($env.NPM_PACKAGES)/bin')
 
 $env.GPG_TTY = (tty)
 $env.SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
