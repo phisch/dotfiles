@@ -10,9 +10,6 @@ $env.config = {
   rm: {
     always_trash: true
   }
-  cd: {
-    abbreviations: true
-  }
   table: {
     mode: compact
     index_mode: auto
