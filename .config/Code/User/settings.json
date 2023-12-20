@@ -1,20 +1,36 @@
 {
-	"editor.fontFamily": "'JetBrains Mono', 'DejaVuSansMono', 'monospace', monospace",
-	"editor.fontSize": 14,
-	"editor.hover.enabled": false,
+	"diffEditor.hideUnchangedRegions.enabled": true,
+	"editor.fontFamily": "'MaterialDesignIcons', 'JetBrains Mono', 'DejaVuSansMono', 'monospace', monospace",
+	"editor.fontSize": 16,
+	"editor.guides.bracketPairs": false,
+	"editor.guides.highlightActiveIndentation": false,
+	"editor.guides.indentation": false,
+	"editor.hover.enabled": true,
 	"editor.inlineSuggest.enabled": true,
 	"editor.minimap.enabled": false,
 	"editor.suggestSelection": "first",
+	"errorLens.enabledInMergeConflict": false,
 	"explorer.confirmDelete": false,
 	"explorer.confirmDragAndDrop": false,
+	"git.mergeEditor": true,
+	"git.openRepositoryInParentFolders": "never",
 	"github.copilot.enable": {
 		"*": true
 	},
+	"indentRainbow.colors": [
+		"rgba(227, 109, 109, 0.04)",
+		"rgba(250, 221, 117, 0.04)",
+		"rgba(97, 214, 126, 0.04)",
+		"rgba(126, 234, 246, 0.04)",
+		"rgba(128, 102, 245, 0.04)",
+		"rgba(223, 129, 207, 0.04)"
+	],
 	"json.maxItemsComputed": 500000,
 	"telemetry.telemetryLevel": "off",
+	"terminal.integrated.cursorStyle": "underline",
 	"window.menuBarVisibility": "toggle",
-	"workbench.activityBar.visible": false,
-	"workbench.editor.untitled.hint": "hidden",
-	"workbench.startupEditor": "none",
-    "workbench.statusBar.visible": false
+	"window.titleBarStyle": "custom",
+	"workbench.colorTheme": "phocus",
+	"workbench.editor.empty.hint": "hidden",
+	"workbench.startupEditor": "none"
 }
