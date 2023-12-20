@@ -1,4 +1,13 @@
-
 [Default Applications]
-x-scheme-handler/figma=figma-linux.desktop
+image/jpeg=org.gnome.eog.desktop
+image/png=org.gnome.eog.desktop
 inode/directory=org.gnome.Nautilus.desktop
+video/mp4=mpv.desktop
+video/quicktime=mpv.desktop
+video/x-matroska=mpv.desktop
+x-scheme-handler/figma=figma-linux.desktop
+x-scheme-handler/http=chromium.desktop
+x-scheme-handler/https=chromium.desktop
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+
+[Added Associations]
