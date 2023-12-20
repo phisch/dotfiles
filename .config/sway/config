@@ -5,8 +5,9 @@ output * bg ~/Pictures/wallpapers/grape.png fill
 
 output DP-3 res 2560x1440@144Hz pos 0 0
 
-output eDP-1 resolution 2560x1440 pos 0 0 scale 1.6
-output DP-1 resolution 2560x1440 pos -2560 0 scale 1
+output eDP-1 resolution 2560x1440 pos 0 0 scale 1.33
+output DP-1 resolution 2560x1440@143.856Hz pos -2560 0 scale 1
+output DP-2 resolution 2560x1440@143.856Hz pos -2560 0 scale 1
 
 workspace 1 output eDP-1
 workspace 2 output eDP-1
