@@ -32,5 +32,8 @@ $env.WLR_DRM_NO_MODIFIERS = 1
 
 $env.EDITOR = "nano"
 
+$env.MANGOHUD = 1
+$env.MANGOHUD_DLSYM = 1
+
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
