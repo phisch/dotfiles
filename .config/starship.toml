@@ -5,7 +5,7 @@ add_newline = false
 format = "$all"
 
 [directory]
-style = "yellow bold"
+style = "yellow"
 
 [line_break]
 disabled = true
@@ -14,9 +14,17 @@ disabled = true
 success_symbol = "[❯](bold white)"
 
 [git_branch]
-style = "bold #555555"
+symbol = " "
+style = "#555555"
 
 [git_status]
 format = '([$all_status$ahead_behind]($style) )'
 style = "bold #555555"
 
+untracked = "[u](red)"
+stashed = "[󰏗 ](yellow)"
+modified = "[m](yellow)"
+
+staged = "[s](green)"
+renamed = "[r](blue)"
+deleted = "[d](red)"
