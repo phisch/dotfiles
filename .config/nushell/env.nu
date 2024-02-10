@@ -30,5 +30,7 @@ $env.XDG_SESSION_TYPE = "wayland"
 $env.QT_QPA_PLATFORM = "wayland"
 $env.WLR_DRM_NO_MODIFIERS = 1
 
+$env.EDITOR = "nano"
+
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
