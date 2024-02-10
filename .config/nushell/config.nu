@@ -22,7 +22,7 @@ $env.config = {
     external: {
       enable: true
       completer: { |spans| 
-        carapace $spans.0 nushell $spans | from json
+        carapace $spans.0 nushell ...$spans | from json
       }
     }
   }
