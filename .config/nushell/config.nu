@@ -60,4 +60,6 @@ $env.config = {
   ]
 }
 
+alias npm = pnpm
+
 use ~/.cache/starship/init.nu
