@@ -93,7 +93,7 @@ include /etc/sway/config.d/*
 
 set $gnome-schema org.gnome.desktop.interface
 set $my_cursor phinger-cursors-light
-set $my_cursor_size 32
+set $my_cursor_size 32 
 
 seat seat0 xcursor_theme $my_cursor $my_cursor_size
 exec_always {
@@ -103,13 +103,17 @@ exec_always {
     gsettings set $gnome-schema cursor-size $my_cursor_size
     gsettings set $gnome-schema font-name 'DejaVuSans 9'
     gsettings set $gnome-schema decoration-layout ':minimize,nclose'
+    gsettings set $gnome-schema color-scheme 'prefer-dark'
 }
 
 bindsym Print exec grim -g "$(slurp)" - | tee >(wl-copy) ~/Pictures/screenshots/$(date +%s).png
 bindsym shift+Print exec grim -g "$(slurp)" - | tee >(wl-copy) ~/Pictures/screenshots/$(date +%s).png | curl -s -F "file=@-" 0x0.st | wl-copy -p
 
-bindsym Ctrl+Print exec wf-recorder --no-damage -g "$$(slurp)" -f ~/Videos/recordings/$(date +%s).mp4
+bindsym Ctrl+Print exec wf-recorder --pixel-format yuv420p -g "$$(slurp)" -f ~/Videos/recordings/$(date +%s).mp4
 bindsym Ctrl+Escape exec killall -s SIGINT wf-recorder
+
+bindsym $super+F9 exec obs-cmd recording start
+bindsym $super+F10 exec obs-cmd recording stop
 
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec autotiling-rs
