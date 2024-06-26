@@ -1,0 +1,56 @@
+shell = "nu"
+
+[colors.bright]
+black = "#4d4d4d"
+blue = "#5D8DEE"
+cyan = "#7EEAF6"
+green = "#61D67E"
+magenta = "#8066F5"
+red = "#E36D6D"
+white = "#ffffff"
+yellow = "#FADD75"
+
+[colors.normal]
+black = "#000000"
+blue = "#497EE9"
+cyan = "#5CD8E6"
+green = "#3FC661"
+magenta = "#7154F2"
+red = "#DA5858"
+white = "#e6e6e6"
+yellow = "#E8CA5E"
+
+[colors.primary]
+background = "#0A0A0A"
+
+[cursor.style]
+blinking = "On"
+shape = "Underline"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 12
+
+[font.normal]
+family = "JetBrains Mono"
+
+[[keyboard.bindings]]
+action = "ScrollPageUp"
+key = "Up"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "ScrollPageDown"
+key = "Down"
+mods = "Control"
+
+[window]
+dynamic_padding = true
+dynamic_title = true
+opacity = 0.96
+
+[window.padding]
+x = 16
+y = 16
