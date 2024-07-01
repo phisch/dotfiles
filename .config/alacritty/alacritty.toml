@@ -47,6 +47,7 @@ key = "Down"
 mods = "Control"
 
 [window]
+decorations = "none"
 dynamic_padding = true
 dynamic_title = true
 opacity = 0.96
