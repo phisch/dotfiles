@@ -1,0 +1,206 @@
+input {
+    keyboard {
+        xkb {
+            layout "de(nodeadkeys)"
+        }
+    }
+
+    touchpad {
+        dwt
+        dwtp
+        natural-scroll
+    }
+
+    trackpoint {
+        accel-speed 0.3
+    }
+}
+
+output "eDP-1" {
+    mode "2560x1440@60.012"
+    scale 1.5
+    transform "normal"
+    position x=0 y=0
+}
+
+output "DP-1" {
+    mode "2560x1440@143.856"
+    scale 1
+    transform "normal"
+    position x=-2560 y=0
+}
+
+layout {
+    gaps 12
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.25
+        proportion 0.5
+        proportion 0.75
+        proportion 1.0
+    }
+
+    default-column-width {}
+    
+    focus-ring {
+        width 4
+        active-color "hsla(251, 86%, 64%, 0.60)"
+        inactive-color "hsla(251, 86%, 64%, 0.10)"
+    }
+
+    border {
+        off
+
+        width 4
+        active-color "#ffc87f"
+        inactive-color "#505050"
+    }    
+}
+
+cursor {
+    xcursor-theme "phinger-cursors-light"
+    xcursor-size 32
+}
+
+spawn-at-startup "waybar"
+spawn-at-startup "swaybg" "-i" "/home/phisch/Pictures/wallpapers/grape.png"
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
+
+screenshot-path "~/Pictures/screenshots/%Y-%m-%d %H-%M-%S.png"
+
+animations {
+}
+
+prefer-no-csd
+
+window-rule {
+    geometry-corner-radius 8
+    clip-to-geometry true
+}
+
+window-rule {
+    match app-id="Alacritty"
+    draw-border-with-background false
+}
+
+binds {
+    Mod+H { show-hotkey-overlay; }
+    Mod+W { close-window; }
+
+    Mod+Return { spawn "alacritty"; }
+    Mod+Space { spawn "wofi" "--show" "drun"; }
+
+    Print { screenshot; }
+    Ctrl+Print { screenshot-screen; }
+    Alt+Print { screenshot-window; }
+
+    // TODO: get rid of the confirmation dialog
+    Mod+Shift+E { quit; }
+
+    Mod+Shift+P { power-off-monitors; }
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.01+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.01-"; }
+    XF86AudioMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+    Xf86MonBrightnessUp allow-when-locked=true { spawn "light" "-A" "1"; }
+    Xf86MonBrightnessDown allow-when-locked=true { spawn "light" "-U" "1"; }
+    Alt+Prior allow-when-locked=true { spawn "light" "-A" "1"; }
+    Alt+Next allow-when-locked=true { spawn "light" "-U" "1"; }
+
+    Mod+Right { focus-column-right-or-first; }
+    Mod+Left { focus-column-left-or-last; }
+
+    Mod+Down { focus-window-or-workspace-down;}
+    Mod+Up { focus-window-or-workspace-up; }
+
+    Mod+Alt+Right { move-column-right; }
+    Mod+Alt+Left { move-column-left; }
+    
+    Mod+Alt+Down { move-window-down-or-to-workspace-down; }
+    Mod+Alt+Up { move-window-up-or-to-workspace-up; }
+
+    Mod+Home { focus-column-first; }
+    Mod+End  { focus-column-last; }
+    Mod+Alt+Home { move-column-to-first; }
+    Mod+Alt+End  { move-column-to-last; }
+
+    Mod+Ctrl+Left { focus-monitor-left; }
+    Mod+Ctrl+Right { focus-monitor-right; }
+    Mod+Ctrl+Up { focus-monitor-up; }
+    Mod+Ctrl+Down { focus-monitor-down; }
+
+    Mod+Ctrl+Alt+Left { move-window-to-monitor-left; }
+    Mod+Ctrl+Alt+Right { move-window-to-monitor-right; }
+    Mod+Ctrl+Alt+Up { move-window-to-monitor-up; }
+    Mod+Ctrl+Alt+Down { move-window-to-monitor-down; }
+    
+    Mod+Page_Down      { focus-workspace-down; }
+    Mod+Page_Up        { focus-workspace-up; }
+
+    Mod+Alt+Page_Down  { move-column-to-workspace-down; }
+    Mod+Alt+Page_Up    { move-column-to-workspace-up; }
+
+    // TODO: check if these or others are necessary for my workflow
+    // Mod+Shift+Page_Down { move-workspace-down; }
+    // Mod+Shift+Page_Up   { move-workspace-up; }
+
+    Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
+    Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
+    Mod+Alt+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Alt+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
+
+    Mod+WheelScrollRight cooldown-ms=150 { focus-column-right; }
+    Mod+WheelScrollLeft cooldown-ms=150 { focus-column-left; }
+    Mod+Alt+WheelScrollRight cooldown-ms=150 { move-column-right; }
+    Mod+Alt+WheelScrollLeft cooldown-ms=150 { move-column-left; }
+
+    Mod+Shift+WheelScrollDown cooldown-ms=150 { focus-column-right; }
+    Mod+Shift+WheelScrollUp cooldown-ms=150 { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown cooldown-ms=150 { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp cooldown-ms=150 { move-column-left; }
+
+    Mod+TouchpadScrollDown { spawn "light" "-A" "1"; }
+    Mod+TouchpadScrollUp   { spawn "light" "-U" "1"; }
+
+    // TODO: test out and find most comfortable consume and expel setup
+    Mod+Comma  { consume-or-expel-window-left; }
+    Mod+Period { consume-or-expel-window-right; }
+
+    // Mod+Comma  { consume-window-into-column; }
+    // Mod+Period { expel-window-from-column; }
+
+    // TODO: update these shortcuts, they are still default
+    Mod+R { switch-preset-column-width; }
+    Mod+Shift+R { reset-window-height; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+C { center-column; }
+
+    // TODO: setup proper width adjustment shortcuts
+    // Finer width adjustments.
+    // This command can also:
+    // * set width in pixels: "1000"
+    // * adjust width in pixels: "-5" or "+5"
+    // * set width as a percentage of screen width: "25%"
+    // * adjust width as a percentage of screen width: "-10%" or "+10%"
+    // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
+    // set-column-width "100" will make the column occupy 200 physical screen pixels.
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+
+    // Finer height adjustments when in column with other windows.
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    // Actions to switch layouts.
+    // Note: if you uncomment these, make sure you do NOT have
+    // a matching layout switch hotkey configured in xkb options above.
+    // Having both at once on the same hotkey will break the switching,
+    // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
+    // Mod+Space       { switch-layout "next"; }
+    // Mod+Shift+Space { switch-layout "prev"; }
+}
