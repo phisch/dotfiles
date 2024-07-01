@@ -31,7 +31,6 @@ $env.config = {
   }
   color_config: $theme
   footer_mode: "auto"
-  shell_integration: true
   menus: []
   keybindings: [
     {
