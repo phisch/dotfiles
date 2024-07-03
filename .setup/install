@@ -3,14 +3,14 @@
 sudo -v
 while true; do sleep 60; sudo -n true; kill -0 "$$" || exit; done 2>/dev/null &
 
-setup_directory=$(realpath $(dirname "$0"))
+setup_directory=$(realpath "$(dirname "$0")")
 
-localectl set-keymap de-latin1-nodeadkeys
+sudo cp -rf etc/* /etc
+ 
+localectl set-keymap de
 localectl set-locale en_US.UTF-8
 timedatectl set-timezone Europe/Berlin
 
-sudo sed -i '/^#Color$/s/^#//g' /etc/pacman.conf
-sudo sed -i '/^#ParallelDownloads =/s/^#//g' /etc/pacman.conf
 sudo pacman -Syu --needed --noconfirm - < "$setup_directory/packages/official"
 
 cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm
@@ -21,31 +21,25 @@ sudo systemctl enable bluetooth docker fstrim.timer systemd-timesyncd
 
 xdg-user-dirs-update && mkdir -p ~/Pictures/screenshots ~/Videos/recordings
 
-echo 'ACTION=="add",SUBSYSTEM=="sound",KERNEL=="ctl-led",ATTR{mic/mode}="follow-route"' | sudo tee /etc/udev/rules.d/50-micmute-led.rules
-
 read -p "Starting smart-card setup, press return to continue."
 
 sudo systemctl enable --now pcscd
 
-gpg --import "$setup_directory/gpg/public-keys.asc"
+gpg --recv-keys "6BEB117F7BDBD749"
 gpg --import-ownertrust < "$setup_directory/gpg/ownertrust"
-gpg-connect-agent "scd serialno" "learn --force" /bye
 
 export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-gpgconf --launch gpg-agent && gpg-connect-agent updatestartuptty /bye
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+gpgconf --launch gpg-agent
 
 sudo find ~/.gnupg -type d -exec chmod 700 {} \;
 sudo find ~/.gnupg -type f -exec chmod 600 {} \;
 
 mkdir -p ~/.config/Yubico && pamu2fcfg > ~/.config/Yubico/u2f_keys
-sudo sed -i '2 i auth sufficient pam_u2f.so cue [cue_prompt=Confirm sudo by touching the YubiKey!]' /etc/pam.d/sudo
-sudo sed -i '2 i auth sufficient pam_u2f.so cue [cue_prompt=Grant sudo by touching the YubiKey!]' /etc/pam.d/polkit-1
-sudo sed -i '2 i auth sufficient pam_u2f.so cue [cue_prompt=Login by touching the YubiKey!]' /etc/pam.d/login
 
 git -C ~ remote set-url origin git@github.com:phisch/dotfiles.git
 git clone git@github.com:phisch/passwords.git ~/.password-store
 
 read -p "Setup finished, press return to reboot."
-
 reboot
+
