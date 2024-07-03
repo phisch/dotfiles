@@ -1,0 +1,1 @@
+ACTION=="add",SUBSYSTEM=="sound",KERNEL=="ctl-led",ATTR{mic/mode}="follow-route"

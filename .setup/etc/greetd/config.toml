@@ -1,0 +1,5 @@
+[terminal]
+vt = 1
+
+[default_session]
+command = "tuigreet -r --user-menu --cmd niri-session"
