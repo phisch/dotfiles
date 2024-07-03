@@ -6,15 +6,13 @@ while true; do sleep 60; sudo -n true; kill -0 "$$" || exit; done 2>/dev/null &
 setup_directory=$(realpath "$(dirname "$0")")
 
 sudo cp -rf etc/* /etc
- 
+
 localectl set-keymap de
 localectl set-locale en_US.UTF-8
 timedatectl set-timezone Europe/Berlin
 
-sudo pacman -Syu --needed --noconfirm - < "$setup_directory/packages/official"
-
 cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm
-paru -Sy --nosudoloop --needed --noconfirm - < "$setup_directory/packages/aur"
+paru -Sy --nosudoloop --needed --noconfirm - < "$setup_directory/packages"
 
 sudo usermod -aG docker,video $USER
 sudo systemctl enable bluetooth docker fstrim.timer systemd-timesyncd
