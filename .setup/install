@@ -16,6 +16,7 @@ paru -Sy --nosudoloop --needed --noconfirm - < "$setup_directory/packages"
 
 sudo usermod -aG docker,video $USER
 sudo systemctl enable bluetooth docker fstrim.timer systemd-timesyncd
+systemctl enable --user syncthing
 
 xdg-user-dirs-update && mkdir -p ~/Pictures/screenshots ~/Videos/recordings
 
