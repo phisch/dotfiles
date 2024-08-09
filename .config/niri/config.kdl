@@ -110,15 +110,6 @@ binds {
         "#;
     }
 
-    Shift+Print {
-        spawn "sh" "-c" r#"
-            file=~/Pictures/screenshots/"$(date +%s)".png
-            grim -g "$(slurp)" "$file"
-            wl-copy < "$file"
-            curl -s -F "file=@$file" 0x0.st | wl-copy -p
-        "#;
-    }
-
     Ctrl+Print {
         spawn "sh" "-c" r#"
             file=~/Videos/recordings/"$(date +%s)".mp4
