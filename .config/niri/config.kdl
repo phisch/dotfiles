@@ -23,16 +23,16 @@ output "eDP-1" {
     position x=0 y=0
 }
 
-output "DP-1" {
-    mode "2560x1440@143.856"
-    scale 1
+output "DP-3" {
+    mode "3440x1440@179.981"
+    scale 1.0
     transform "normal"
-    position x=-2560 y=0
+    position x=0 y=0
 }
 
 layout {
     gaps 12
-    center-focused-column "never"
+    center-focused-column "always"
 
     preset-column-widths {
         proportion 0.25
@@ -55,7 +55,7 @@ layout {
         width 4
         active-color "#ffc87f"
         inactive-color "#505050"
-    }    
+    }
 }
 
 cursor {
@@ -85,6 +85,16 @@ window-rule {
     draw-border-with-background false
 }
 
+window-rule {
+    match title="Signal"
+    block-out-from "screencast"
+}
+
+window-rule {
+    match app-id="dev.zed.Zed-Preview"
+    draw-border-with-background false
+}
+
 binds {
     Mod+H { show-hotkey-overlay; }
     Mod+W { close-window; }
@@ -92,9 +102,32 @@ binds {
     Mod+Return { spawn "alacritty"; }
     Mod+Space { spawn "wofi" "--show" "drun"; }
 
-    Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    Print {
+        spawn "sh" "-c" r#"
+            file=~/Pictures/screenshots/"$(date +%s)".png
+            grim -g "$(slurp)" "$file"
+            wl-copy < "$file"
+        "#;
+    }
+
+    Shift+Print {
+        spawn "sh" "-c" r#"
+            file=~/Pictures/screenshots/"$(date +%s)".png
+            grim -g "$(slurp)" "$file"
+            wl-copy < "$file"
+            curl -s -F "file=@$file" 0x0.st | wl-copy -p
+        "#;
+    }
+
+    Ctrl+Print {
+        spawn "sh" "-c" r#"
+            file=~/Videos/recordings/"$(date +%s)".mp4
+            wf-recorder -c h264_vaapi -r 60 --bframes 0 -g "$(slurp)" -f "$file"
+            wl-copy file:/"$file" -t text/uri-list
+        "#;
+    }
+
+    Ctrl+Escape { spawn "killall" "-s" "SIGINT" "wf-recorder"; }
 
     // TODO: get rid of the confirmation dialog
     Mod+Shift+E { quit; }
@@ -116,6 +149,9 @@ binds {
 
     Mod+Down { focus-window-or-workspace-down;}
     Mod+Up { focus-window-or-workspace-up; }
+
+    XF86Tools { focus-window-or-workspace-down;}
+    XF86Launch5 { focus-window-or-workspace-up; }
 
     Mod+Alt+Right { move-column-right; }
     Mod+Alt+Left { move-column-left; }
@@ -170,6 +206,9 @@ binds {
     Mod+Comma  { consume-or-expel-window-left; }
     Mod+Period { consume-or-expel-window-right; }
 
+    Menu { spawn "pactl" "set-source-mute" "0" "toggle"; }
+    
+
     // Mod+Comma  { consume-window-into-column; }
     // Mod+Period { expel-window-from-column; }
 
@@ -203,4 +242,5 @@ binds {
     // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
+
 }
