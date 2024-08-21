@@ -1,3 +1,15 @@
+environment {
+    DISPLAY ":0"
+    QT_QPA_PLATFORM "wayland"
+    XDG_CURRENT_DESKTOP "niri"
+    XDG_SESSION_TYPE "wayland"
+    MANGOHUD "1"
+    MANGOHUD_DLSYM "1"
+    EDITOR "nano"
+    _JAVA_AWT_WM_NONREPARENTING "1"
+    _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=gasp"
+}
+
 input {
     keyboard {
         xkb {
@@ -76,6 +88,7 @@ animations {
 prefer-no-csd
 
 window-rule {
+    min-height 100
     geometry-corner-radius 8
     clip-to-geometry true
 }
