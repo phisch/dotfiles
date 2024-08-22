@@ -1,8 +1,8 @@
 {
     "position": "top",
+    "layer": "top",
     "height": 32,
     "spacing": 0,
-    "mode": "dock",
     "fixed-center": false,
     "modules-left": ["sway/workspaces"],
     "modules-center": ["sway/window"],
