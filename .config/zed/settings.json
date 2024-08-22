@@ -1,0 +1,33 @@
+{
+  "assistant": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "gpt-4"
+    },
+    "version": "2"
+  },
+  "ui_font_size": 16,
+  "ui_font_weight": 200,
+  "buffer_font_weight": 200,
+  "buffer_font_size": 16,
+  "ui_font_family": "JetBrains Mono",
+  "buffer_font_family": "JetBrains Mono",
+  "terminal": {
+    "font_weight": 200,
+    "font_family": "JetBrains Mono",
+    "font_size": 16,
+    "shell": {
+      "program": "/usr/bin/nu"
+    }
+  },
+  "indent_guides": {
+    //"coloring": "disabled", // Set this to indent_aware to paint the lines in rainbow colors
+    //"background_coloring": "indent_aware" // Set this to indent_aware to paint the background in rainbow colors
+  },
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Phine"
+  },
+  "wrap_guides": [80, 120]
+}
