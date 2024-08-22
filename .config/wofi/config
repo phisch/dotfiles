@@ -11,3 +11,4 @@ prompt=
 normal_window=false
 content_halign=center
 halign=start
+layer=overlay
