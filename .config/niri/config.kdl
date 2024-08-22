@@ -3,7 +3,7 @@ environment {
     QT_QPA_PLATFORM "wayland"
     XDG_CURRENT_DESKTOP "niri"
     XDG_SESSION_TYPE "wayland"
-    MANGOHUD "1"
+    MANGOHUD "0"
     MANGOHUD_DLSYM "1"
     EDITOR "nano"
     _JAVA_AWT_WM_NONREPARENTING "1"
@@ -54,7 +54,7 @@ layout {
     }
 
     default-column-width {}
-    
+
     focus-ring {
         width 4
         active-color "hsla(251, 86%, 64%, 0.60)"
@@ -100,7 +100,12 @@ window-rule {
 
 window-rule {
     match title="Signal"
-    block-out-from "screencast"
+    block-out-from "screen-capture"
+}
+
+window-rule {
+    match app-id="chromium" title="- Gmail "
+    block-out-from "screen-capture"
 }
 
 window-rule {
@@ -122,6 +127,8 @@ binds {
             wl-copy < "$file"
         "#;
     }
+
+    Alt+Print { screenshot; }
 
     Ctrl+Print {
         spawn "sh" "-c" r#"
@@ -159,7 +166,7 @@ binds {
 
     Mod+Alt+Right { move-column-right; }
     Mod+Alt+Left { move-column-left; }
-    
+
     Mod+Alt+Down { move-window-down-or-to-workspace-down; }
     Mod+Alt+Up { move-window-up-or-to-workspace-up; }
 
@@ -177,7 +184,7 @@ binds {
     Mod+Ctrl+Alt+Right { move-window-to-monitor-right; }
     Mod+Ctrl+Alt+Up { move-window-to-monitor-up; }
     Mod+Ctrl+Alt+Down { move-window-to-monitor-down; }
-    
+
     Mod+Page_Down      { focus-workspace-down; }
     Mod+Page_Up        { focus-workspace-up; }
 
@@ -211,7 +218,7 @@ binds {
     Mod+Period { consume-or-expel-window-right; }
 
     Menu { spawn "pactl" "set-source-mute" "0" "toggle"; }
-    
+
 
     // Mod+Comma  { consume-window-into-column; }
     // Mod+Period { expel-window-from-column; }
@@ -233,11 +240,11 @@ binds {
     // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
     // set-column-width "100" will make the column occupy 200 physical screen pixels.
     Mod+Minus { set-column-width "-10%"; }
-    Mod+Equal { set-column-width "+10%"; }
+    Mod+Plus { set-column-width "+10%"; }
 
     // Finer height adjustments when in column with other windows.
     Mod+Shift+Minus { set-window-height "-10%"; }
-    Mod+Shift+Equal { set-window-height "+10%"; }
+    Mod+Shift+Plus { set-window-height "+10%"; }
 
     // Actions to switch layouts.
     // Note: if you uncomment these, make sure you do NOT have
@@ -246,5 +253,4 @@ binds {
     // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
     // Mod+Space       { switch-layout "next"; }
     // Mod+Shift+Space { switch-layout "prev"; }
-
 }
