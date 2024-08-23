@@ -2,14 +2,17 @@
     font-size: 14px;
     background: transparent;
     background-image: url("/home/phisch/Pictures/wallpapers/grape.png");
-    background-position: 0 0;
-    background-origin: content-box;
-    background-repeat: no-repeat;
-    background-size: cover;
+    background-size: calc(2560px / 1.4);
+    color: white;
 }
 
 #outer-box {
-    background-image: linear-gradient(to right, rgba(0,0,0,0.4), transparent, transparent);
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.3),
+        transparent,
+        transparent
+    );
 }
 
 #input {
@@ -26,7 +29,7 @@
 }
 
 #entry:selected {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 #img {
