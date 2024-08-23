@@ -11,8 +11,12 @@ $env.ENV_CONVERSIONS = {
   }
 }
 
-$env.npm_config_prefix = ~/.local
-$env.NPM_PACKAGES = ~/.npm-packages
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
+mkdir ~/.cache/carapace
+carapace _carapace nushell | save -f ~/.cache/carapace/init.nu
+
+$env.NPM_CONFIG_PREFIX = "~/.local"
+$env.NPM_PACKAGES = "~/.npm-packages"
 $env.PATH = ($env.PATH | append '~/.cargo/bin' | append '~/.local/bin' | append $'($env.NPM_PACKAGES)/bin')
 
 $env.GPG_TTY = (tty)

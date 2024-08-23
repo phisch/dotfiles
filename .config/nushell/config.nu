@@ -15,23 +15,26 @@ $env.config = {
     index_mode: auto
   }
   history: {
-    max_size: 10000
+    max_size: 10_000
+    sync_on_enter: true
     file_format: "sqlite"
-  }
-  completions: {
-    external: {
-      enable: true
-      completer: { |spans| 
-        carapace $spans.0 nushell ...$spans | from json
-      }
-    }
+    isolation: false
   }
   cursor_shape: {
     emacs: underscore
   }
   color_config: $theme
   footer_mode: "auto"
-  menus: []
+  shell_integration: {
+      osc2: true
+      osc7: true
+      osc8: true
+      osc9_9: false
+      osc133: true
+      osc633: true
+      reset_application_mode: true
+  }
+  use_kitty_protocol: true
   keybindings: [
     {
       name: delete_word
@@ -60,5 +63,7 @@ $env.config = {
 }
 
 alias npm = pnpm
+alias zed = zeditor
 
 use ~/.cache/starship/init.nu
+source ~/.cache/carapace/init.nu
