@@ -99,13 +99,15 @@ window-rule {
 }
 
 window-rule {
+    match title=r#"(?i)gmail"#
+    match title=r#"(?i)inertia"#
     match title="Signal"
     block-out-from "screen-capture"
 }
 
 window-rule {
-    match app-id="chromium" title="- Gmail "
-    block-out-from "screen-capture"
+    match app-id="steam_app"
+    open-fullscreen true
 }
 
 window-rule {
