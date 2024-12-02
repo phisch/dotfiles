@@ -30,7 +30,7 @@ input {
 
 output "eDP-1" {
     mode "2560x1440@60.012"
-    scale 1.5
+    scale 1.4
     transform "normal"
     position x=0 y=0
 }
@@ -43,7 +43,7 @@ output "DP-3" {
 }
 
 layout {
-    gaps 12
+    gaps 6
     center-focused-column "always"
 
     preset-column-widths {
@@ -53,20 +53,8 @@ layout {
         proportion 1.0
     }
 
-    default-column-width {}
-
     focus-ring {
-        width 4
-        active-color "hsla(251, 86%, 64%, 0.60)"
-        inactive-color "hsla(251, 86%, 64%, 0.10)"
-    }
-
-    border {
         off
-
-        width 4
-        active-color "#ffc87f"
-        inactive-color "#505050"
     }
 }
 
@@ -88,8 +76,9 @@ animations {
 prefer-no-csd
 
 window-rule {
-    min-height 100
-    geometry-corner-radius 8
+    min-height 200
+    min-width 200
+    geometry-corner-radius 6
     clip-to-geometry true
 }
 
