@@ -204,8 +204,7 @@ binds {
 
     Ctrl+Escape { spawn "killall" "-s" "SIGINT" "wf-recorder"; }
 
-    // TODO: get rid of the confirmation dialog
-    Mod+Shift+E { quit; }
+    Mod+Shift+E { quit skip-confirmation=true; }
 
     Mod+Shift+P { power-off-monitors; }
 
