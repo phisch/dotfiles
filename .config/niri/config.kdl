@@ -65,6 +65,10 @@ layout {
     focus-ring {
         off
     }
+
+    insert-hint {
+        color "#5D8DEE40"
+    }
 }
 
 cursor {
