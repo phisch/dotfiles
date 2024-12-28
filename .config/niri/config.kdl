@@ -27,6 +27,14 @@ input {
     trackpoint {
         accel-speed 0.3
     }
+
+    tablet {
+        map-to-output "DP-3"
+    }
+
+    touch {
+        map-to-output "DP-3"
+    }
 }
 
 output "eDP-1" {
