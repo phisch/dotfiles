@@ -52,7 +52,7 @@ output "DP-3" {
 }
 
 layout {
-    gaps 6
+    gaps 8
     center-focused-column "always"
 
     preset-column-widths {
