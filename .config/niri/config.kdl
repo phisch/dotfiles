@@ -173,8 +173,29 @@ window-rule {
 }
 
 window-rule {
-    match app-id="dev.zed.Zed-Preview"
-    draw-border-with-background false
+    match app-id="gcr-prompter"
+    open-floating true
+
+    geometry-corner-radius 1
+
+    border {
+        on
+        width 8
+        active-color "#242424"
+        inactive-color "#242424"
+    }
+}
+
+
+window-rule {
+    match app-id="org.gnome.Calculator"
+    open-floating true
+}
+
+window-rule {
+    match app-id="firefox$" title="^Picture-in-Picture$"
+    open-floating true
+    open-focused false
 }
 
 binds {
