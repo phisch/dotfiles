@@ -137,15 +137,34 @@ window-rule {
 }
 
 window-rule {
-    match app-id="Alacritty"
-    draw-border-with-background false
-}
-
-window-rule {
     match title=r#"(?i)gmail"#
     match title=r#"(?i)inertia"#
     match title="Signal"
+
     block-out-from "screen-capture"
+
+    focus-ring {
+        on
+        width 3
+        active-color "#FF878720"
+        inactive-color "#FF878720"
+    }
+}
+
+window-rule {
+    match is-focused=false title=r#"(?i)gmail"#
+    match is-focused=false title=r#"(?i)inertia"#
+    match is-focused=false title="Signal"
+
+    opacity 0.5
+    draw-border-with-background true
+
+    border {
+        on
+        width 0
+        active-color "#000000"
+        inactive-color "#000000"
+    }
 }
 
 window-rule {
