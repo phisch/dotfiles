@@ -311,7 +311,8 @@ binds {
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { reset-window-height; }
     Mod+F { maximize-column; }
-    Mod+Shift+F { fullscreen-window; }
+    Mod+Alt+F { toggle-window-floating; }
+    Ctrl+Mod+F { fullscreen-window; }
     Mod+C { center-column; }
 
     // TODO: setup proper width adjustment shortcuts
