@@ -2,32 +2,59 @@
   "assistant": {
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-4"
+      "model": "claude-3-5-sonnet"
     },
     "version": "2"
   },
-  "ui_font_size": 16,
-  "ui_font_weight": 200,
-  "buffer_font_weight": 200,
-  "buffer_font_size": 16,
-  "ui_font_family": "JetBrains Mono",
+  "auto_update": false,
   "buffer_font_family": "JetBrains Mono",
+  "buffer_font_size": 18,
+  "buffer_font_weight": 200,
+  "drop_target_size": 0.33,
+  "features": {
+    "inline_completion_provider": "copilot"
+  },
+  "gutter": {
+    "folds": false
+  },
+  "message_editor": {
+    "auto_replace_emoji_shortcode": true
+  },
+  "preview_tabs": {
+    "enable_preview_from_code_navigation": true,
+    "enable_preview_from_file_finder": true
+  },
+  "project_panel": {
+    "auto_fold_dirs": false
+  },
+  "tabs": {
+    "git_status": true
+  },
+  "telemetry": {
+    "enabled": false,
+    "metrics": false,
+    "diagnostics": false
+  },
   "terminal": {
     "font_weight": 200,
     "font_family": "JetBrains Mono",
     "font_size": 16,
     "shell": {
       "program": "/usr/bin/nu"
+    },
+    "toolbar": {
+      "breadcrumbs": false
     }
-  },
-  "indent_guides": {
-    //"coloring": "disabled", // Set this to indent_aware to paint the lines in rainbow colors
-    //"background_coloring": "indent_aware" // Set this to indent_aware to paint the background in rainbow colors
   },
   "theme": {
     "mode": "system",
     "light": "One Light",
     "dark": "Phine"
   },
+  "ui_font_size": 18,
+  "ui_font_weight": 200,
+  "unnecessary_code_fade": 0.8,
+  "unstable.ui_density": "default",
+  "use_smartcase_search": true,
   "wrap_guides": [80, 120]
 }
