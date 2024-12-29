@@ -10,6 +10,10 @@ environment {
     _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=gasp"
 }
 
+hotkey-overlay {
+    skip-at-startup
+}
+
 input {
     keyboard {
         xkb {
@@ -174,7 +178,7 @@ window-rule {
 
 window-rule {
     match app-id="gcr-prompter"
-    open-floating true
+    //open-floating true
 
     geometry-corner-radius 1
 
@@ -189,13 +193,13 @@ window-rule {
 
 window-rule {
     match app-id="org.gnome.Calculator"
-    open-floating true
+    //open-floating true
 }
 
 window-rule {
     match app-id="firefox$" title="^Picture-in-Picture$"
-    open-floating true
-    open-focused false
+    //open-floating true
+    //open-focused false
 }
 
 binds {
@@ -225,7 +229,7 @@ binds {
 
     Ctrl+Escape { spawn "killall" "-s" "SIGINT" "wf-recorder"; }
 
-    Mod+Shift+E { quit skip-confirmation=true; }
+    // Mod+Shift+E { quit skip-confirmation=true; }
 
     Mod+Shift+P { power-off-monitors; }
 
@@ -311,7 +315,7 @@ binds {
     Mod+R { switch-preset-column-width; }
     Mod+Shift+R { reset-window-height; }
     Mod+F { maximize-column; }
-    Mod+Alt+F { toggle-window-floating; }
+    // Mod+Alt+F { toggle-window-floating; }
     Ctrl+Mod+F { fullscreen-window; }
     Mod+C { center-column; }
 
