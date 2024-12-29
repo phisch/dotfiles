@@ -229,7 +229,7 @@ binds {
 
     Ctrl+Escape { spawn "killall" "-s" "SIGINT" "wf-recorder"; }
 
-    // Mod+Shift+E { quit skip-confirmation=true; }
+    Mod+Shift+E { quit skip-confirmation=true; }
 
     Mod+Shift+P { power-off-monitors; }
 
