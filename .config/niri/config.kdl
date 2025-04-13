@@ -176,7 +176,6 @@ window-rule {
     }
 }
 
-
 window-rule {
     match app-id="org.gnome.Calculator"
     open-floating true
@@ -184,8 +183,11 @@ window-rule {
 
 window-rule {
     match app-id="firefox$" title="^Picture-in-Picture$"
+    match title="^Picture in picture$"
+
     open-floating true
     open-focused false
+    default-floating-position x=32 y=32 relative-to="bottom-left"
 }
 
 binds {
