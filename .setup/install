@@ -13,7 +13,10 @@ localectl set-keymap de
 localectl set-locale en_US.UTF-8
 timedatectl set-timezone Europe/Berlin
 
-cd "$(mktemp -d)" && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm && cd -
+if ! command -v paru &> /dev/null; then
+    cd "$(mktemp -d)" && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm && cd -
+fi
+
 paru -Sy --nosudoloop --needed --noconfirm - < "$SETUP_DIRECTORY/packages"
 
 sudo usermod -aG docker,video "$USER"
@@ -21,8 +24,11 @@ sudo systemctl enable bluetooth docker fstrim.timer systemd-timesyncd greetd
 
 xdg-user-dirs-update && mkdir -p ~/Pictures/screenshots ~/Videos/recordings
 
-export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+GPG_TTY="$(tty)"
+export GPG_TTY
+
+SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+export SSH_AUTH_SOCK
 
 sudo find ~/.gnupg -type d -exec chmod 700 {} \;
 sudo find ~/.gnupg -type f -exec chmod 600 {} \;
