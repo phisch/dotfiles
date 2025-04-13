@@ -139,6 +139,14 @@ window-rule {
     min-width 200
     geometry-corner-radius 6
     clip-to-geometry true
+
+    shadow {
+        on
+        softness 12
+        spread 0
+        offset x=0 y=0
+        color "#000000"
+    }
 }
 
 window-rule {
