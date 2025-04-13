@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 
+set -eo pipefail
+
 sudo -v
 while true; do sleep 60; sudo -n true; kill -0 "$$" || exit; done 2>/dev/null &
 
-setup_directory=$(realpath "$(dirname "$0")")
+SETUP_DIRECTORY=$(realpath "$(dirname "$0")")
 
 sudo cp -rf etc/* /etc
 
@@ -11,34 +13,39 @@ localectl set-keymap de
 localectl set-locale en_US.UTF-8
 timedatectl set-timezone Europe/Berlin
 
-cd $(mktemp -d) && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm
-paru -Sy --nosudoloop --needed --noconfirm - < "$setup_directory/packages"
+cd "$(mktemp -d)" && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm && cd -
+paru -Sy --nosudoloop --needed --noconfirm - < "$SETUP_DIRECTORY/packages"
 
-sudo usermod -aG docker,video $USER
+sudo usermod -aG docker,video "$USER"
 sudo systemctl enable bluetooth docker fstrim.timer systemd-timesyncd greetd
-systemctl enable --user syncthing
 
 xdg-user-dirs-update && mkdir -p ~/Pictures/screenshots ~/Videos/recordings
 
-read -p "Starting smart-card setup, press return to continue."
-
-sudo systemctl enable --now pcscd
-
-gpg --recv-keys "6BEB117F7BDBD749"
-gpg --import-ownertrust < "$setup_directory/gpg/ownertrust"
-
 export GPG_TTY="$(tty)"
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-gpgconf --launch gpg-agent
 
 sudo find ~/.gnupg -type d -exec chmod 700 {} \;
 sudo find ~/.gnupg -type f -exec chmod 600 {} \;
 
-mkdir -p ~/.config/Yubico && pamu2fcfg > ~/.config/Yubico/u2f_keys
+paru -Sy --nosudoloop --needed --noconfirm \
+    browserpass-chromium \
+    browserpass-firefox \
+    ccid \
+    gnome-keyring \
+    openssh \
+    pam-u2f \
+    pass \
+    pcsclite \
+    polkit \
+    polkit-gnome \
+    yubico-authenticator-bin
+
+sudo systemctl enable --now pcscd
+
+GPG_KEY="A00155F3C961D57E645299D66BEB117F7BDBD749"
+gpg --recv-keys "$GPG_KEY"
+echo "$GPG_KEY:6:" | gpg --import-ownertrust
+gpg --card-status
 
 git -C ~ remote set-url origin git@github.com:phisch/dotfiles.git
 git clone git@github.com:phisch/passwords.git ~/.password-store
-
-read -p "Setup finished, press return to reboot."
-reboot
-
