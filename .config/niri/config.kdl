@@ -164,7 +164,7 @@ window-rule {
 
 window-rule {
     match app-id="gcr-prompter"
-    //open-floating true
+    open-floating true
 
     geometry-corner-radius 1
 
