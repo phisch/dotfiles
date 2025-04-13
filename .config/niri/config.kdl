@@ -49,18 +49,20 @@ input {
     }
 }
 
-output "eDP-1" {
-    mode "2560x1440@60.012"
-    scale 1.4
-    transform "normal"
-    position x=0 y=0
-}
-
-output "DP-3" {
+output "LG Electronics 34GP950G #GTIYMxgwABBH" {
     mode "3440x1440@179.981"
     scale 1.0
     transform "normal"
+    position x=1920 y=0
+    background-color "#0F0F0F"
+}
+
+output "Chimei Innolux Corporation 0x1458 Unknown" {
+    mode "1920x1200@60.003"
+    scale 1.0
+    transform "normal"
     position x=0 y=0
+    background-color "#0F0F0F"
 }
 
 layout {
