@@ -5,10 +5,18 @@ environment {
     XDG_SESSION_TYPE "wayland"
     MANGOHUD "0"
     MANGOHUD_DLSYM "1"
-    EDITOR "nano"
+    EDITOR "zeditor -w -n"
     _JAVA_AWT_WM_NONREPARENTING "1"
     _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=gasp"
 }
+
+prefer-no-csd
+
+screenshot-path "~/Pictures/screenshots/%Y-%m-%d %H-%M-%S.png"
+
+spawn-at-startup "waybar"
+spawn-at-startup "xwayland-satellite"
+spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 hotkey-overlay {
     skip-at-startup
@@ -80,13 +88,6 @@ cursor {
     xcursor-size 32
 }
 
-spawn-at-startup "waybar"
-spawn-at-startup "swaybg" "-i" "/home/phisch/Pictures/wallpapers/grape.png"
-spawn-at-startup "xwayland-satellite"
-spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
-
-screenshot-path "~/Pictures/screenshots/%Y-%m-%d %H-%M-%S.png"
-
 animations {
     workspace-switch {
         spring damping-ratio=1.0 stiffness=2000 epsilon=0.0001
@@ -130,8 +131,6 @@ animations {
         "
     }
 }
-
-prefer-no-csd
 
 window-rule {
     min-height 200
