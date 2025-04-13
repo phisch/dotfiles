@@ -17,7 +17,16 @@ carapace _carapace nushell | save -f ~/.cache/carapace/init.nu
 
 $env.NPM_CONFIG_PREFIX = "~/.local"
 $env.NPM_PACKAGES = "~/.npm-packages"
-$env.PATH = ($env.PATH | append '~/.cargo/bin' | append '~/.local/bin' | append $'($env.NPM_PACKAGES)/bin')
+$env.PNPM_HOME = ("~/.local/share/pnpm" | path expand)
+
+$env.PATH = ($env.PATH |
+    append '~/.cargo/bin' |
+    append '~/.local/bin' |
+    append $'($env.NPM_PACKAGES)/bin' |
+    append $env.PNPM_HOME
+)
+
+$env.ANDROID_SDK_ROOT = $"($env.HOME)/Android/Sdk"
 
 $env.GPG_TTY = (tty)
 $env.SSH_AUTH_SOCK = (gpgconf --list-dirs agent-ssh-socket)
