@@ -58,7 +58,7 @@ output "LG Electronics 34GP950G #GTIYMxgwABBH" {
     mode "3440x1440@179.981"
     scale 1.0
     transform "normal"
-    position x=1920 y=0
+    position x=0 y=0
     background-color "#0F0F0F"
 }
 
