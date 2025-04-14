@@ -66,11 +66,12 @@ output "Chimei Innolux Corporation 0x1458 Unknown" {
 }
 
 layout {
-    gaps 8
+    empty-workspace-above-first
     center-focused-column "always"
+    gaps 20
 
     preset-column-widths {
-        proportion 0.25
+        proportion 0.3
         proportion 0.5
         proportion 0.75
         proportion 1.0
@@ -81,7 +82,24 @@ layout {
     }
 
     insert-hint {
-        color "#5D8DEE40"
+        color "#8B76EA40"
+    }
+
+    struts {
+        top -10
+    }
+
+    tab-indicator {
+        hide-when-single-tab
+        place-within-column
+        gap 10
+        width 3
+        length total-proportion=0.6
+        position "left"
+        gaps-between-tabs 20
+        corner-radius 8
+        active-color "#8B76EA"
+        inactive-color "#FFFFFF20"
     }
 }
 
