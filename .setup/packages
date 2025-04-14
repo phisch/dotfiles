@@ -1,4 +1,5 @@
 7zip
+adw-gtk-theme
 alacritty
 base
 base-devel
@@ -48,6 +49,7 @@ rustdesk-bin
 rustup
 signal-desktop
 starship
+steam
 swaybg
 teamspeak3
 tokei

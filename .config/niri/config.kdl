@@ -18,6 +18,11 @@ spawn-at-startup "waybar"
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "phinger-cursors-light"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-size" "32"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "color-scheme" "prefer-dark"
+spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "gtk-theme" "adw-gtk3-dark"
+
 hotkey-overlay {
     skip-at-startup
 }
