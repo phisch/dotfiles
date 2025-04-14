@@ -6,6 +6,7 @@ base-devel
 bluez
 bluez-utils
 btrfs-progs
+bun-bin
 carapace-bin
 chromium
 cups
@@ -25,9 +26,11 @@ greetd-tuigreet
 gst-plugin-pipewire
 inkscape
 libpulse
+libvips
 light
 linux
 linux-firmware
+man-db
 mold
 mpv
 nautilus
@@ -39,9 +42,9 @@ paru-bin
 pavucontrol
 phinger-cursors
 pipewire
-pipewire-pulse
 pipewire-alsa
 pipewire-jack
+pipewire-pulse
 pnpm
 qbittorrent
 qt6-wayland
@@ -52,7 +55,6 @@ starship
 steam
 surrealdb-bin
 surrealist-bin
-swaybg
 teamspeak3
 tokei
 ttf-dejavu
