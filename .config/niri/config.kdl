@@ -103,6 +103,14 @@ layout {
     }
 }
 
+gestures {
+    dnd-edge-view-scroll {
+        trigger-width 80
+        delay-ms 200
+        max-speed 2000
+    }
+}
+
 cursor {
     xcursor-theme "phinger-cursors-light"
     xcursor-size 32
