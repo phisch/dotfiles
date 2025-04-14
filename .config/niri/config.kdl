@@ -204,6 +204,7 @@ window-rule {
 
 window-rule {
     match app-id="org.gnome.Calculator"
+    match app-id="zenity" title="Progress"
     open-floating true
 }
 
