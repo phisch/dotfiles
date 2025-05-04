@@ -51,6 +51,7 @@ qt6-wayland
 rustdesk-bin
 rustup
 signal-desktop
+slurp
 starship
 steam
 surrealdb-bin
@@ -63,6 +64,7 @@ ttf-joypixels
 ttf-material-design-icons-git
 vesktop-bin
 waybar
+wf-recorder
 wireplumber
 wl-clipboard
 wofi
