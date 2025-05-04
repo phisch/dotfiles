@@ -73,11 +73,10 @@ output "Chimei Innolux Corporation 0x1458 Unknown" {
 
 layout {
     empty-workspace-above-first
-    center-focused-column "always"
     gaps 20
 
     preset-column-widths {
-        proportion 0.3
+        proportion 0.25
         proportion 0.5
         proportion 0.75
         proportion 1.0
@@ -250,7 +249,6 @@ layer-rule {
 }
 
 binds {
-    Mod+H { show-hotkey-overlay; }
     Mod+W { close-window; }
 
     Mod+Return { spawn "alacritty"; }
@@ -276,7 +274,7 @@ binds {
 
     Ctrl+Escape { spawn "killall" "-s" "SIGINT" "wf-recorder"; }
 
-    Mod+Shift+E { quit skip-confirmation=true; }
+    Mod+Alt+Escape { quit skip-confirmation=true; }
 
     Mod+Shift+P { power-off-monitors; }
 
@@ -305,30 +303,16 @@ binds {
     Mod+Alt+Down { move-window-down-or-to-workspace-down; }
     Mod+Alt+Up { move-window-up-or-to-workspace-up; }
 
+    Ctrl+Mod+Left  { consume-or-expel-window-left; }
+    Ctrl+Mod+Right { consume-or-expel-window-right; }
+
     Mod+Home { focus-column-first; }
     Mod+End  { focus-column-last; }
     Mod+Alt+Home { move-column-to-first; }
     Mod+Alt+End  { move-column-to-last; }
 
-    Mod+Ctrl+Left { focus-monitor-left; }
-    Mod+Ctrl+Right { focus-monitor-right; }
-    Mod+Ctrl+Up { focus-monitor-up; }
-    Mod+Ctrl+Down { focus-monitor-down; }
-
-    Mod+Ctrl+Alt+Left { move-window-to-monitor-left; }
-    Mod+Ctrl+Alt+Right { move-window-to-monitor-right; }
-    Mod+Ctrl+Alt+Up { move-window-to-monitor-up; }
-    Mod+Ctrl+Alt+Down { move-window-to-monitor-down; }
-
-    Mod+Page_Down      { focus-workspace-down; }
-    Mod+Page_Up        { focus-workspace-up; }
-
-    Mod+Alt+Page_Down  { move-column-to-workspace-down; }
-    Mod+Alt+Page_Up    { move-column-to-workspace-up; }
-
-    // TODO: check if these or others are necessary for my workflow
-    // Mod+Shift+Page_Down { move-workspace-down; }
-    // Mod+Shift+Page_Up   { move-workspace-up; }
+    Mod+Alt+Page_Up   { move-workspace-up; }
+    Mod+Alt+Page_Down { move-workspace-down; }
 
     Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
@@ -348,45 +332,16 @@ binds {
     Mod+TouchpadScrollDown { spawn "light" "-A" "1"; }
     Mod+TouchpadScrollUp   { spawn "light" "-U" "1"; }
 
-    // TODO: test out and find most comfortable consume and expel setup
-    Mod+Comma  { consume-or-expel-window-left; }
-    Mod+Period { consume-or-expel-window-right; }
-
     Menu { spawn "pactl" "set-source-mute" "0" "toggle"; }
 
-
-    // Mod+Comma  { consume-window-into-column; }
-    // Mod+Period { expel-window-from-column; }
-
-    // TODO: update these shortcuts, they are still default
-    Mod+R { switch-preset-column-width; }
-    Mod+Shift+R { reset-window-height; }
-    Mod+F { maximize-column; }
-    // Mod+Alt+F { toggle-window-floating; }
-    Ctrl+Mod+F { fullscreen-window; }
     Mod+C { center-column; }
-
-    // TODO: setup proper width adjustment shortcuts
-    // Finer width adjustments.
-    // This command can also:
-    // * set width in pixels: "1000"
-    // * adjust width in pixels: "-5" or "+5"
-    // * set width as a percentage of screen width: "25%"
-    // * adjust width as a percentage of screen width: "-10%" or "+10%"
-    // Pixel sizes use logical, or scaled, pixels. I.e. on an output with scale 2.0,
-    // set-column-width "100" will make the column occupy 200 physical screen pixels.
-    Mod+Minus { set-column-width "-10%"; }
-    Mod+Plus { set-column-width "+10%"; }
-
-    // Finer height adjustments when in column with other windows.
-    Mod+Shift+Minus { set-window-height "-10%"; }
-    Mod+Shift+Plus { set-window-height "+10%"; }
-
-    // Actions to switch layouts.
-    // Note: if you uncomment these, make sure you do NOT have
-    // a matching layout switch hotkey configured in xkb options above.
-    // Having both at once on the same hotkey will break the switching,
-    // since it will switch twice upon pressing the hotkey (once by xkb, once by niri).
-    // Mod+Space       { switch-layout "next"; }
-    // Mod+Shift+Space { switch-layout "prev"; }
+    // WISHLIST: toggle for `center-focused-column "always"`
+    Mod+F { toggle-window-floating; }
+    Mod+Alt+F { fullscreen-window; }
+    Mod+F12 { fullscreen-window; }
+    Mod+Shift+F { toggle-window-floating; }
+    Ctrl+Mod+F { toggle-windowed-fullscreen; }
+    Mod+X { maximize-column; }
+    Ctrl+Mod+X { switch-preset-column-width; }
+    Mod+R { reset-window-height; }
 }
