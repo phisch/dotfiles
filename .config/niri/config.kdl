@@ -8,6 +8,7 @@ environment {
     EDITOR "zeditor -w -n"
     _JAVA_AWT_WM_NONREPARENTING "1"
     _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=gasp"
+    ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
 
 prefer-no-csd
