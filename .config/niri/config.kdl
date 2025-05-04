@@ -181,6 +181,10 @@ window-rule {
     }
 }
 
+overview {
+    //backdrop-color "#191919"
+}
+
 window-rule {
     match title=r#"(?i)gmail"#
     match title=r#"(?i)inertia"#
