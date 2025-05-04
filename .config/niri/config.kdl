@@ -231,12 +231,26 @@ window-rule {
     default-floating-position x=32 y=32 relative-to="bottom-right"
 }
 
+layer-rule {
+    match namespace="gtk4-layer-shell"
+    match at-startup=true
+
+    shadow {
+        on
+        softness 30
+        spread 20
+        offset x=0 y=0
+        draw-behind-window true
+        color "#00000090"
+    }
+}
+
 binds {
     Mod+H { show-hotkey-overlay; }
     Mod+W { close-window; }
 
     Mod+Return { spawn "alacritty"; }
-    Mod+Space { spawn "wofi" "--show" "drun"; }
+    Mod+Space { spawn "sherlock"; }
 
     Print {
         spawn "sh" "-c" r#"
