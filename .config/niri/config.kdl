@@ -76,7 +76,6 @@ layout {
     gaps 14
 
     preset-column-widths {
-        proportion 0.25
         proportion 0.5
         proportion 0.75
         proportion 1.0
