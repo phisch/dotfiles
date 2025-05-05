@@ -43,7 +43,7 @@ input {
     }
 
     trackpoint {
-        accel-speed 0.3
+        accel-speed -0.4
     }
 
     tablet {
@@ -60,7 +60,7 @@ output "LG Electronics 34GP950G #GTIYMxgwABBH" {
     scale 1.0
     transform "normal"
     position x=0 y=0
-    background-color "#191919"
+    background-color "#101010"
 }
 
 output "Chimei Innolux Corporation 0x1458 Unknown" {
@@ -68,7 +68,7 @@ output "Chimei Innolux Corporation 0x1458 Unknown" {
     scale 1.0
     transform "normal"
     position x=0 y=0
-    background-color "#191919"
+    background-color "#0a0a0a"
 }
 
 layout {
@@ -140,8 +140,7 @@ animations {
 }
 
 overview {
-    // TODO: remove backdrop-color from output configs
-    //backdrop-color "#191919"
+    backdrop-color "#131313"
 }
 
 window-rule {
@@ -162,7 +161,7 @@ window-rule {
     border {
         on
         width 3
-        active-color "#ffffff25"
+        active-color "#272036"
         inactive-color "#ff000000"
     }
 }
@@ -179,8 +178,8 @@ window-rule {
     match is-window-cast-target=true
 
     border {
-        active-color "#964a4a"
-        inactive-color "#964a4a"
+        active-color "#3b2424"
+        inactive-color "#3b2424"
     }
 }
 
@@ -243,16 +242,15 @@ window-rule {
 }
 
 layer-rule {
-    match namespace="gtk4-layer-shell"
-    match at-startup=true
+    match namespace="sherlock"
 
     shadow {
         on
         softness 30
-        spread 20
+        spread 10
         offset x=0 y=0
         draw-behind-window true
-        color "#00000090"
+        color "#000000A0"
     }
 }
 
