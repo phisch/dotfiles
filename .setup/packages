@@ -21,6 +21,7 @@ github-cli
 gnome-calculator
 gnome-disk-utility
 gnu-netcat
+gpu-screen-recorder
 greetd
 greetd-tuigreet
 gst-plugin-pipewire
@@ -64,7 +65,6 @@ ttf-joypixels
 ttf-material-design-icons-git
 vesktop-bin
 waybar
-wf-recorder
 wireplumber
 wl-clipboard
 wofi

@@ -272,12 +272,12 @@ binds {
     Ctrl+Print {
         spawn "sh" "-c" r#"
             file=~/Videos/recordings/"$(date +%s)".mp4
-            wf-recorder -c h264_vaapi -r 60 --bframes 0 -g "$(slurp -b '#00000090' -w 0)" -f "$file"
+            gpu-screen-recorder -w region -region "$(slurp -b '#00000090' -w 0 -f %wx%h+%x+%y)" -o "$file"
             wl-copy file:/"$file" -t text/uri-list
         "#;
     }
 
-    Ctrl+Escape { spawn "killall" "-s" "SIGINT" "wf-recorder"; }
+    Ctrl+Escape { spawn "pkill" "-SIGINT" "-f" "gpu-screen-recorder"; }
 
     Mod+Alt+Escape { quit skip-confirmation=true; }
 
