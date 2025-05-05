@@ -160,7 +160,7 @@ window-rule {
     border {
         on
         width 3
-        active-color "#272036"
+        active-color "#232323"
         inactive-color "#ff000000"
     }
 }
