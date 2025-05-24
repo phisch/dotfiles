@@ -1,0 +1,49 @@
+[default_apps]
+calendar_client = "thunderbird"
+terminal = "alacritty"
+
+[debug]
+try_suppress_errors     =   false
+try_suppress_warnings   =   true
+app_paths               =   ["~/.local/share/applications/"]
+
+[units]
+lengths                 =   "meter"
+weights                 =   "kg"
+volumes                 =   "l"
+temperatures            =   "C"
+
+[appearance]
+width                   =   900
+height                  =   593
+gsk_renderer            =   "cairo"
+recolor_icons           =   false
+icon_paths              =   [ "~/.config/sherlock/icons"]
+icon_size               =   32
+search_icon             =   true
+use_base_css            =   true
+status_bar              =   false
+backdrop = true
+backdrop_opacity = 0.9
+search_bar_icon = "system-search-symbolic"
+search_bar_icon_back = "go-previous-symbolic"
+search_icon_size = 10
+
+[behavior]
+caching                 =   true
+cache                   =   "~/.cache/sherlock_desktop_cache.json"
+daemonize               =   false
+animate                 =   true
+global_prefix           =   ""
+global_flags            =   ""
+
+[binds]
+prev                    =   "None"
+next                    =   "None"
+modifier                =   "control"
+
+[files]
+fallback                =   "~/.config/sherlock/fallback.json"
+css                     =   "~/.config/sherlock/main.css"
+alias                   =   "~/.config/sherlock/sherlock_alias.json"
+ignore                  =   "~/.config/sherlock/sherlockignore"
