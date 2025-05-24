@@ -16,6 +16,7 @@ efibootmgr
 element-desktop
 ffmpegthumbnailer
 firefox
+gcr
 git
 github-cli
 gnome-calculator
