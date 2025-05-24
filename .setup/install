@@ -53,5 +53,8 @@ gpg --recv-keys "$GPG_KEY"
 echo "$GPG_KEY:6:" | gpg --import-ownertrust
 gpg --card-status
 
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+
 git -C ~ remote set-url origin git@github.com:phisch/dotfiles.git
 git clone git@github.com:phisch/passwords.git ~/.password-store
