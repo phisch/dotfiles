@@ -46,6 +46,8 @@ paru -Sy --nosudoloop --needed --noconfirm \
     polkit-gnome \
     yubico-authenticator-bin
 
+rustup default stable
+
 sudo systemctl enable --now pcscd
 
 GPG_KEY="A00155F3C961D57E645299D66BEB117F7BDBD749"
