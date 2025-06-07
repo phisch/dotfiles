@@ -6,7 +6,7 @@
     "fixed-center": false,
     "modules-left": ["sway/workspaces"],
     "modules-center": ["sway/window"],
-    "modules-right": ["network", "pulseaudio", "battery", "backlight", "cpu", "memory", "temperature", "clock", "tray"],
+    "modules-right": ["bluetooth", "network", "pulseaudio", "battery", "backlight", "cpu", "memory", "temperature", "clock", "tray"],
     "sway/window": {
         "max-length": 50,
         "max-length-mode": "middle",
@@ -90,5 +90,14 @@
         "on-click": "pactl set-sink-mute 0 toggle",
         "on-click-middle": "pavucontrol",
         "on-click-right": "pactl set-source-mute 0 toggle"
+    },
+    "bluetooth": {
+     	"format": "",
+     	"format-connected": "󰂯 {device_alias}",
+     	"format-connected-battery": "󰂯 {device_alias} {device_battery_percentage}%",
+     	"tooltip-format": "{device_enumerate}",
+     	"tooltip-format-connected": "{device_enumerate}",
+     	"tooltip-format-enumerate-connected": "{device_alias}",
+     	"tooltip-format-enumerate-connected-battery": "{device_alias} ({device_battery_percentage}%)"
     }
 }
