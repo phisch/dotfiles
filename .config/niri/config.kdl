@@ -1,7 +1,5 @@
 environment {
-    DISPLAY ":0"
     QT_QPA_PLATFORM "wayland"
-    XDG_CURRENT_DESKTOP "niri"
     XDG_SESSION_TYPE "wayland"
     MANGOHUD "0"
     MANGOHUD_DLSYM "1"
@@ -9,6 +7,7 @@ environment {
     _JAVA_AWT_WM_NONREPARENTING "1"
     _JAVA_OPTIONS "-Dawt.useSystemAAFontSettings=gasp"
     ELECTRON_OZONE_PLATFORM_HINT "auto"
+    WEBKIT_DISABLE_DMABUF_RENDERER "1"
 }
 
 prefer-no-csd
@@ -16,7 +15,6 @@ prefer-no-csd
 screenshot-path "~/Pictures/screenshots/%Y-%m-%d %H-%M-%S.png"
 
 spawn-at-startup "waybar"
-spawn-at-startup "xwayland-satellite"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
 spawn-at-startup "gsettings" "set" "org.gnome.desktop.interface" "cursor-theme" "phinger-cursors-light"
@@ -60,7 +58,9 @@ output "LG Electronics 34GP950G #GTIYMxgwABBH" {
     scale 1.0
     transform "normal"
     position x=0 y=0
-    background-color "#101010"
+    layout {
+        background-color "#101010"
+    }
 }
 
 output "Chimei Innolux Corporation 0x1458 Unknown" {
@@ -68,7 +68,10 @@ output "Chimei Innolux Corporation 0x1458 Unknown" {
     scale 1.0
     transform "normal"
     position x=0 y=0
-    background-color "#0a0a0a"
+
+    layout {
+        background-color "#0a0a0a"
+    }
 }
 
 layout {
@@ -107,11 +110,33 @@ layout {
     }
 }
 
+recent-windows {
+    open-delay-ms 150
+
+    highlight {
+        active-color "#FFFFFF40"
+        urgent-color "#FF878740"
+        padding 20
+        corner-radius 10
+    }
+}
+
 gestures {
     dnd-edge-view-scroll {
         trigger-width 80
         delay-ms 200
         max-speed 2000
+    }
+
+    dnd-edge-workspace-switch {
+        trigger-height 50
+        delay-ms 100
+        max-speed 1500
+    }
+
+
+    hot-corners {
+        bottom-left
     }
 }
 
@@ -187,7 +212,7 @@ window-rule {
     match title=r#"(?i)inertia"#
     match title="Signal"
 
-    block-out-from "screen-capture"
+    //block-out-from "screen-capture"
 }
 
 window-rule {
