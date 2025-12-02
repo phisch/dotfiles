@@ -67,3 +67,4 @@ alias zed = zeditor
 
 use ~/.cache/starship/init.nu
 source ~/.cache/carapace/init.nu
+source ~/.zoxide.nu
