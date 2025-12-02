@@ -18,10 +18,12 @@ carapace _carapace nushell | save -f ~/.cache/carapace/init.nu
 $env.NPM_CONFIG_PREFIX = "~/.local"
 $env.NPM_PACKAGES = "~/.npm-packages"
 $env.PNPM_HOME = ("~/.local/share/pnpm" | path expand)
+$env.QML_IMPORT_PATH = ("/usr/lib/qt6/qml")
 
 $env.PATH = ($env.PATH |
     append '~/.cargo/bin' |
     append '~/.local/bin' |
+    append '/usr/lib/qt6/bin' |
     append $'($env.NPM_PACKAGES)/bin' |
     append $env.PNPM_HOME
 )
@@ -34,3 +36,4 @@ gpgconf --launch gpg-agent
 
 mkdir ~/.cache/starship
 starship init nu | save -f ~/.cache/starship/init.nu
+zoxide init nushell --cmd cd | save -f ~/.zoxide.nu
