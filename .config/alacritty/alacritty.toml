@@ -22,7 +22,7 @@ white = "#e6e6e6"
 yellow = "#E8CA5E"
 
 [colors.primary]
-background = "#0A0A0A"
+background = "#0F0F0F"
 
 [cursor.style]
 blinking = "On"
