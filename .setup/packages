@@ -27,6 +27,7 @@ greetd
 greetd-tuigreet
 grim
 gst-plugin-pipewire
+helium-browser-bin
 inkscape
 jitsi-meet-desktop-bin
 libpulse
@@ -75,3 +76,4 @@ xdg-desktop-portal-gnome
 xdg-user-dirs
 xorg-xwayland
 xwayland-satellite
+zed-preview-bin
