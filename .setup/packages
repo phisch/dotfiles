@@ -9,14 +9,12 @@ bluez-utils
 btrfs-progs
 bun-bin
 carapace-bin
-chromium
 cups
 docker
 docker-compose
 efibootmgr
 element-desktop
 ffmpegthumbnailer
-firefox
 gcr
 git
 github-cli
@@ -29,8 +27,6 @@ greetd-tuigreet
 grim
 gst-plugin-pipewire
 helium-browser-bin
-inkscape
-jitsi-meet-desktop-bin
 libpulse
 libvips
 light
@@ -51,7 +47,6 @@ pipewire
 pipewire-alsa
 pipewire-jack
 pipewire-pulse
-pnpm
 qbittorrent
 qt6-wayland
 rustdesk-bin
