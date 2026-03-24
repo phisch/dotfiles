@@ -14,7 +14,7 @@ localectl set-locale en_US.UTF-8
 timedatectl set-timezone Europe/Berlin
 
 if ! command -v paru &> /dev/null; then
-    cd "$(mktemp -d)" && git clone https://aur.archlinux.org/paru-bin.git . && makepkg -sim --noconfirm && cd -
+    cd "$(mktemp -d)" && git clone https://aur.archlinux.org/paru.git . && makepkg -sim --noconfirm && cd -
 fi
 
 paru -Sy --nosudoloop --needed --noconfirm - < "$SETUP_DIRECTORY/packages"
