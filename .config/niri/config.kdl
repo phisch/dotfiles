@@ -186,7 +186,7 @@ window-rule {
         on
         width 3
         active-color "#232323"
-        inactive-color "#ff000000"
+        inactive-color "#232323"
     }
 }
 
