@@ -191,6 +191,11 @@ window-rule {
 }
 
 window-rule {
+    match app-id="zed"
+    tiled-state true
+}
+
+window-rule {
     match is-focused=true
 
     shadow {
