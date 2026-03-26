@@ -110,6 +110,9 @@ setup_gpg_and_ssh() {
     gpg --recv-keys "$GPG_KEY"
     echo "$GPG_KEY:6:" | gpg --import-ownertrust
 
+    echo "If your YubiKey is already plugged in, please unplug and replug it now."
+    read -p "Press Enter to continue..."
+
     gpg --card-status
     gpg-connect-agent updatestartuptty /bye
 }
