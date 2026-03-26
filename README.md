@@ -19,7 +19,8 @@ dd if=path/to/archlinux.iso of=/dev/sdX bs=4M status=progress oflag=sync
 Boot into the live USB, connect to wifi and use [archinstall](https://archlinux.org/packages/extra/any/archinstall/) to perform a basic Archlinux installation:
 
 ```sh
-iwctl # [iwd] station DEVICE connect ESSID
+iwctl station wlan0 connect SSID # then type your wifi password, OR:
+iwctl wsc wlan0 push-button # then press the WPS button on your router
 archinstall # follow instructions
 ```
 
