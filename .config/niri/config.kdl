@@ -1,5 +1,6 @@
 environment {
     QT_QPA_PLATFORM "wayland"
+    XDG_CURRENT_DESKTOP "niri:GNOME"
     XDG_SESSION_TYPE "wayland"
     MANGOHUD "0"
     MANGOHUD_DLSYM "1"
