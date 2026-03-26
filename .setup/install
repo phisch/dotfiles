@@ -94,10 +94,6 @@ setup_brightness_control() {
     sudo usermod -aG video "$USER"
 }
 
-setup_polkit() {
-    sudo pacman -Sy --noconfirm --needed polkit polkit-gnome
-}
-
 setup_gpg_and_ssh() {
     sudo pacman -Sy --noconfirm --needed gnupg pcsclite ccid pinentry
     sudo systemctl enable --now pcscd
@@ -151,7 +147,6 @@ setup_power_management
 setup_firewall
 setup_network_manager
 setup_brightness_control
-setup_polkit
 setup_gpg_and_ssh
 update_repository_remote
 setup_password_store

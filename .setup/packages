@@ -24,6 +24,7 @@ pam-u2f
 pass
 pavucontrol
 phinger-cursors
+polkit-gnome
 qbittorrent
 seahorse
 sherlock-launcher-bin
