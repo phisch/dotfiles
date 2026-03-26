@@ -140,7 +140,6 @@ enable_fstrim() {
 apply_etc_configs
 localize
 install_paru
-install_packages
 setup_audio
 setup_bluetooth
 setup_printer
@@ -155,6 +154,7 @@ update_repository_remote
 setup_password_store
 setup_rust
 enable_fstrim
+install_packages
 setup_login_manager
 
 # TODO: check if gnu-netcat is still necessary for zed
