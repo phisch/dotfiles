@@ -49,13 +49,6 @@ setup_audio() {
     ln -sf /usr/lib/systemd/user/pipewire-pulse.socket ~/.config/systemd/user/default.target.wants/
 }
 
-setup_zram() {
-    # requires /etc/systemd/zram-generator.conf -> apply_etc_configs
-    sudo pacman -Sy --noconfirm --needed zram-generator
-    sudo systemctl enable --now systemd-zram-setup@zram0
-    # TODO: check if this works
-}
-
 setup_bluetooth() {
     sudo pacman -Sy --noconfirm --needed bluez bluez-utils blueman
     sudo systemctl enable --now bluetooth
@@ -156,7 +149,6 @@ apply_etc_configs
 localize
 install_paru
 setup_audio
-setup_zram
 setup_bluetooth
 setup_printer
 setup_docker
