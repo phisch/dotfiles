@@ -96,7 +96,7 @@ setup_brightness_control() {
 }
 
 setup_gpg_and_ssh() {
-    sudo pacman -Sy --noconfirm --needed gnupg pcsclite ccid pinentry
+    sudo pacman -Sy --noconfirm --needed gnupg pcsclite ccid pinentry gcr
     sudo systemctl enable --now pcscd
 
     export GPG_TTY="$(tty)"
