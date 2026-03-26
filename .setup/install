@@ -7,56 +7,174 @@ while true; do sleep 60; sudo -n true; kill -0 "$$" || exit; done 2>/dev/null &
 
 SETUP_DIRECTORY=$(realpath "$(dirname "$0")")
 
-sudo cp -rf etc/* /etc
+apply_etc_configs() {
+    sudo cp -rf etc/* /etc
+}
 
-localectl set-keymap de
-localectl set-locale en_US.UTF-8
-timedatectl set-timezone Europe/Berlin
+localize() {
+    localectl set-keymap de
+    localectl set-locale en_US.UTF-8
+    sudo systemctl enable --now systemd-timesyncd
+    sudo timedatectl set-timezone Europe/Berlin
+}
 
-if ! command -v paru &> /dev/null; then
-    cd "$(mktemp -d)" && git clone https://aur.archlinux.org/paru.git . && makepkg -sim --noconfirm && cd -
-fi
+install_paru() {
+    if ! command -v paru &> /dev/null; then
+        sudo pacman -Sy --noconfirm --needed git base-devel
+        cd "$(mktemp -d)"
+        git clone https://aur.archlinux.org/paru-bin.git .
+        makepkg -sim --noconfirm
+        cd -
+    fi
+}
 
-paru -Sy --nosudoloop --needed --noconfirm - < "$SETUP_DIRECTORY/packages"
+install_packages() {
+    paru -Sy --nosudoloop --noconfirm --needed - < "$SETUP_DIRECTORY/packages"
+}
 
-sudo usermod -aG docker,video "$USER"
-sudo systemctl enable bluetooth docker fstrim.timer systemd-timesyncd greetd
+setup_audio() {
+    sudo pacman -Sy --noconfirm --needed \
+        pipewire \
+        pipewire-alsa \
+        pipewire-jack \
+        pipewire-pulse \
+        gst-plugin-pipewire \
+        libpulse \
+        wireplumber \
+        sof-firmware
 
-xdg-user-dirs-update && mkdir -p ~/Pictures/screenshots ~/Videos/recordings
+    mkdir -p ~/.config/systemd/user/default.target.wants
 
-GPG_TTY="$(tty)"
-export GPG_TTY
+	ln -sf /usr/lib/systemd/user/pipewire-pulse.service ~/.config/systemd/user/default.target.wants/
+    ln -sf /usr/lib/systemd/user/pipewire-pulse.socket ~/.config/systemd/user/default.target.wants/
+}
 
-SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-export SSH_AUTH_SOCK
+setup_zram() {
+    # requires /etc/systemd/zram-generator.conf -> apply_etc_configs
+    sudo pacman -Sy --noconfirm --needed zram-generator
+    sudo systemctl enable --now systemd-zram-setup@zram0
+    # TODO: check if this works
+}
 
-sudo find ~/.gnupg -type d -exec chmod 700 {} \;
-sudo find ~/.gnupg -type f -exec chmod 600 {} \;
+setup_bluetooth() {
+    sudo pacman -Sy --noconfirm --needed bluez bluez-utils blueman
+    sudo systemctl enable --now bluetooth
+}
 
-paru -Sy --nosudoloop --needed --noconfirm \
-    browserpass-chromium \
-    browserpass-firefox \
-    ccid \
-    gnome-keyring \
-    openssh \
-    pam-u2f \
-    pass \
-    pcsclite \
-    polkit \
-    polkit-gnome \
-    yubico-authenticator-bin
+setup_printer() {
+    sudo pacman -Sy --noconfirm --needed cups cups-filters cups-pdf system-config-printer cups-pk-helper
+    sudo systemctl enable --now cups
+}
 
-rustup default stable
+setup_docker() {
+    sudo pacman -Sy --noconfirm --needed docker docker-compose
+    sudo usermod -aG docker "$USER"
+    sudo systemctl enable --now docker
+}
 
-sudo systemctl enable --now pcscd
+create_user_directories() {
+    sudo pacman -Sy --noconfirm --needed xdg-user-dirs
+    xdg-user-dirs-update
+    mkdir -p ~/Pictures/screenshots ~/Videos/recordings ~/code
+}
 
-GPG_KEY="A00155F3C961D57E645299D66BEB117F7BDBD749"
-gpg --recv-keys "$GPG_KEY"
-echo "$GPG_KEY:6:" | gpg --import-ownertrust
-gpg --card-status
+setup_power_management() {
+    sudo pacman -Sy --noconfirm --needed tuned tuned-ppd
+}
 
-export GPG_TTY="$(tty)"
-export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 
-git -C ~ remote set-url origin git@github.com:phisch/dotfiles.git
-git clone git@github.com:phisch/passwords.git ~/.password-store
+setup_firewall() {
+    sudo pacman -Sy --noconfirm --needed firewalld
+    sudo systemctl enable --now firewalld
+
+    # TODO: create home and public zones
+    # automatically switch to home when connected to a known wifi, and public if not
+    # only allow SSH access in the home zone, and block all incoming connections in the public zone
+}
+
+setup_network_manager() {
+    sudo pacman -Sy --noconfirm --needed networkmanager wpa_supplicant network-manager-applet
+    sudo systemctl enable --now NetworkManager
+}
+
+setup_keyring() {
+    sudo pacman -Sy --noconfirm --needed gnome-keyring libsecret seahorse
+    # TODO: might need `dbus-update-activation-environment --all` to be started by niri
+}
+
+setup_brightness_control() {
+    paru -Sy --nosudoloop --noconfirm --needed light
+    sudo usermod -aG video "$USER"
+}
+
+setup_polkit() {
+    sudo pacman -Sy --noconfirm --needed polkit polkit-gnome
+}
+
+setup_gpg_and_ssh() {
+    sudo pacman -Sy --noconfirm --needed gnupg pcsclite ccid pinentry
+    sudo systemctl enable --now pcscd
+
+    export GPG_TTY="$(tty)"
+    export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+
+    find ~/.gnupg -type d -exec chmod 700 {} \;
+    find ~/.gnupg -type f -exec chmod 600 {} \;
+
+    GPG_KEY="A00155F3C961D57E645299D66BEB117F7BDBD749"
+    gpg --recv-keys "$GPG_KEY"
+    echo "$GPG_KEY:6:" | gpg --import-ownertrust
+
+    gpg --card-status
+    gpg-connect-agent updatestartuptty /bye
+}
+
+update_repository_remote() {
+    git -C ~ remote set-url origin git@github.com:phisch/dotfiles.git
+}
+
+setup_password_store() {
+    git clone git@github.com:phisch/passwords.git ~/.password-store
+}
+
+setup_rust() {
+    # TODO: install and configure mold
+    sudo pacman -Sy --noconfirm --needed rustup
+    rustup default stable
+}
+
+setup_login_manager() {
+    sudo pacman -Sy --noconfirm --needed greetd-tuigreet
+    sudo systemctl enable --now greetd
+}
+
+enable_fstrim() {
+    sudo systemctl enable --now fstrim.timer
+}
+
+apply_etc_configs
+localize
+install_paru
+setup_audio
+setup_zram
+setup_bluetooth
+setup_printer
+setup_docker
+create_user_directories
+setup_power_management
+setup_firewall
+setup_network_manager
+setup_keyring
+setup_brightness_control
+setup_polkit
+setup_gpg_and_ssh
+update_repository_remote
+setup_password_store
+setup_rust
+enable_fstrim
+setup_login_manager
+
+
+
+# TODO: check if gnu-netcat is still necessary for zed
+# TODO: check if speaker chirping comes from power management
