@@ -22,7 +22,7 @@ install_paru() {
     if ! command -v paru &> /dev/null; then
         sudo pacman -Sy --noconfirm --needed git base-devel
         cd "$(mktemp -d)"
-        git clone https://aur.archlinux.org/paru-bin.git .
+        git clone https://aur.archlinux.org/paru.git .
         makepkg -sim --noconfirm
         cd -
     fi
