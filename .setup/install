@@ -14,7 +14,7 @@ apply_etc_configs() {
 localize() {
     localectl set-keymap de
     localectl set-locale en_US.UTF-8
-    sudo systemctl enable --now systemd-timesyncd
+    sudo systemctl enable systemd-timesyncd
     sudo timedatectl set-timezone Europe/Berlin
 }
 
@@ -52,18 +52,18 @@ setup_audio() {
 
 setup_bluetooth() {
     sudo pacman -Sy --noconfirm --needed bluez bluez-utils blueman
-    sudo systemctl enable --now bluetooth
+    sudo systemctl enable bluetooth
 }
 
 setup_printer() {
     sudo pacman -Sy --noconfirm --needed cups cups-filters cups-pdf system-config-printer cups-pk-helper
-    sudo systemctl enable --now cups
+    sudo systemctl enable cups
 }
 
 setup_docker() {
     sudo pacman -Sy --noconfirm --needed docker docker-compose
     sudo usermod -aG docker "$USER"
-    sudo systemctl enable --now docker
+    sudo systemctl enable docker
 }
 
 create_user_directories() {
@@ -79,7 +79,7 @@ setup_power_management() {
 
 setup_firewall() {
     sudo pacman -Sy --noconfirm --needed firewalld
-    sudo systemctl enable --now firewalld
+    sudo systemctl enable firewalld
 
     # TODO: create home and public zones
     # automatically switch to home when connected to a known wifi, and public if not
@@ -88,7 +88,7 @@ setup_firewall() {
 
 setup_network_manager() {
     sudo pacman -Sy --noconfirm --needed networkmanager wpa_supplicant network-manager-applet
-    sudo systemctl enable --now NetworkManager
+    sudo systemctl enable NetworkManager
 }
 
 setup_brightness_control() {
@@ -134,11 +134,11 @@ setup_rust() {
 
 setup_login_manager() {
     sudo pacman -Sy --noconfirm --needed greetd-tuigreet
-    sudo systemctl enable --now greetd
+    sudo systemctl enable greetd
 }
 
 enable_fstrim() {
-    sudo systemctl enable --now fstrim.timer
+    sudo systemctl enable fstrim.timer
 }
 
 apply_etc_configs
@@ -160,5 +160,7 @@ setup_rust
 enable_fstrim
 install_packages
 setup_login_manager
+
+reboot
 
 # TODO: check if gnu-netcat is still necessary for zed
