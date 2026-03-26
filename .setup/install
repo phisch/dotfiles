@@ -8,7 +8,7 @@ while true; do sleep 60; sudo -n true; kill -0 "$$" || exit; done 2>/dev/null &
 SETUP_DIRECTORY=$(realpath "$(dirname "$0")")
 
 apply_etc_configs() {
-    sudo cp -rf etc/* /etc
+    sudo cp -rf "$SETUP_DIRECTORY/etc" /
 }
 
 localize() {
