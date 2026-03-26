@@ -29,6 +29,7 @@ install_paru() {
 }
 
 install_packages() {
+    sudo pacman -Rns $(pacman -Qdtq)
     paru -Sy --nosudoloop --noconfirm --needed - < "$SETUP_DIRECTORY/packages"
 }
 
