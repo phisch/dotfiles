@@ -9,9 +9,11 @@ element-desktop
 ffmpegthumbnailer
 freecad
 gnome-calculator
+gnome-keyring
 gpu-screen-recorder
 grim
 helium-browser-bin
+libsecret
 mpv
 nautilus
 niri
@@ -23,6 +25,7 @@ pass
 pavucontrol
 phinger-cursors
 qbittorrent
+seahorse
 sherlock-launcher-bin
 slurp
 starship

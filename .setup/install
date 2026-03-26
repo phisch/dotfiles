@@ -75,7 +75,6 @@ setup_power_management() {
     sudo pacman -Sy --noconfirm --needed tuned tuned-ppd
 }
 
-
 setup_firewall() {
     sudo pacman -Sy --noconfirm --needed firewalld
     sudo systemctl enable --now firewalld
@@ -88,11 +87,6 @@ setup_firewall() {
 setup_network_manager() {
     sudo pacman -Sy --noconfirm --needed networkmanager wpa_supplicant network-manager-applet
     sudo systemctl enable --now NetworkManager
-}
-
-setup_keyring() {
-    sudo pacman -Sy --noconfirm --needed gnome-keyring libsecret seahorse
-    # TODO: might need `dbus-update-activation-environment --all` to be started by niri
 }
 
 setup_brightness_control() {
@@ -156,7 +150,6 @@ create_user_directories
 setup_power_management
 setup_firewall
 setup_network_manager
-setup_keyring
 setup_brightness_control
 setup_polkit
 setup_gpg_and_ssh
