@@ -24,13 +24,10 @@ iwctl wsc wlan0 push-button # then press the WPS button on your router
 archinstall # follow instructions
 ```
 
-### Setup script
-
-These dotfiles contain a handy setup script that installs and configures every dependency and component I need.
-
-Using it is as simple as installing these dotfiles, and running the install script:
+### After reboot
 
 ```sh
+nmcli device wifi connect "phisch" --ask # press WPS button on router
 cd $(mktemp -d) && git clone https://github.com/phisch/dotfiles.git . && cp -rb . ~
 ~/.setup/install > ~/install.log
 ```
