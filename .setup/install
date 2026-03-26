@@ -72,6 +72,7 @@ create_user_directories() {
 }
 
 setup_power_management() {
+    # TODO: check if speaker chirping comes from power management
     sudo pacman -Sy --noconfirm --needed tuned tuned-ppd
 }
 
@@ -139,6 +140,7 @@ enable_fstrim() {
 apply_etc_configs
 localize
 install_paru
+install_packages
 setup_audio
 setup_bluetooth
 setup_printer
@@ -155,7 +157,4 @@ setup_rust
 enable_fstrim
 setup_login_manager
 
-
-
 # TODO: check if gnu-netcat is still necessary for zed
-# TODO: check if speaker chirping comes from power management
