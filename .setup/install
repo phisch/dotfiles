@@ -94,6 +94,7 @@ setup_network_manager() {
 setup_brightness_control() {
     paru -Sy --nosudoloop --noconfirm --needed light
     sudo usermod -aG video "$USER"
+    light -Nr 1
 }
 
 setup_gpg_and_ssh() {

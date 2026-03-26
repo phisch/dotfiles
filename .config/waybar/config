@@ -56,7 +56,8 @@
         "format-icons": ["󰛩", "󱩎", "󱩏", "󱩐", "󱩑", "󱩒", "󱩓", "󱩔", "󱩕", "󱩖", "󰛨"],
         "on-click": "light -S 0.1",
         "on-scroll-up": "light -A 1",
-        "on-scroll-down": "light -U 1"
+        "on-scroll-down": "light -U 1",
+        "smooth-scrolling-threshold": 2.0
     },
     "battery": {
         "interval": 10,
@@ -89,7 +90,8 @@
         },
         "on-click": "pactl set-sink-mute 0 toggle",
         "on-click-middle": "pavucontrol",
-        "on-click-right": "pactl set-source-mute 0 toggle"
+        "on-click-right": "pactl set-source-mute 0 toggle",
+        "smooth-scrolling-threshold": 2.0
     },
     "bluetooth": {
      	"format": "",
