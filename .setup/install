@@ -20,7 +20,7 @@ localize() {
 
 install_paru() {
     if ! command -v paru &> /dev/null; then
-        sudo pacman -Sy --noconfirm --needed git base-devel
+        sudo pacman -Sy --noconfirm --needed git base-devel clang
         cd "$(mktemp -d)"
         git clone https://aur.archlinux.org/paru.git .
         makepkg -sim --noconfirm
