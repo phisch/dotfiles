@@ -117,7 +117,9 @@ update_repository_remote() {
 }
 
 setup_password_store() {
-    git clone git@github.com:phisch/passwords.git ~/.password-store
+    if [ ! -d "$HOME/.password-store" ]; then
+        git clone git@github.com:phisch/passwords.git ~/.password-store
+    fi
 }
 
 setup_rust() {
