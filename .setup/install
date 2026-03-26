@@ -121,8 +121,7 @@ setup_password_store() {
 }
 
 setup_rust() {
-    # TODO: install and configure mold
-    sudo pacman -Sy --noconfirm --needed rustup
+    sudo pacman -Sy --noconfirm --needed rustup mold clang
     rustup default stable
 }
 
