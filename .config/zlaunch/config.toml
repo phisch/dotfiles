@@ -1,0 +1,11 @@
+launcher_size = [600.0, 400.0]
+enable_backdrop = true
+enable_transparency = false
+default_modes = ["combined"]
+combined_modules = ["calculator", "windows", "applications", "actions", "clipboard"]
+[fuzzy_match]
+show_best_match = true
+[[search_providers]]
+name = "GitHub"
+trigger = "!gh"
+url = "https://github.com/search?q={query}"
