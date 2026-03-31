@@ -331,8 +331,8 @@ binds {
     Mod+Down { focus-window-or-workspace-down;}
     Mod+Up { focus-window-or-workspace-up; }
 
-    XF86Tools { focus-window-or-workspace-down;}
-    XF86Launch5 { focus-window-or-workspace-up; }
+    XF86Tools { focus-window-or-workspace-up;}
+    XF86Launch5 { focus-window-or-workspace-down; }
 
     Mod+Alt+Right { move-column-right; }
     Mod+Alt+Left { move-column-left; }
