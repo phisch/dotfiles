@@ -13,13 +13,17 @@ gnome-calculator
 gnome-keyring
 gpu-screen-recorder
 grim
+gst-plugins-good
 helium-browser-bin
+intel-media-driver
 less
 libsecret
 mpv
 nautilus
 niri
+noto-fonts-emoji
 nushell
+obs-studio
 obsidian
 openssh
 pam-u2f
@@ -37,7 +41,6 @@ steam
 teamspeak3
 ttf-dejavu
 ttf-jetbrains-mono
-ttf-joypixels
 ttf-material-design-icons-git
 vesktop-bin
 vulkan-intel
@@ -47,5 +50,6 @@ xdg-desktop-portal-gnome
 xwayland-satellite
 yubico-authenticator-bin
 zed-preview-bin
+zlaunch-bin
 zoxide
 zram-generator

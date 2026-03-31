@@ -15,6 +15,7 @@ prefer-no-csd
 
 screenshot-path "~/Pictures/screenshots/%Y-%m-%d %H-%M-%S.png"
 
+spawn-at-startup "zlaunch"
 spawn-at-startup "waybar"
 spawn-at-startup "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1"
 
@@ -288,7 +289,7 @@ binds {
     Mod+W { close-window; }
 
     Mod+Return { spawn "alacritty"; }
-    Mod+Space { spawn "sherlock"; }
+    Mod+Space { spawn "zlaunch" "show"; }
 
     Print {
         spawn "sh" "-c" r#"
